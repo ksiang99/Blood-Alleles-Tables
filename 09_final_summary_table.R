@@ -510,6 +510,7 @@ for (i in seq(1, nrow(df_sum_table))) {
 
 print("Done")
 
+
 # Ignore
 # MNS_MN <- list(
 #     ref = c("MNS:1 or M+/GYPA*01 or GYPA*M"),
