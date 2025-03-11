@@ -64,7 +64,6 @@ JK*01N.12	NM_015865.7:c.516_530del	Automapped to c.522_536del. No indication of 
 JK*02N.15	NM_015865.7:c.160insC	No indication of whether 160 is the start or end of insertion
 JK*02N.23	NM_015865.7:c.588G	NM_015865.7:c.588G: Variant reference (G) does not agree with reference sequence (A)
 JK*01N.24	NM_015865.7:c.267delC	Automapped to c.270del. Base deletion is the same
-XG*01N.01	NC_000023.11:g.2748343G>C	NC_000023.10:g.2748343G>C: Variant reference (G) does not agree with reference sequence (A)
 CD99*01N.01	NM_002414.3:c.(100 + 1_101-1)_(361 + 1_362-1)del	Uncertain positions are not fully supported, however the syntax is valid
 CD99*01N.02	NM_002414.3:c.(148 + 1_149-1)_(475 + 1_476-1)del	Uncertain positions are not fully supported, however the syntax is valid
 CD99*01N.03	NM_002414.3:c.(67 + 1_68-1)_(475 + 1_476-1)del	Uncertain positions are not fully supported, however the syntax is valid
