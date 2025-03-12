@@ -2,30 +2,14 @@ Allele Name	Nucleotide Change	Comments
 *1000G only* (GYPB.1)	NM_002100.5:c.251G>C	NM_002100.5:c.251G>C: Variant reference (G) does not agree with reference sequence ©
 *1000G only* (RHD.4)	NM_016124.6:c.1136C>T	NM_016124.6:c.1136C>T: Variant reference (C) does not agree with reference sequence (T)
 *1000G only* (RHCE.1)	NM_020485.8:c.48G>C	NM_020485.8:c.48G>C: Variant reference (G) does not agree with reference sequence ©
-*1000G only* (ACKR.16)	NM_002036.4:c.125A>G	NM_002036.4:c.125A>G: Variant reference (A) does not agree with reference sequence (G)
+*1000G only* (ACKR1.6)	NM_002036.4:c.125A>G	NM_002036.4:c.125A>G: Variant reference (A) does not agree with reference sequence (G)
 *1000G only* (SLC14A1.2)	NM_015865.7:c.838A>G	NM_015865.7:c.838A>G: Variant reference (A) does not agree with reference sequence (G)
 *1000G only* (ART4.1)	NM_021071.4:c.378C>T	NM_021071.4:c.378C>T: Variant reference (C) does not agree with reference sequence (T)
 *1000G only* (ART4.1)	NM_021071.4:c.624T>C	NM_021071.4:c.624T>C: Variant reference (T) does not agree with reference sequence ©
 *1000G only* (ART4.1)	NM_021071.4:c.793A>G	NM_021071.4:c.793A>G: Variant reference (A) does not agree with reference sequence (G)
-*1000G only* (FUT22.9)	NM_000511.5:c.811delC	Automapped to c.812del. Base deletion remains the same
+*1000G only* (FUT2.29)	NM_000511.5:c.811delC	Automapped to c.812del. Base deletion remains the same
 *1000G only* (CR1.2)	NM_000573.3:c.180G>A	NM_000573.3:c.180G>A: Variant reference (G) does not agree with reference sequence (A)
 *1000G only* (CR1.2)	NM_000573.3:c.5905G>A	NM_000573.3:c.5905G>A: Variant reference (G) does not agree with reference sequence (A)
-*1000G only* (CR11.7)	NM_000573.3:c.4828T>A	NM_000573.3:c.4828T>A: Variant reference (T) does not agree with reference sequence (A)
-*1000G only* (CD44.1)	NM_000610.4:c.743G>T	NM_000610.4:c.743G>T: Variant reference (G) does not agree with reference sequence (T)
-*1000G only* (CD44.1)	NM_000610.4:c.921T>C	NM_000610.4:c.921T>C: Variant reference (T) does not agree with reference sequence ©
-*1000G only* (CD44.3)	NM_000610.4:c.875G>A	NM_000610.4:c.875G>A: Variant reference (G) does not agree with reference sequence (T)
-*1000G only* (CD44.7)	NM_000610.4:c.698G>A	NM_000610.4:c.698G>A: Variant reference (G) does not agree with reference sequence (A)
-*1000G only* (CD44.13)	NM_000610.4:c.794A>G	NM_000610.4:c.794A>G: Variant reference (A) does not agree with reference sequence ©
-*1000G only* (CD44.15)	NM_000610.4:c.1007C>T	NM_000610.4:c.1007C>T: Variant reference (C) does not agree with reference sequence (T)
-*1000G only* (CD44.17)	NM_000610.4:c.931G>A	NM_000610.4:c.931G>A: Variant reference (G) does not agree with reference sequence (A)
-*1000G only* (BSG.4)	NM_001728.4:c.327T>C	NM_001728.4:c.327T>C: Variant reference (T) does not agree with reference sequence (G)
-*1000G only* (BSG.6)	NM_001728.4:c.74C>T	NM_001728.4:c.74C>T: Variant reference (C) does not agree with reference sequence (T)
-*1000G only* (BSG.8)	NM_001728.4:c.200T>A	NM_001728.4:c.200T>A: Variant reference (T) does not agree with reference sequence (G)
-*1000G only* (BSG.10)	NM_001728.4:c.81C>A	NM_001728.4:c.81C>A: Variant reference (C) does not agree with reference sequence (G)
-*1000G only* (BSG.11)	NM_001728.4:c.311C>G	NM_001728.4:c.311C>G: Variant reference (C) does not agree with reference sequence (G)
-*1000G only* (BSG.13)	NM_001728.4:c.698G>A	NM_001728.4:c.698G>A: Variant reference (G) does not agree with reference sequence (A)
-*1000G only* (BSG.14)	NM_001728.4:c.82A>C	NM_001728.4:c.82A>C: Variant reference (A) does not agree with reference sequence (G)
-*1000G only* (BSG.17)	NM_001728.4:c.354G>C	NM_001728.4:c.354G>C: Variant reference (G) does not agree with reference sequence ©
-*1000G only* (BSG.19)	NM_001728.4:c.310C>T	NM_001728.4:c.310C>T: Variant reference (C) does not agree with reference sequence (G)
+*1000G only* (CR1.17)	NM_000573.3:c.4828T>A	NM_000573.3:c.4828T>A: Variant reference (T) does not agree with reference sequence (A)
 *1000G only* (GATA1.12)	NM_002049.3:c.251_252insGGA	Automapped to NM_002049.3:c.254_256ins. Base insertion remains the same
 *1000G only* (KLF1.20)	NM_006563.3:c.525_526insCGGCGCC	Automapped to NM_006563.3:c.519_525dups. Base insertion/duplication is not the same

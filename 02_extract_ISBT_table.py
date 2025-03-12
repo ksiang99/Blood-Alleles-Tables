@@ -1,7 +1,7 @@
 # Files that require manual copy and paste
 # All tables: MNS, H
 # Some tables: RHD, KEL, LE, XG, KLF1
-# Misc cleaning: RHD, LE, DO, RHAG, JR, EMM
+# Misc cleaning: RHD, LE, DO, RHAG, JR
 
 import tabula
 import pandas as pd

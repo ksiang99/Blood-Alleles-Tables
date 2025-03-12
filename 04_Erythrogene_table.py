@@ -16,7 +16,7 @@ df = pd.DataFrame(columns=["Blood System", "Phenotype", "Allele Name", "Gene", "
 df["Gene"] = temp_df["Gene"]
 df["Nucleotide Change"] = temp_df["Nucleotide Change"]
 df["Phenotype"] = "-"
-df["Allele Name"] = temp_df["Allele"] + " (" + temp_df["Gene"] + "." + (temp_df.groupby("Gene").cumcount() + 1).astype(str) + ")"
+df["Allele Name"] = temp_df["Allele"] + " (" + temp_df["Gene"] + "." + (temp_df.groupby("Gene").cumcount() + 1).astype(str).str.zfill(2) + ")"
 df["Blood System"] = df["Gene"].map(HGVS_df.set_index('Gene')['Blood Group'])
 df["Chromosome"] = df["Gene"].map(HGVS_df.set_index('Gene')['Chromosome'])
 
