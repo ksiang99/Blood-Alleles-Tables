@@ -1,0 +1,20 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/rocker-org/devcontainer-templates/tree/main/src/r-ver
+{
+    "name": "R (rocker/r-ver base)",
+    "image": "ghcr.io/rocker-org/devcontainer/r-ver:4.4",
+    "features": {
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "3"
+        }
+    },
+    "postCreateCommand": "pip install jupyter",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-toolsai.jupyter"
+            ]
+        }
+    }
+}
