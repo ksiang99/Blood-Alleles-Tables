@@ -19,16 +19,16 @@
   * Create two new columns **GRCh37 Alt Allele** and **GRCh38 Alt Allele** to represent the genotype value of the nucleotide change.
 
 **`06_edit_genotype_value.py`**
-* Adjust VCF positions for `ABO:c.261G` Provides the correct VCF position
+* Adjust VCF positions for `ABO:c.261G`.
 * Corrects genotype values for biallelic/multiallelic sites.
 
 **`07_blood_allele_table.py`**
 * Produces two final output files:
   * `Blood_Allele_Table.tsv`
-  * `Blood_Allele_Table_Separated.tsv` (Exploded version of `Blood_Allele_Table.tsv`)
+  * `Blood_Allele_Table_Separated.tsv` (Exploded version)
 * Uses the following files:
   * `ISBT_variants_to_remove.tsv` and `Erythrogene_variants_to_remove.tsv` to remove alleles with nucleotide change that cannot be found or automapped by VariantValidator, have variant reference not aligning with reference sequence or involves Exon/Intron deletion.
   * `ISBT_variants_to_overwrite.tsv` provides the mapping details of nucleotide change that cannot be found using **`05_get_coords.py`** but works when using [VariantValidator Web Interface](https://rest.variantvalidator.org/)
 
 **`08_Infer.R`**
-* Uses genotype data from 1000G VCF files and `Blood_Allele_Table_Separated.tsv` to infer potential phenotypes for each position.
+* Uses genotype data from 1000G VCF files and `Blood_Allele_Table_Separated.tsv` to infer potential phenotypes at each variant position.
