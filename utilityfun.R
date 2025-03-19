@@ -292,8 +292,7 @@ calculate_metrics <- function(predictions, reference) {
 # @export
 train_and_evaluate_model <- function(df_genotype, target_column, masked_columns, 
                                       model_type = "naive_bayes", 
-                                      proportion_training_data = 0.8,
-                                      cv_method = "kfold", k_folds = 5) {
+                                      proportion_training_data = 0.8) {
   # Validate input arguments
   if (!target_column %in% colnames(df_genotype)) {
     stop("Target column not found in the genotype data.")
@@ -319,45 +318,16 @@ train_and_evaluate_model <- function(df_genotype, target_column, masked_columns,
   df_train <- df_genotype[sub, ]
   df_test <- df_genotype[-sub, ]
 
-  # Set up cross-validation method
-  if (cv_method == "loo") {
-    train_control <- trainControl(method = "LOOCV")
-  } else {
-    train_control <- trainControl(method = "cv", number = k_folds)
-  }
-
   # Train the specified model
   predictor_columns <- setdiff(colnames(df_train), target_column)
   model <- switch(model_type,
-                  "naive_bayes" = train(df_train[predictor_columns], df_train[[target_column]], method = "naive_bayes",
-                    trControl = train_control, tuneGrid = expand.grid(laplace = 1, usekernel = FALSE, adjust = 1)),
-                  "logistic_regression" = train(df_train[predictor_columns], df_train[[target_column]], method = "glm",
-                    family = "binomial", trControl = train_control),
-                  "random_forest" = {
-                    class_weights <- 1 / table(df_train[[target_column]])
-                    class_weights <- setNames(as.numeric(class_weights), names(class_weights))
-                  
-                    train(df_train[predictor_columns], df_train[[target_column]], 
-                          method = "rf", 
-                          trControl = train_control, 
-                          tuneGrid = expand.grid(mtry = sqrt(ncol(df_train) - 1)), 
-                          ntree = 100, 
-                          classwt = class_weights)
-                  
-                  # "naive_bayes" = naive_bayes(x = df_train[predictor_columns], y = df_train[[target_column]], laplace = 1),
-                  # "random_forest" = {
-                  #   class_weights <- 1 / table(df_train[[target_column]])
-                  #   class_weights <- setNames(as.numeric(class_weights), names(class_weights))
-                  #   randomForest(x = df_train[predictor_columns], y = df_train[[target_column]], 
-                  #                ntree = 500,
-                  #                classwt = class_weights)
-                  })
+                "naive_bayes" = naive_bayes(x = df_train[predictor_columns], y = df_train[[target_column]], laplace = 1),
+                "logistic_regression" = train(df_train[predictor_columns], df_train[[target_column]], method = "glm", family = "binomial"),
+                "random_forest" = train(df_train[predictor_columns], df_train[[target_column]], method = "rf"))
 
-  print(model)
-  
   # Generate predictions and calculate performance metrics
-  train_predictions <- predict(model, newdata = df_train[predictor_columns], type = "raw")
-  test_predictions <- predict(model, newdata = df_test[predictor_columns], type = "raw")
+  train_predictions <- predict(model, newdata = df_train[predictor_columns], type = "class")
+  test_predictions <- predict(model, newdata = df_test[predictor_columns], type = "class")
 
   # Ensure model provides probabilities for ROC calculation
   test_probs <- tryCatch({
@@ -441,4 +411,349 @@ train_and_evaluate_model <- function(df_genotype, target_column, masked_columns,
   }
   
   return(metrics_df)
+}
+
+# --- Function to Train and Evaluate a Machine Learning Model ---
+# @param df_genotype (data.frame) Genotype data.
+# @param target_column (character) Name of the target column.
+# @param masked_columns (character vector) Names of columns to mask during training and testing, excluding the target column.
+# @param model_type (character) Type of model to train ("naive_bayes", "logistic_regression", "random_forest").
+# @param cv_method (character) Type of cross validation to use ("kfold", "loo").
+# @param k_fold (numeric) Number of folds to used for the model (default: 5).
+# 
+# @return (data.frame) A dataframe containing the full set of performance metrics for the model.
+# 
+# @export
+train_and_evaluate_model_k <- function(df_genotype, target_column, masked_columns, 
+                                      model_type = "naive_bayes", cv_method = "kfold",
+                                      k_folds = 5) {
+  # Validate input arguments
+  if (!target_column %in% colnames(df_genotype)) {
+    stop("Target column not found in the genotype data.")
+  }
+  
+  if (!model_type %in% c("naive_bayes", "logistic_regression", "random_forest")) {
+    stop("Unsupported model type. Supported types are 'naive_bayes', 'logistic_regression', and 'random_forest'.")
+  }
+  
+  # Check for single record classes
+  class_counts <- table(df_genotype[[target_column]])
+  if (any(class_counts == 1)) {
+    warning("Some classes have a single record. Skipping this target column: ", target_column)
+    return(NULL)
+  }
+  
+  # Remove target_column from masked_columns and mask columns from data
+  masked_columns <- setdiff(masked_columns, target_column)
+  df_genotype <- df_genotype[, !colnames(df_genotype) %in% masked_columns]
+
+  # Convert target_columns classes to a factor with valid names
+  df_genotype[[target_column]] <- factor(df_genotype[[target_column]], 
+                                        levels = c("0", "1"), 
+                                        labels = c("prob_0", "prob_1"))
+  
+  # Set laplace smoothing value for naive bayes
+  if (model_type == "naive_bayes") {
+    laplace_smoothing = 1
+  }
+
+  # Set cross-validation method to use
+  if (cv_method == "loo") {
+    train_control <- trainControl(method = "LOOCV", savePredictions = "final", classProb = TRUE)
+  } else {
+    # Stratified sampling by default
+    train_control <- trainControl(method = "cv", number = k_folds,
+                                  savePredictions = "final", classProb = TRUE, returnResamp = "all")
+  }
+
+  # Train the specified model
+  predictor_columns <- setdiff(colnames(df_genotype), target_column)
+  model <- switch(model_type,
+                  "naive_bayes" = train(df_genotype[predictor_columns], df_genotype[[target_column]], method = "naive_bayes",
+                    trControl = train_control, tuneGrid = expand.grid(laplace = laplace_smoothing, usekernel = FALSE, adjust = 1)),
+                  "logistic_regression" = train(df_genotype[predictor_columns], df_genotype[[target_column]], method = "glm",
+                    family = "binomial", trControl = train_control),
+                  "random_forest" = {
+                    train(df_genotype[predictor_columns], df_genotype[[target_column]], 
+                          method = "rf", 
+                          trControl = train_control,
+                          ntree = 10)
+                  })
+
+  # Retrieve results of model
+  model_results <- model$pred
+
+  # Convert class labels in predictions and observations back to "0" and "1"
+  model_results$pred <- factor(model_results$pred, levels = c("prob_0", "prob_1"), labels = c("0", "1"))
+  model_results$obs <- factor(model_results$obs, levels = c("prob_0", "prob_1"), labels = c("0", "1"))
+
+  # Split model results based on test fold number
+  fold_results <- split(model_results, model_results$Resample)
+
+  # Calculate the performance metrics of each test fold
+  fold_metrics <- lapply(fold_results, function(df) {
+    metrics <- calculate_metrics(df$pred, df$obs)
+    metrics$Pred_Class <- df$pred # Predicted class of target_column in test fold
+    metrics$Row_Index <- df$rowIndex # Row index of target_column in test fold
+    
+    # Ensure model provides probabilities for ROC calculation
+    fold_probs <- tryCatch({
+      df[, c("prob_0", "prob_1")]
+    }, error = function(e) {
+      warning("Model prediction for probabilities failed: ", conditionMessage(e))
+      return(NULL)
+    })
+  
+    # AUC Calculation
+    auc <- tryCatch({
+      if (is.null(fold_probs)) {
+        warning("Prediction probabilities could not be generated. ROC calculation aborted.")
+        return(NA)
+      }
+
+      if (sum(df$obs == 0) == 0) {
+        warning("No positive samples (class '0') in prediction. ROC cannot be calculated.")
+        return(NA)
+      }
+
+      roc_test <- roc(
+        response = df$obs,
+        predictor = df$prob_1,
+        levels = c(0, 1))
+
+      # Plot ROC curve
+      roc_data <- data.frame(
+        specificity = roc_test$specificities,
+        sensitivity = roc_test$sensitivities
+      )
+      
+      ggplot(roc_data, aes(x = 1 - specificity, y = sensitivity)) +
+        geom_line(color = "blue") +
+        geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "red") +
+        labs(
+          title = paste("ROC Curve (AUC =", round(auc(roc_test), 3), ")"),
+          x = "1 - Specificity (False Positive Rate)",
+          y = "Sensitivity (True Positive Rate)"
+        ) +
+        theme_minimal()
+
+      metrics$AUC <- as.numeric(auc(roc_test))
+    
+    }, error = function(e) {
+      warning("ROC calculation failed due to an error: ", conditionMessage(e))
+      return(NA)  # Return NA if ROC calculation fails
+    })
+    return(metrics)
+  })
+
+  # Compile test fold metrics into a dataframe
+  # Works for NB with CV, have not look into LR, RF with CV
+  # Have not look into LOO
+  metrics_df <- do.call(rbind, lapply(names(fold_metrics), function(fold) {
+    metrics <- fold_metrics[[fold]]
+    data.frame(
+    Model = model_type,
+    Fold = fold,
+    Target_Column = target_column,
+    MAF = 1 - sum(df_genotype[[target_column]] == 0) / length(df_genotype[[target_column]]), # avoiding problems with multiallelic positions
+    Laplace_Smoothing = ifelse(model_type == "naive_bayes", laplace_smoothing, NA),
+    
+    # Performance metrics
+    Test_Accuracy = metrics$Accuracy,
+    Test_Kappa = metrics$Kappa,
+    Test_Sensitivity = metrics$Sensitivity,
+    Test_Specificity = metrics$Specificity,
+    Test_Pos_Pred_Value = metrics$Pos_Pred_Value,
+    Test_Neg_Pred_Value = metrics$Neg_Pred_Value,
+    Test_Precision = metrics$Precision,
+    Test_Recall = metrics$Recall,
+    Test_F1 = metrics$F1,
+    Test_Prevalence = metrics$Prevalence,
+    Test_Detection_Rate = metrics$Detection_Rate,
+    Test_Detection_Prevalence = metrics$Detection_Prevalence,
+    Test_Balanced_Accuracy = metrics$Balanced_Accuracy,
+
+    # ROC AUC
+    AUC = metrics$AUC,
+
+    # Predicted classes of target_column
+    Pred_Class = paste(metrics$Pred_Class, collapse = ", "),   
+    Pred_Row_Index = paste(metrics$Row_Index, collapse = ", "),
+    row.names = NULL
+    )
+  }))
+
+  return(metrics_df)
+}
+
+# --- Function to retrieve Phenotypes with positions found in df_genotype ---
+# @param variant_pos (character vector) A vector of positions found in df_genotype
+# @param chr_num (numeric) Chromosome number
+# @param df_database (data.frame) A dataframe containing information on blood alleles
+
+# @return (list) A list containing:
+#   - ref_phenotypes: Reference phenotypes for each variant position.
+#   - ref_allele_names: Reference allele names corresponding to ref_phenotypes.
+#   - alt_phenotypes: Alternative phenotypes associated with each variant position.
+#   - alt_allele_names: Alternative allele names corresponding to alt_phenotypes.
+#   - coord_combi_lst: List of lists containing variant positions associated with alternative phenotypes.
+#   - geno_combi_lst: List of lists containing genotype values of each variant positions of alternative alleles.
+#
+# 
+# @export
+get_phenotypes <- function(variant_pos, chr_num, df_database) {
+  
+  # Create vectors to store reference/alternative phenotype/allele names
+  alt_phenotypes <- vector("list", length = length(variant_pos))
+  alt_allele_names <- vector("list", length = length(variant_pos))
+  ref_phenotypes <- vector("list", length = length(variant_pos))
+  ref_allele_names <- vector("list", length = length(variant_pos))
+  coord_combi_lst <- vector("list", length = length(variant_pos))
+  geno_combi_lst <- vector("list", length = length(variant_pos))
+
+  # Loop through each variant position
+  for (i in seq_along(variant_pos)) {
+    # Retrieve all phenotypes associated with the variant position
+    matched_phenotypes <- df_database %>%
+      filter(GRCh37.VCF.Position == variant_pos[i] &
+             Chromosome == chr_num) %>%
+      dplyr::select(Phenotype, Allele.Name, Gene, Chromosome, GRCh37.VCF.Position, GRCh37.Alt.Allele)
+
+    # Look for the reference phenotype and allele name
+    reference <- df_database %>%
+      filter(GRCh37.VCF.Position == "-" & 
+             Gene == matched_phenotypes$Gene[1] & 
+             chr_num == matched_phenotypes$Chromosome[1]) %>%
+      dplyr::select(Phenotype, Allele.Name) %>%
+      dplyr::slice_head(n = 1)
+
+    ref_phenotypes[[i]] <- reference$Phenotype
+    ref_allele_names[[i]] <- reference$Allele.Name
+
+    # Retrieve variant positions associated with each retrieved phenotype
+    temp_coord_lst <- list()
+    temp_geno_lst <- list()
+
+    for (j in seq_len(nrow(matched_phenotypes))) {
+      check_matched_phenotypes <- df_database %>%
+        filter(Allele.Name == matched_phenotypes$Allele.Name[j]) %>%
+        dplyr::select(Phenotype, Allele.Name, Gene, Chromosome, GRCh37.VCF.Position, GRCh37.Alt.Allele)
+
+      # Check if all variant positions of the phenotype are in df_genotype
+      if (all(check_matched_phenotypes$GRCh37.VCF.Position %in% variant_pos)) {
+        alt_phenotypes[[i]] <- c(alt_phenotypes[[i]], check_matched_phenotypes$Phenotype[1])
+        alt_allele_names[[i]] <- c(alt_allele_names[[i]], check_matched_phenotypes$Allele.Name[1])
+        temp_coord_lst <- c(temp_coord_lst, list(check_matched_phenotypes$GRCh37.VCF.Position))
+        temp_geno_lst <- c(temp_geno_lst, list(check_matched_phenotypes$GRCh37.Alt.Allele))
+      } 
+    }
+    coord_combi_lst[[i]] <- temp_coord_lst
+    geno_combi_lst[[i]] <- temp_geno_lst
+  }
+
+  return(list(
+    ref_phenotypes = ref_phenotypes,
+    ref_allele_names = ref_allele_names,
+    alt_phenotypes = alt_phenotypes,
+    alt_allele_names = alt_allele_names,
+    coord_combi_lst = coord_combi_lst,
+    geno_combi_lst = geno_combi_lst
+  ))
+}
+
+# --- Function to assign phenotypes to each position in df_genotype ---
+# @param df_genotype (data.frame) Genotype data.
+# @param pheno_results (list) A list containing:
+#   - ref_phenotypes: Reference phenotypes for each variant position.
+#   - ref_allele_names: Reference allele names corresponding to ref_phenotypes.
+#   - alt_phenotypes: Alternative phenotypes associated with each variant position.
+#   - alt_allele_names: Alternative allele names corresponding to alt_phenotypes.
+#   - coord_combi_lst: List of lists containing variant positions associated with alternative phenotypes.
+#   - geno_combi_lst: List of lists containing genotype values of each variant positions of alternative alleles.
+#
+# @return (data.frame) A dataframe with the same dimensions as df_genotype, where each cell contains the inferred phenotypes for a sample at a given variant position
+# 
+# @export
+pos_pheno_df <- function(df_genotype, pheno_results) {
+  
+  # Create an empty dataframe to store inferred phenotypes
+  df_inferred_result <- data.frame(matrix(ncol = ncol(df_genotype), nrow = nrow(df_genotype)))
+  colnames(df_inferred_result) <- variant_pos
+  rownames(df_inferred_result) <- rownames(df_genotype)
+  
+  # Iterate through each row (sample/ID) in the genotype matrix
+  for (i in 1:nrow(df_genotype)) {
+    for (j in 1:ncol(df_genotype)) {
+      result <- character()
+      coord_combi <- pheno_results$coord_combi_lst[[j]]
+      geno_combi <- pheno_results$geno_combi_lst[[j]]
+    
+      # Check for phenotype-allele matching
+      for (k in seq_along(coord_combi)) {
+        coord <- coord_combi[[k]]
+        geno_ind <- geno_combi[[k]]
+
+        if (!any(is.na(coord))) {
+          if (all((df_genotype[i, unlist(coord)]) == geno_ind)) {
+            result <- c(result, paste0(pheno_results$alt_phenotypes[[j]][[k]], "/", 
+                                       pheno_results$alt_allele_names[[j]][[k]]))
+          }
+        }
+      }
+
+      # Assign phenotype/allele to the inferred result dataframe
+      if (length(result) > 0) {
+        df_inferred_result[i, j] <- paste0(result, collapse = " | ")
+      } 
+      else {
+        df_inferred_result[i, j] <- paste0(pheno_results$ref_phenotypes[[j]], "/", 
+                                           pheno_results$ref_allele_names[[j]])
+      }
+    }
+    
+    # Progress update every 100 rows
+    if (i %% 100 == 0) {
+      print(paste0("Processed row: ", i, " out of ", nrow(df_genotype)))
+    }
+  }
+  
+  return(df_inferred_result)
+}
+
+# --- Function to assign phenotypes respective blood groups for each sample ---
+# @param df_sum_table (data.frame) Empty dataframe with rows as sample ID and columns blood group
+# @param df_inferred_result (data.frame) Inferred phenotypes for samples at a given variant position
+# @param df_genotype (data.frame) Genotype data
+# @param bg_to_pheno_allele_map (list) map list of blood system to Pheno_Allele
+
+# @return (data.frame) A filled up df_sum_table
+# 
+# @export
+generate_sum_table <- function(df_sum_table, df_inferred_result, df_genotype, bg_to_pheno_allele_map) {
+  
+  # Create a vector to store unique phenotype for each sample
+  unique_pheno_vec <- setNames(rep(NA_character_, nrow(df_genotype)), rownames(df_genotype))
+  
+  # Iterate through the samples to store their unique phenotypes in unique_pheno_vec
+  for (i in seq_len(nrow(df_inferred_result))) {
+    unique_pheno <- unique(as.vector(as.matrix(df_inferred_result[i, ])))
+    unique_pheno <- unique(unlist(strsplit(unique_pheno, " \\| ")))
+    unique_pheno_vec[i] <- paste(unique_pheno, collapse = " | ")
+  }
+
+  # Assign the unique phenotypes to their respective blood system for each sample
+  for (sample in names(unique_pheno_vec)) {
+    phenotype_string <- unique_pheno_vec[[sample]]
+    phenotypes <- unlist(strsplit(phenotype_string, " \\| "))
+    
+    for (pheno in phenotypes) {
+      matched_system <- names(bg_to_pheno_allele_map)[sapply(bg_to_pheno_allele_map, function(x) any(pheno == unlist(x)))]
+      
+      for (system in matched_system) {
+        df_sum_table[sample, system] <- ifelse(is.na(df_sum_table[sample, system]), pheno, 
+                                               paste(df_sum_table[sample, system], pheno, sep=" | "))
+      }
+    }
+  }
+  return(df_sum_table)
 }
