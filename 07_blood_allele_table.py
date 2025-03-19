@@ -92,7 +92,7 @@ columns_to_explode = ['Nucleotide Change', 'GRCh38 Coordinates', 'GRCh37 Coordin
 df_final[columns_to_explode] = df_final[columns_to_explode].apply(lambda col: col.str.split(';'))
 df_final = df_final.explode(columns_to_explode, ignore_index=True)
 
-df_final.to_excel('Blood_Allele_Table_(Separated).xlsx', index=False)
-df_final.to_csv('Blood_Allele_Table_(Separated).tsv', sep='\t', index=False)
+df_final.to_excel('Blood_Allele_Table_Separated.xlsx', index=False)
+df_final.to_csv('Blood_Allele_Table_Separated.tsv', sep='\t', index=False)
 
 print("Done")
