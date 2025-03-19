@@ -31,4 +31,11 @@
   * `ISBT_variants_to_overwrite.tsv` provides the mapping details of nucleotide change that cannot be found using **`05_get_coords.py`** but works when using [VariantValidator Web Interface](https://rest.variantvalidator.org/)
 
 **`08_Infer.R`**
-* Uses genotype data from 1000G VCF files and `Blood_Allele_Table_Separated.tsv` to infer potential phenotypes at each variant position.
+* Uses genotype data stored in `chr[]_df_genotype.Rdata` and allele information from `Blood_Allele_Table_Separated.tsv` to infer potential phenotypes at each variant position.
+
+**`09_summary_table.R`**
+* Condenses the results from `08_Infer.R` into a summary table with blood group as columns and samples as rows.
+* List the potential phenotypes for each blood group and sample.
+
+**`10_final_summary_table.R`**
+* From `09_summary_table.R`, the phenotype with the most number of Nucleotide Change associate is inferred as the "correct" phenotype for the sample.
