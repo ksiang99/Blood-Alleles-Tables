@@ -39,3 +39,13 @@
 
 **`10_final_summary_table.R`**
 * From `09_summary_table.R`, the phenotype with the most number of Nucleotide Change associate is inferred as the "correct" phenotype for the sample.
+
+**`11_phenotype_count.R`**
+* From `10_final_summary_table.R`, calculate the positive phenotype case for ALL population and superpopulations.
+
+**`12_infer_pred.R`**
+* Works similiar to `08_Infer.R` but a position in df_genotype is replaced with predicted genotype values from a Machine Learning Model.
+
+**`13_summary_table_pred.R`**
+* Condenses each result from `12_infer_pred.R` into a summary table with blood group as columns and samples as rows.
+* List the potential phenotypes for each blood group and sample.
