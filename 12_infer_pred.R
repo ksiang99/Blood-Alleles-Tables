@@ -27,7 +27,7 @@ chr_results_dt[, Pred_Class := lapply(strsplit(Pred_Class, ",\\s*"), as.factor)]
 
 chr_to_skip <-c(5,8,10,13,14,16,20,21)
 
-for (chr_num in 1:23) {
+for (chr_num in 19:19) {
   if (chr_num %in% chr_to_skip) {
     next
   }
@@ -61,9 +61,19 @@ for (chr_num in 1:23) {
   for (i in seq_len(nrow(temp_chr_results_dt))) {
     temp_df_genotype <- df_genotype
     
-    # Update genotype values of target column in df_genotype with results from Machine Learning
+    
     col <- temp_chr_results_dt[i, Target_Column]
     fold_num <- temp_chr_results_dt[i, Fold]
+
+    if (file.exists(paste0("./R/results/predict/chr", chr_num, "_", col, "_", fold_num, "_inferred_phenotypes.Rdata"))) {
+      next
+    }
+
+    if (!(col %in% colnames(temp_df_genotype))) {
+      next
+    }
+
+    # Update genotype values of target column in df_genotype with results from Machine Learning
     row_idx <- unlist(temp_chr_results_dt[i, Pred_Row_Index])
     val <- temp_chr_results_dt[i, Pred_Class]
     temp_df_genotype[row_idx, col] <- val
@@ -81,6 +91,6 @@ for (chr_num in 1:23) {
     OUTPUT_PATH <- paste0("./R/results/predict/chr", chr_num, "_", col, "_", fold_num, "_inferred_phenotypes.tsv")
     write.table(df_inferred_result, file = OUTPUT_PATH, sep = "\t", row.names = TRUE, col.names = TRUE, quote = FALSE)
     save(temp_df_genotype, df_inferred_result, file = paste0("./R/results/predict/chr", chr_num, "_", col, "_", fold_num, "_inferred_phenotypes.Rdata"))
-    print(paste0('Chromosome ', chr_num, " for fold ", fold, " (", col_name, ") done"))
+    print(paste0('Chromosome ', chr_num, " for ", fold_num, " (", col, ") done"))
   }
 }
