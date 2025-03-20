@@ -260,7 +260,7 @@ def fetch_variant_for_row(row, retries=3, delay=2):
     return None, None, None, None
 
 ## Main Script ##
-HGVS_df = pd.read_csv("HGVS Notation.txt", delimiter="\t")
+HGVS_df = pd.read_csv("HGVS_Notation.txt", delimiter="\t")
 save_folder = "Tables with coords"
 folder = "Extracted Tables"
 files = [f for f in os.listdir(folder) if f.endswith('.tsv')]

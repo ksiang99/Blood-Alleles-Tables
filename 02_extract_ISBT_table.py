@@ -101,7 +101,7 @@ group_name = ["ABO", "MNS", "P1PK", "RH (RHCE)", "RH (RHD)", "LU", "KEL", "LE", 
 
 # Read files
 save_folder = "Extracted Tables"
-HGVS_df = pd.read_csv('HGVS Notation.txt', sep='\t')
+HGVS_df = pd.read_csv('HGVS_Notation.txt', sep='\t')
 pdf_folder = "ISBT Blood Alleles Table"
 pdf_files = [f for f in os.listdir(pdf_folder) if f.endswith('.pdf')]
 

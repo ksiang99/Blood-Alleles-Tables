@@ -4,7 +4,7 @@ import pandas as pd
 
 # Read files
 file = "erythrogene_alleles.xlsx"
-HGVS_df = pd.read_csv('HGVS Notation.txt', sep='\t')
+HGVS_df = pd.read_csv('HGVS_Notation.txt', sep='\t')
 temp_df = pd.read_excel(file)
 
 # Provide column order
