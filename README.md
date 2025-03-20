@@ -1,5 +1,5 @@
 # **Python Packages**
-`Python 3.11.10` with `Tabula 2.9.3`, `Pandas 2.2.3`, `Request 2.32.3` and `Numpy 1.26.4` are required to run the Python scripts.
+`Python 3.11.10` with `Tabula 2.9.3`, `Pandas 2.2.3`, `Request 2.32.3` and `Numpy 1.26.4` are used to run the Python scripts.
 
 # **Files**
 **`01_download_ISBT_Table.py`** 
