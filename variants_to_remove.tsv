@@ -1,0 +1,145 @@
+Allele Name	Nucleotide Change	Comments
+ABO*O.11	NM_020469.2:c.505_507delCAG	Automapped to c.506_508del. Base deletion does not align. Given GTC, validator shows GCT
+ABO*O.16	Deletion of exons 5-7	Exon deletion
+GYPB*04.06	NM_002100.5:c.251G>C	NM_002100.5:c.251G>C: Variant reference (G) does not agree with reference sequence ©
+GYPB*04N.02	NM_002100.5:c.37+4_8delAGTGA	Interval end position 8 < interval start position 37
+GYPA*01N.02	NM_002100.5:c.295delG	Variant coordinate is out of the bound of CDS region
+A4GALT*N.02	NC_000022.10:g.43103896_43124759del	Coordinate does not align
+A4GALT*N.03	NC_000022.10:g.43095125_43120758del	Coordinate does not align
+RHD*08N.01 RHD*Pseudogene	NM_016124.6:c.-7061del exon1 to 10	NC not found in VariantValidator
+RHD*01EL.13 RHD*DEL13	NM_016124.6:c.785del A	Automapped to c.786del. Base change remains the same.
+RHD*01EL.23 RHD*DEL23	RHD-CE(5-7)-D	Complex base changes
+RHD*01EL.30 RHD*DEL30	NM_016124.6:c.1074-649 delEx8	Exon deletion
+RHD*01EL.35 RHD*DEL35	NM_016124.6:c.802-38_35del	NC not found in VariantValidator
+RHD*01EL.37 RHD*DEL37	NM_016124.6:c.1154-31C>T	Automapped to NM_016124.6:c.1154-31=
+RHD*01EL.44 RHD*DEL44	RHD-CE(4-9)-D	Complex base changes
+RHD*01EL.48 RHD*DEL48 RHD*Ex9del RHD*DKG	Exon 9deletion	Exon deletion
+RHD*01N.01	RHD deletion	Gene deletion
+RHD*08N.01 RHD*Pseudo-gene RHD* Ψ	37- bp insertion	Exon insertion
+RHD*01N.02	CE exons 1-9	Complex base changes
+RHD*01N.03	CE exons 2-9	Complex base changes
+RHD*01N.04	CE exons 3-9	Complex base changes
+RHD*01N.05	CE exons 2-7	Complex base changes
+RHD*01N.06	CE exons 4-7with 733C>G1006G>T	Complex base changes
+RHD*03N.01	NM_016124.6:c.455A>CCE exons 4-7with 733C>G1006G>T	Complex base changes
+RHD*03N.02	NM_016124.6:c.455A>CCE exons 4-9with 733C>G1006G>T	Complex base changes
+RHD*01N.07	CE exons 4-7	Complex base changes
+RHD*01N.13	NM_016124.6:c.487_490delACAG	Automapped to c.489_492del. Base deletion does not align. Given ACAG, validator shows CAGA
+RHD*01N.27	NM_016124.6:c.908_909insTGGCT	Base insertion does not align
+RHD*01N.28	NM_016124.6:c.970delCAC	Base deletion does not align. Given CAC, validator shows CCA
+RHD*01N.31	NM_016124.6:c.93delC	NM_016124.6:c.93delC: Variant reference (C) does not agree with reference sequence (T)
+RHD*01N.32	NM_016124.6:c.78delC	Automapped to c.79del. Base deletion remains the same
+RHD*01N.36	NM_016124.6:c.1080_1089delCTTCCAGGTC	Automapped to c.1082_1091del. Base change remains the same
+RHD*01N.41	NM_016124.6:c.361delTTGTCGGTGCT	Base deletion does not align. Given TTGT…, validator shows GTGC…
+RHD*01N.42	CE exons1, 7-10	Complex base changes
+RHD*01N.43	CE exons 1-3	Complex base changes
+RHD*01N.67	RHD exon 1deletion	Exon deletion
+RHD*01N.86	NM_016124.6:c.659delG	Automapped to c.660del. Base change remains the same
+RHCE*01	NM_020485.8:c.307C	Remove to keep only 1 copy of RHCE*01 as reference allele
+RHCE*01.20.11 RHCE*ce.20.11 RHCE*ceVS.11	exons 2-3 D	Exon deletion
+RHCE*01.20.11 RHCE*ce.20.11 RHCE*ceVS.11	NM_020485.8:c.455A>C	NM_020485.8:c.455A>C: Variant reference (A) does not agree with reference sequence ©
+RHCE*01.29 RHCE*ce.29 RHCE*ceBOL	RHD exons 4-9	Exon deletion
+RHCE*01.34 RHCE*ce.34	RHD exons 4-7	Exon deletion
+RHCE*01.38 RHCE*ce.38	NM_020485.8:c.1-10C>T	ExonBoundaryError: Position c.1-10 does not correspond with an exon boundary for transcript NM_020485.8
+RHCE*01.44 RHCE*ce.44	RHD exons 5-6	Exon deletion
+RHCE*02.08.02 RHCE*Ce.08.02 RHCE*CeNR	RHD exon 6-10	Exon deletion
+RHCE*02.37 RHCE*Ce.37	Lacking the 109bpinsert	Exon deletion
+RHCE*01N.01 RHCE*ceN.01	NM_020485.8:c.80_84delTCTTC	Automapped to c.81_85del. Base deletion remain the same
+RHCE*01N.12	NM_020485.8:c.366delG	Autmapped to c.367del. Base deletion remain the same
+RHCE*02N.07 RHCE*CeN.07	RHD exons 3-8	Exon deletion
+RHCE*02N.08 RHCE*CeN.08	RHD exons 3-9	Exon deletion
+RHCE*02N.10 RHCE*CeN.10	NM_020485.8:c.482insT	No indication of wheter 482 is the start or end of insertion
+RHCE*03.02 RHCE*cE.02 RHCE*cEKK	RHD exons 1-3	Exon deletion
+RHCE*03.23 RHCE*cE.23	NM_020485.8:c.774T>A	NM_020485.8:c.774T>A: Variant reference (T) does not agree with reference sequence (G). Erythrogene indicated NM_020485.8:c.774G>A
+RHCE*03.31 RHCE*cE.31 RHCE*cEMI	NM_020485.8:c.350_358delCCATGAGTG	Automapped to c.351_369del. Base deletion does not align. Given GGTACTCAG, validator shows GCACTCATG
+LU*02.-12.1	NM_005581.4:c.100-105delCGCTTG	 Base deletion does not align. Given CGCTTG, validator shows TGCGCT
+LU*02N.06	del ex 3 to 15,26933 bp	Exon deletion
+LU*02N.07	NM_005581.4:c.1049del2ins3	Not HGVS-compliant
+FY*02W.05	NM_002036.4:c.976C>T	NM_002036.4:c.976C>T: Variant reference (C) does not agree with reference sequence (T)
+FY*02N.07	NM_002036.4:c.124delG	Automapped to c.125del. Base deletion is the same
+JK*01W.12	NM_015865.7:c.1068insA	No indication of whether 1068 is the start or end of insertion
+JK*01N.12	NM_015865.7:c.516_530del	Automapped to c.522_536del. No indication of base deletions to cross-check
+JK*02N.15	NM_015865.7:c.160insC	No indication of whether 160 is the start or end of insertion
+JK*02N.23	NM_015865.7:c.588G	NM_015865.7:c.588G: Variant reference (G) does not agree with reference sequence (A)
+JK*01N.24	NM_015865.7:c.267delC	Automapped to c.270del. Base deletion is the same
+CD99*01N.01	NM_002414.3:c.(100 + 1_101-1)_(361 + 1_362-1)del	Uncertain positions are not fully supported, however the syntax is valid
+CD99*01N.02	NM_002414.3:c.(148 + 1_149-1)_(475 + 1_476-1)del	Uncertain positions are not fully supported, however the syntax is valid
+CD99*01N.03	NM_002414.3:c.(67 + 1_68-1)_(475 + 1_476-1)del	Uncertain positions are not fully supported, however the syntax is valid
+DO*01N.05	NM_021071.4:c.370delT	Automapped to c.371. Base deletion is the same
+CO*N.01	del all or part exon 1	Exon deletion
+C4B*N.02	NM_001002029.4:c.3695_3696dupTC	NM_001002029.4:c.3695_3696dupTC: Variant reference (TC) does not agree with reference sequence (CA)
+C4B*N.03	IVS28+1g>a	Not HGVS-compliant
+C4A*N.01	C4A gene deletion	Gene deletion
+C4A*N.02	NM_007293.3:c.3695_3696dupTC	NM_007293.3:c.3695_3696dupTC: Variant reference (TC) does not agree with reference sequence (CA)
+C4A*N.03	NM_007293.3:c.2490delC	Automapped to c.2491del. Base deletion is the same
+C4A*N.04	NM_007293.3:c.1546_1547delGT	Automapped to c.1548_1549del. Base deletion is the same
+FUT1*01W.18	NM_000148.3:c.903_904insAAC	Automapped to c.901_903insGTT
+FUT1*01N.32	NM_000148.3:c.668-670delACT	Automapped to c.669_671del. Base deletion does not align. Given TGA, validator shows TAG
+FUT1*01N.33	NM_000148.3:c.749-765delGGGCACGGCACGAAGCC	Base deletion does not align, given GGGCACGGCACGAAGCC, validator shows GGCTTCGTGCCGTGCCC
+FUT1*01N.35	NM_000148.3:c.985insG	No indication of whether 985 is the start or end of insertion
+FUT1*0N.01	Coding region deletion (5443-bp length of deletion including the 1098-bp coding sequence of FUT1 gene)	Coding region deletion
+FUT2*0N.01	Gene deletion	Gene deletion
+FUT2*0N.02	Coding region deleted	Coding region deletion
+FUT2*0N.03	Fusion gene 1 between FUT2 and Sec1	Unable to interpret in vcf file
+FUT2*0N.04	Fusion gene 2 between FUT2 and Sec1	Unable to interpret in vcf file
+FUT2*0N.05	Deletion of FUT2	Gene deletion
+FUT2*01N.08	NM_000511.5:c.718_719delGT	Automapped to c.719_720del. Base deletion is the same
+XK*N.01	Deletion of XKgene	Gene deletion
+XK*N.02	del Exon 1	Exon deletion
+XK*N.03	del Promoter +Exon 1	Exon deletion
+XK*N.04	del Exon 2	Exon deletion
+XK*N.05	del Intron 2 +Exon 3	Exon deletion
+XK*N.06	del -272 to 119	deletion
+XK*N.30	NM_021083.4:c.1124G>C	NM_021083.4:c.1124G>C: Variant reference (G) does not agree with reference sequence ©
+XK*N.31	NM_021083.4:c.1134C>G	NM_021083.4:c.1134C>G: Variant reference (C) does not agree with reference sequence (G)
+XK*N.34	NM_021083.4:c.523insA	No indication of whether 523 is the start or end of insertion
+XK*N.38	NM_021083.4:c.669-673del5ins13	Not HGVS-compliant
+XK*N.39	NM_021083.4:c.195-198delCCG	Automapped to c.199_202del. Base deletion is the same
+XK*N.44	NM_021083.4:c.82insC	No indication of whether 82 is the start or end of insertion
+XK*N.01.001	del Xp22.3 – 21.1	deletion
+XK*N.01.002	del Xp21.3 – 21.15-10mbp	deletion
+XK*N.01.003	del Xp21.2-21.1	deletion
+XK*N.01.004	del Xp21.2	deletion
+XK*N.01.005	del Xp21.2-21.1	deletion
+XK*N.01.006	del Xp21.2-21.1	deletion
+XK*N.01.007	del Xp21.2-21.1	deletion
+XK*N.01.008	del Xp21.2-21.1	deletion
+XK*N.01.009	del Xp21.2-21.1	deletion
+XK*N.01.010	del Xp21.2-21.1	deletion
+XK*N.01.011	del Xp21.2-21.1	deletion
+XK*N.01.100	del 1.12mbp	deletion
+XK*N.01.101	del 5.65mbp	deletion
+XK*N.01.102	del 0.59mpb	deletion
+XK*N.01.103	del 1.94mbp	deletion
+XK*N.01.104	del 5.71mbp	deletion
+XK*N.01.105	del 0.151mpb	deletion
+GE*01.06.01	Duplicated Exon 3	Exon duplication
+GE*01.06.02	Triplicated Exon 3	Exon duplication
+GE*01N.01	del Exons 3 & 4	Exon deletion
+KN*01.-08	NM_000573.3:c.4828T>A	NM_000573.3:c.4828T>A: Variant reference (T) does not agree with reference sequence (A)
+GCNT2*01N.06	del exon 1B, 1C, 2, 3	Exon deletion
+RHAG*01N.15	Gene deletion	Gene deletion
+ABCG2*01N.14	NM_004827.3:c.1017_1019delCTC	Automapped to c.1019_1021del. Base deletion does not align. Given GAG, validator shows AGG
+ABCG2*01N.23	NM_004827.3:c.-273-10904_-19-2432	Not HGVS-compliant
+ABCG2*01N.27	NM_004827.3:c.204-193_531+13delinCATTTCAGTGGTCTCCC	NM_004827.3:c.204-193_531+13delinCATTTCAGTGGTCTCCC: char 32: expected EOF
+AUG*03	NM_001304463.1:c.1159A>C	NM_001304463.1:c.1159A>C: Variant reference (A) does not agree with reference sequence ©
+AUG*04	NM_001304463.1:c.242A>G	NM_001304463.1:c.242A>G: Variant reference (A) does not agree with reference sequence (T)
+AUG*01N	NM_001304463.1:c.589+1G>C	NM_001304463.1:c.590G>C: Variant reference (G) does not agree with reference sequence ©
+CTL2*01.04	NM_001145056.2:c.455G>A	NM_001145056.2:c.455G>A: Variant reference (G) does not agree with reference sequence (A)
+CTL2*01N.01	Deletion of exons 1 to14	Exon deletion
+ABCC4*01N.01	Deletion of the last 10exons and part ofdownstream 3'UTR	Exon deletion
+MAM*01N.02	NM_001425.3:c.182-186_322+418del	ExonBoundaryError: Position c.322+418 has been updated to position to 323-391 ensuring correct HGVS numbering for transcript NM_001425.3
+MAM*01N.03	NM_001425.3:c.323-231_492+338del	start or end or both are beyond the bounds of transcript record
+MAM*01N.04	NM_001425.3:c.1-3513_492+1379del	start or end or both are beyond the bounds of transcript record
+MAM*01N.05	NM_001425.3:c.1-3532_492+1361del	start or end or both are beyond the bounds of transcript record
+PIGG*01N.05	4 kb deletion including Exon 6 with a 21 bp insertion	Exon deletion
+PIGG*01N.06	6 kb deletion including Exons 2-3	Exon deletion
+PIGG*01N.07	6.3 kb deletion including Exons 7-9	Exon deletion
+ABCC1*01N.01	intron 21_26del21249 bp	Intron deletion
+KLF1*BGM16	NM_006563.3:c.1002delGT	NM_006563.3:c.1002_1003delGT: Variant reference (GT) does not agree with reference sequence (GG)
+KLF1*BGM28	NM_006563.3:c.902insT	No indication of whether 902 is the start or end of insertion
+KLF*BGM68	NM_006563.3:c.175insC	No indication of whether 175 is the start or end of insertion
+KLF*BGM69	NM_006563.3:c.304C	NM_006563.3:c.304C>: Variant reference (C) does not agree with reference sequence (T)
+KLF*BGM70	NM_006563.3:c.1003A	NM_006563.3:c.1003A>: Variant reference (A) does not agree with reference sequence (G)
+KLF*BGM72	NM_006563.3:c.1017G	NM_006563.3:c.1017G>: Variant reference (G) does not agree with reference sequence (C)
+KLF*BGM73	NM_006563.3:c.1028C	NM_006563.3:c.1028C>: Variant reference (C) does not agree with reference sequence (T)
