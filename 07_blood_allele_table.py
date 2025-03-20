@@ -4,17 +4,14 @@ import os
 
 # Read files
 folder = "Tables with coords"
-remove_ISBT_variant_file = 'ISBT_variants_to_remove.tsv'
-remove_Erythro_variant_file = 'Erythrogene_variants_to_remove.tsv'
-overwrite_ISBT_variant_file = 'ISBT_variants_to_overwrite.tsv'
+remove_variant_file = 'variants_to_remove.tsv'
+overwrite_variant_file = 'variants_to_overwrite.tsv'
 files = [f for f in os.listdir(folder) if f.endswith('.tsv')]
 
 file_name_lst = [pd.read_csv(os.path.join(folder, file), sep="\t") for file in files]
 combined_df = pd.concat(file_name_lst, ignore_index=True)
-df1 = pd.read_csv(remove_ISBT_variant_file, sep="\t")
-df2 = pd.read_csv(remove_Erythro_variant_file, sep="\t")
-to_remove = pd.concat([df1, df2], ignore_index=True)
-to_overwrite = pd.read_csv(overwrite_ISBT_variant_file, sep="\t")
+to_remove = pd.read_csv(remove_variant_file, sep="\t")
+to_overwrite = pd.read_csv(overwrite_variant_file, sep="\t")
 
 removed_NC = combined_df[combined_df["Nucleotide Change"].isin(to_remove["Nucleotide Change"])]
 removed_allele = removed_NC.loc[~removed_NC["Allele Name"].isin(["RHCE*01", "KN*01"]), "Allele Name"].unique()
