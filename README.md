@@ -1,3 +1,6 @@
+# **Python Packages**
+`Python 3.11.10` with `Tabula 2.9.3`, `Pandas 2.2.3`, `Request 2.32.3` and `Numpy 1.26.4` are required to run the Python scripts.
+
 # **Files**
 **`01_download_ISBT_Table.py`** 
 * Downloads ISBT Blood Alleles Tables using URLS provided in `ISBT_links.txt`.
