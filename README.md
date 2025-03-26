@@ -51,4 +51,10 @@
 
 **`13_summary_table_pred.R`**
 * Condenses each result from `12_infer_pred.R` into a summary table with blood group as columns and samples as rows.
-* List the potential phenotypes for each blood group and sample.
+* List the potential phenotypes for the blood group which the predicted genotype values of the position is associated to.
+
+**`14_final_summary_table_pred.R`**
+* Works similiar to `10_final_summary_table.R`
+
+**`15_phenotype_count.R`**
+* Works similiar to `11_phenotype_count.R`
