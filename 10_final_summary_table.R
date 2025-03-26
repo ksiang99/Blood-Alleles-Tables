@@ -11,10 +11,16 @@ library(stringr)
 
 # Set paths
 PATH_SUM_TABLE <- "./R/results/summary_table.tsv"
-PATH_ALLELE_TABLE <- "./R/Blood Allele Table.tsv"
-df_sum_table <- read.delim(PATH_SUM_TABLE, header = TRUE)
+PATH_ALLELE_TABLE <- "./R/Blood_Allele_Table.tsv"
 df_allele_table <- read.delim(PATH_ALLELE_TABLE, header = TRUE)
 df_allele_table$Pheno_Allele <- paste0(df_allele_table$Phenotype, "/", df_allele_table$Allele.Name)
+df_sum_table <- read.delim(PATH_SUM_TABLE, header = TRUE)
+df_sum_table <- df_sum_table %>%
+  mutate(RHD = NA, MNS_GYPB = NA, CHRG_C4B = NA, H_FUT2 = NA) %>%
+  relocate(RHD, .after = RH) %>%
+  relocate(MNS_GYPB, .after = MNS) %>%
+  relocate(CHRG_C4B, .after = CHRG) %>%
+  relocate(H_FUT2, .after = H)
 
 # Function to sort the alleles based on number of nucleotide changes (Largest to smallest)
 process_hier <- function(idx) {
@@ -81,6 +87,18 @@ remove_ref <- function(row, ref) {
             }
         }
 
+        # Handle RH blood group cases as there are 2 reference allele RHCE*01 and RHD*01
+        if (any(grepl("RHCE\\*", ref))) {
+            if (sum(grepl("RHCE\\*", substrings)) == 1) {
+                return(substrings)
+            }
+        }
+        if (any(grepl("RHD\\*", ref))) {
+            if (sum(grepl("RHD\\*", substrings)) == 1) {
+                return(substrings)
+            }
+        }
+
     }
 
     else if (length(substrings) == 1) {
@@ -134,524 +152,338 @@ process_group <- function(row, dict) {
 # Create named list for each blood group
 # ref: reference allele of blood group
 # allele_name: pattern used to clean up string at the end
-# others: Provide a general phenotype name to ISBT phenotype name
+# others: Provide a key to ISBT phenotype name
 # TGP: To represent 1000G alleles
-# Currently, the general phenotype names are long/weird
 
 ABO <- within(list(
-    ref = c("A1/ABO*A1.01"),
-    allele_name = c("/ABO.*", "/\\*1000G.*"),
-    cisAB = c("cisAB"),
-    B_A = c("B(A)"),
-    A = c("A1", "A2", "A3"),
-    A_weak = c("Aweak", "Ax/Aweak", "Ael"),
-    B = c("B"),
-    B_weak = c("B3", "Bel"),
-    O = c("O"),
-    TGP = c("-")
+    ref = c("A1/ABO*A1.01"), allele_name = c("/ABO.*", "/\\*1000G.*"),
+    "1" = c("A1"), "2" = c("A2"), "3" = c("Aweak", "Ax/Aweak", "Ael"), "4" = c("B"), "5" = c("B3", "Bel"),
+    "6" = c("B(A)"), "7" = c("cisAB"), "8" = c("O"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "ABO")
-    }
-)
+    })
 
 MNS_GYPA <- within(list(
-    ref = c("MNS:1 or M+/GYPA*01"),
-    allele_name = c("/GYPA.*", "/\\*1000G.*"),
-    M = c("M+"),
-    N = c("N+"),
-    Mc = c("Mc+"),
-    TGP_GYPA = c("-")
+    ref = c("MNS:1 or M+/GYPA*01"), allele_name = c("/GYPA.*", "/\\*1000G.*"),
+    "1" = c("M+"), "2" = c("N+"), "3" = c("Mc+"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "GYPA")
-    }
-)
+    })
 
 MNS_GYPB <- within(list(
-    ref = c("MNS:4 or s+/GYPB*04"),
-    allele_name = c("/GYPB.*", "/\\*1000G.*"),
-    s_small = c("s+"),
-    S = c("S+"),
-    sD = c("sD+"),
-    Mit = c("Mit+"),
-    U_var = c("S–U+var"),
-    Mv = c("Mv+"),
-    s_null = c("S-s-U-"),
-    S_weak = c("S+w"),
-    s_weak = c("s+w, U+w"),
-    S_altered = c("MNS:4,5 (s+, U+) altered GPB"),
-    TGP_GYPB = c("-")
+    ref = c("MNS:4 or s+/GYPB*04"), allele_name = c("/GYPB.*", "/\\*1000G.*"),
+    "1" = c("s+"), "2" = c("S+"), "3" = c("sD+"), "4" = c("Mit+"), "5" = c("S–U+var"),
+    "6" = c("Mv+"), "7" = c("S-s-U-"), "8" = c("s+w, U+w"), "9" = c("MNS:4,5 (s+, U+) altered GPB"),
+    "10" = c("S+w"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "GYPB")
-    }
-)
+    })
 
 P1PK <- within(list(
-    ref = c("P1+ Pk+/A4GALT*01"),
-    allele_name = c("/A4GALT.*", "/\\*1000G.*"),
-    P1 = c("P1+ Pk+"),
-    P2 = c("P1– Pk+ (P2)"),
-    p = c("p"),
-    TGP = c("-")
+    ref = c("P1+ Pk+/A4GALT*01"), allele_name = c("/A4GALT.*", "/\\*1000G.*"),
+    "1" = c("P1+ Pk+"),"2" = c("p"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "A4GALT")
+    })
+
+RHCE <- within(list(
+    ref = c("RH:4 or c RH:5 or e RH:6 or f (ce)/RHCE*01"),
+    allele_name = c("/RHCE.*", "/\\*1000G.*"),
+    TGP = c("-")
+    ), {
+    hier <- process_hier(df_allele_table$Gene == "RHCE")
     }
 )
 
-RHCE <- list()
+RHD <- within(list(
+    ref = c("D RH:1/RHD*01"),
+    allele_name = c("/RHD.*", "/\\*1000G.*"),
+    "1" = c("D RH:1"), "2" = c("DAU0"), "3" = c("DAU3"), "4" = c("Del"), "5" = c("DAU0.01"), 
+    "6" = c("DAR3.1 (weak partial D 4.0)"), "7" = c("DIVa RH30+ (Goa+) DIV type 1.0"), "8" = c("DIII type 4"), "9" = c("DV Type 4 RH:23 (Dw+)"),"10" = c("DAU5"),
+    "11" = c("DIIIa RH:54 (DAK+)"), "12" = c("RHD(F175L)"), "13" = c("Type 45"), "14" = c("DVII RH:40 (Tar+)"), "15" = c("Type 1"),
+    "16" = c("Type 3"),"17" = c("DAU6"), "18" = c("DNB"), "19" = c("Type 28"), "20" = c("Type 66"),
+    "21" = c("Type 25"), "22" = c("Type 33"), "23" = c("DIII type 6"), "24" = c("DFV"), "25" = c("DAU0.02"),
+    "26" = c("DAU14"), "27" = c("Weak partial Type 15"), "28" = c("DUC2"),
+    TGP = c("-")
+    ), {
+        hier <- process_hier(df_allele_table$Gene == "RHD")
+    })
 
-RHD <- list()
 
 LU <- within(list(
-    ref = c("LU:2 or Lu(b+)/LU*02"),
-    allele_name = c("/LU.*", "/\\*1000G.*"),
-    Lu_a = c("Lu(a+)"),
-    Lu_sixteen = c("LU:-16"),
-    Lu_nineteen = c("LU:1,19"),
-    Au_b = c("Au(a−b+)"),
-    Lu_nine = c("LU:-6,9"),
-    Lu_fourteen = c("LU:-8,14"),
-    LURC_null = c("LU:-22, LURC−"),
-    Lu_b = c("Lu(b+)"),
-    Lu_null = c("Lunull"),
-    LUBI_null = c("LU:-26, LUBI−"),
-    LURA_null = c("LU:-29, LURA−"),
-    Lu_thirteen = c("LU:-13"),
-    TGP = c("-")
+    ref = c("LU:2 or Lu(b+)/LU*02"), allele_name = c("/LU.*", "/\\*1000G.*"),
+    "1" = c("Lu(b+)"), "2" = c("Au(a−b+)"), "3" = c("LU:-8,14"), "4" = c("LU:-26, LUBI−"),
+    "5" = c("LU:-6,9"), "6" = c("LU:-22, LURC−"), "7" = c("Lu(a+)"), "8" = c("LU:1,19"),
+    "9" = c("LU:-16"), "10" = c("LU:-13"), "11" = c("LU:-29, LURA−"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "BCAM")
-    }
-)
+    })
 
 KEL <- within(list(
-    ref = c("KEL:2 or k+/KEL*02"),
-    allele_name = c("/KEL.*", "/\\*1000G.*"),
-    K_big = c("K+k-"),
-    K_small = c("k+"),
-    Kel_null = c("K0"), 
-    Kp_a = c("Kp(a+b–c–)"),
-    Js_a = c("Js(a+b–)"), 
-    Ul_a = c("Ul(a+)"),
-    KHOZ = c("KHIZ-, KHOZ+"),
-    K_eighteen_null = c("KEL:-18"), 
-    K_nineteen_null = c("KEL:-19"), 
-    TOU_null = c("TOU-"), 
-    KTIM_null = c("KTIM-"), 
-    KYO = c("KYO+, KYOR-"), 
-    KEAL = c("KHUL-,KEAL+"), 
-    Kel_weak = c("KEL:1weak", "Kmod", "K0 phenotype"), # Affects both K and k
-    TGP = c("-")
+    ref = c("KEL:2 or k+/KEL*02"), allele_name = c("/KEL.*", "/\\*1000G.*"),
+    "1" = c("k+"), "2" = c("KEL:1weak", "Kmod", "K0 phenotype"), "3" = c("Js(a+b–)"), "4" = c("K+k-"),
+    "5" = c("Kp(a+b–c–)"), "6" = c("Ul(a+)"), "7" = c("KEL:-19"), "8" = c("KEL:-18"), "9" = c("KTIM-"), 
+    "10" = c("KYO+, KYOR-"), "11" = c("TOU-"), "12" = c("KHUL-,KEAL+"), "13" = c("K0"), 
+    "14" = c("KHIZ-, KHOZ+"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "KEL")
-    }
-)
+    })
 
 LE <- within(list(
-    ref = c("FUT3 Active/FUT3*01.01"),
-    allele_name = c("/FUT3.*", "/\\*1000G.*"),
-    FUT3_active = c("FUT3 Active"),
-    FUT3_weak = c("FUT3 Active (Weak)"),
-    Le_null = c("FUT3 Inactive - Le(a-b-)"),
-    TGP = c("-")
+    ref = c("FUT3 Active/FUT3*01.01"), allele_name = c("/FUT3.*", "/\\*1000G.*"),
+    "1" = c("FUT3 Active"), "2" = c("FUT3 Inactive - Le(a-b-)"), "3" = c("FUT3 Active (Weak)"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "FUT3")
-    }
-)
+    })
 
 FY <- within(list(
-    ref = c("FY:1 or Fy(a+)/FY*01"),
-    allele_name = c("/FY.*", "/\\*1000G.*"),
-    Fy_a = c("Fy(a+)"),
-    Fy_a_weak = c("Fy(a+w)"),
-    Fy_b = c("Fy(b+)"),
-    Fy_b_weak = c("Fy(b+w), Fyx"),
-    Fy_null = c("Fy(a−b−)"),
-    TGP = c("-")
+    ref = c("FY:1 or Fy(a+)/FY*01"), allele_name = c("/FY.*", "/\\*1000G.*"),
+    "1" = c("Fy(a+)"), "2" = c("Fy(a+w)"), "3" = c("Fy(b+)"), "4" = c("Fy(b+w), Fyx"),
+    "5" = c("Fy(a−b−)"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "ACKR1")
-    }
-)
+    })
 
 JK <- within(list(
-    ref = c("JK:1 or Jk(a+)/JK*01"),
-    allele_name = c("/JK.*", "/\\*1000G.*"),
-    Jk_a = c("Jk(a+)"),
-    Jk_a_weak = c("Jk(a+W)", "Jk(a+w)"),
-    Jk_b = c("Jk(b+)"),
-    Jk_b_weak = c("Jk(b+W)", "Jk(b+w)"),
-    Jk_null = c("Jk(a–b–)"),
-    TGP = c("-")
+    ref = c("JK:1 or Jk(a+)/JK*01"), allele_name = c("/JK.*", "/\\*1000G.*"),
+    "1" = c("Jk(a+)"), "2" = c("Jk(a+W)", "Jk(a+w)"), "3" = c("Jk(b+)"),
+    "4" = c("Jk(b+W)", "Jk(b+w)"), "5" = c("Jk(a–b–)"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "SLC14A1")
-    }
-)   
-
+    })   
 
 DI <- within(list(
-    ref = c("DI:–1,2 or Di(a–b+)/DI*02"),
-    allele_name = c("/DI.*", "/\\*1000G.*"),
-    Di_a = c("Di(a+b–)"),
-    Di_b = c("Di(a–b+)"), # "DI:23",
-    Wr_a = c("Wr(a+b–)"),
-    Wd_a = c("Wd(a+)"),
-    TGP = c("-")
+    ref = c("DI:–1,2 or Di(a–b+)/DI*02"), allele_name = c("/DI.*", "/\\*1000G.*"),
+    "1" = c("Di(a–b+)"), "2" = c("Di(a+b–)"), "3" = c("Wr(a+b–)"), "4" = c("Wd(a+)"),
+    "5" = c("DI:23"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "SLC4A1")
-    }
-)
+    })
 
 YT <- within(list(
-    ref = c("YT:1,-2 or Yt(a+b-)/YT* 01"),
-    allele_name = c("/YT.*", "/\\*1000G.*"),
-    Yt_a = c("Yt(a+b-)"),
-    Yt_b = c("Yt(a-b+)"),
-    YTEG_null = c("YTEG-"),
-    YTLI_null = c("YTLI-"),
-    YTOT_null = c("YTOT-"),
-    TGP = c("-")
+    ref = c("YT:1,-2 or Yt(a+b-)/YT* 01"), allele_name = c("/YT.*", "/\\*1000G.*"),
+    "1" = c("Yt(a+b-)"), "2" = c("Yt(a-b+)"), "3" = c("YTEG-"), "4" = c("YTLI-"),
+    "5" = c("YTOT-"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "ACHE")
-    }
-)
+    })
 
 XG <- within(list(
-    ref = c("Xga/XG*01"),
-    allele_name = c("/XG.*", "/\\*1000G.*"),
-    Xg_a = c("Xga"),
-    TGP = c("-")
+    ref = c("Xga/XG*01"), allele_name = c("/XG.*", "/\\*1000G.*"),
+    "1" = c("Xga"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "XG")
-    }
-)
+    })
 
 SC <- within(list(
-    ref = c("SC:1 or Sc1+/SC*01"),
-    allele_name = c("/SC.*", "/\\*1000G.*"),
-    Sc_1 = c("Sc1+"),
-    Sc_2 = c("Sc2+"),
-    STAR_null = c("STAR–"),
-    SCAC_null = c("SCAC–"),
-    TGP = c("-")
+    ref = c("SC:1 or Sc1+/SC*01"), allele_name = c("/SC.*", "/\\*1000G.*"),
+    "1" = c("Sc1+"), "2" = c("Sc2+"), "3" = c("STAR–"), "4" = c("SCAC–"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "ERMAP")
-    }
-)
+    })
 
 DO <- within(list(
-    ref = c("DO:2 or Do(b+)/DO*02"),
-    allele_name = c("/DO.*", "/\\*1000G.*"),
-    Do_a = c("Do(a+)"),
-    Do_b = c("Do(b+)"),
-    Jo_a_null = c("Jo(a–)"),
-    DODE_null = c("DODE–"),
-    DOLG_null = c("DOLG–"),
-    Hy_null = c("Hy–"),
-    TGP = c("-")
+    ref = c("DO:2 or Do(b+)/DO*02"), allele_name = c("/DO.*", "/\\*1000G.*"),
+    "1" = c("Do(b+)"), "2" = c("Do(a+)"), "3" = c("Hy–"), "4" = c("Jo(a–)"),
+    "5" = c("DODE–"), "6" = c("DOLG–"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "ART4")
-    }
-)
+    })
 
 CO <- within(list(
-    ref = c("CO:1 or Co(a+)/CO*01.01"),
-    allele_name = c("/CO.*", "/\\*1000G.*"),
-    Co_a = c("Co(a+)"),
-    Co_b = c("Co(b+)"),
-    Co_null = c("Co(a–b–)"),
-    TGP = c("-")
+    ref = c("CO:1 or Co(a+)/CO*01.01"), allele_name = c("/CO.*", "/\\*1000G.*"),
+    "1" = c("Co(a+)"), "2" = c("Co(b+)"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "AQP1")
-    }
-)
+    })
 
 LW <- within(list(
-    ref = c("LW:5 or LW(a+)/LW*05"),
-    allele_name = c("/LW.*", "/\\*1000G.*"),
-    Lw_a = c("LW(a+)"),
-    Lw_b = c("LW(b+)"),
-    TGP = c("-")
+    ref = c("LW:5 or LW(a+)/LW*05"), allele_name = c("/LW.*", "/\\*1000G.*"),
+    "1" = c("LW(a+)"), "2" = c("LW(b+)"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "ICAM4")
-    }
-)
+    })
 
 CHRG_A <- within(list(
-    ref = c("Ch–Rg+ or CH:–1,–2,–3,–4,–5,–6 RG:1,2/C4A*03"),
-    allele_name = c("/C4A.*", "/\\*1000G.*"),
-    Chrg_a = c("CH:–1,–2,–3,–4,–5,–6 RG:1,2"),
-    TGP_a = c("-")
+    ref = c("Ch–Rg+ or CH:–1,–2,–3,–4,–5,–6 RG:1,2/C4A*03"), allele_name = c("/C4A.*", "/\\*1000G.*"),
+    "1" = c("CH:–1,–2,–3,–4,–5,–6 RG:1,2"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "C4A")
-    }
-)
+    })
 
 CHRG_B <- within(list(
-    ref = c("Ch+Rg– or CH:1,2,3,4,5,6 RG:–1,–2/C4B*03"),
-    allele_name = c("/C4B.*", "/\\*1000G.*"),
-    Chrg_b = c("CH:1,2,3,4,5,6 RG:–1,–2"),
-    TGP_b = c("-")
+    ref = c("Ch+Rg– or CH:1,2,3,4,5,6 RG:–1,–2/C4B*03"), allele_name = c("/C4B.*", "/\\*1000G.*"),
+    "1" = c("CH:1,2,3,4,5,6 RG:–1,–2"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "C4B")
-    }
-)
+    })
 
 H1 <- within(list(
-    ref = c("H+/FUT1*01"),
-    allele_name = c("/FUT1.*", "/\\*1000G.*"),
-    H1 = c("H+"),
-    H1_weak = c("H+weak"),
-    H1_null = c("H–"),
-    H1_TGP = c("-")
+    ref = c("H+/FUT1*01"), allele_name = c("/FUT1.*", "/\\*1000G.*"),
+    "1" = c("H+"), "2" = c("H+weak"), "3" = c("H–"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "FUT1")
-    }
-)
+    })
 
 H2 <- within(list(
-    ref = c("H+/FUT2*01"),
-    allele_name = c("/FUT2.*", "/\\*1000G.*"),
-    H2 = c("H+"),
-    H2_weak = c("H+w"),
-    H2_null = c("H–"),
-    H2_TGP = c("-")
+    ref = c("H+/FUT2*01"),allele_name = c("/FUT2.*", "/\\*1000G.*"),
+    "1" = c("H+"), "2" = c("H+w"), "3" = c("H–"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "FUT2")
-    }
-)
+    })
 
 KX <- within(list(
-    ref = c("XK:1 or Kx+/XK*01"),
-    allele_name = c("/XK.*", "/\\*1000G.*"),
-    Xk = c("Kx+"),
-    TGP = c("-")
+    ref = c("XK:1 or Kx+/XK*01"), allele_name = c("/XK.*", "/\\*1000G.*"),
+    "1" = c("Kx+"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "XK")
-    }
-)
+    })
 
 GE <- within(list(
-    ref = c("GE:2,3,4/GE*01"),
-    allele_name = c("/GE.*", "/\\*1000G.*"),
-    Ge = c("GE:2,3,4"),
-    GEPL_null = c("GEPL–"),
-    GECT_null = c("GECT–"),
-    TGP = c("-")
+    ref = c("GE:2,3,4/GE*01"), allele_name = c("/GE.*", "/\\*1000G.*"),
+    "1" = c("GE:2,3,4"), "2" = c("GEPL–"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "GYPC")
-    }
-)
+    })
 
 CROM <- within(list(
-    ref = c("CROM:1 or Cra+)/CROM*01"),
-    allele_name = c("/CROM.*", "/\\*1000G.*"),
-    Crom_a = c("Cra+)"),
-    Crom_a_null = c("Cr(a–)"),
-    Tc_b = c("Tc(b+)"),
-    Wes_a = c("WES(a+)"),
-    SERF_null = c("SERF–"),
-    UMC_null = c("UMC–"),
-    CRUE_null = c("CRUE−"),
-    TGP = c("-")
+    ref = c("CROM:1 or Cra+)/CROM*01"), allele_name = c("/CROM.*", "/\\*1000G.*"),
+    "1" = c("Cra+)"), "2" = c("Cr(a–)"), "3" = c("Tc(b+)"), "4" = c("WES(a+)"),
+    "5" = c("SERF–"), "6" = c("Tc(c+)"), "7" = c("UMC–"), "8" = c("CRUE−"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "CD55")
-    }
-)
+    })
 
 KN <- within(list(
     ref = c("KN:1 or Kn(a+) KN:3 or McC(a+) KN:4 or Sl1+ KN:5 or Yk(a+) KN:8 or Sl3+ KN:9 or KCAM+ KN:11 or DACY+/KN*01"),
     allele_name = c("/KN.*", "/\\*1000G.*"),
-    Kn_a = c("KN:1 or Kn(a+) KN:3 or McC(a+) KN:4 or Sl1+ KN:5 or Yk(a+) KN:8 or Sl3+ KN:9 or KCAM+ KN:11 or DACY+"),
-    Kn_two_ten = c("KN:2 or Kn(a-b+) KN:-9 or KCAM- KN:10 or KDAS+"),
-    Yk_a_null = c("KN:–5 or Yk(a–)"),
-    Kn_one_six = c("KN:-4 or Sl1- KN:-3,6 or McC(a-b+) KN:7 or Vil+ KN:-9 or KCAM- KN:10 or KDAS+"),
-    Kn_one_seven = c("KN:7 or Vil+ KN:-9 or KCAM- KN:10 or KDAS+"),
-    Kn_one_ten = c("KN:-9 or KCAM- KN:10 or KDAS+"),
+    "1" = c("KN:1 or Kn(a+) KN:3 or McC(a+) KN:4 or Sl1+ KN:5 or Yk(a+) KN:8 or Sl3+ KN:9 or KCAM+ KN:11 or DACY+"),
+    "2" = c("KN:–5 or Yk(a–)"), "3" = c("KN:-9 or KCAM- KN:10 or KDAS+"), "4" = c("KN:2 or Kn(a-b+) KN:-9 or KCAM- KN:10 or KDAS+"),
+    "5" = c("KN:-4 or Sl1- KN:-3,6 or McC(a-b+) KN:7 or Vil+ KN:-9 or KCAM- KN:10 or KDAS+"), "6" = c("KN:7 or Vil+ KN:-9 or KCAM- KN:10 or KDAS+"),
     TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "CR1")
-    }
-)
+    })
 
 IN <- within(list(
-    ref = c("In(a–b+)/IN*02"),
-    allele_name = c("/IN.*", "/\\*1000G.*"),
-    In_a = c("In(a+b–)"),
-    In_b = c("In(a–b+)"),
-    INFI_null = c("INFI–"),
-    TGP = c("-")
+    ref = c("In(a–b+)/IN*02"), allele_name = c("/IN.*", "/\\*1000G.*"),
+    "1" = c("In(a–b+)"), "2" = c("In(a+b–)"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "CD44")
-    }
-)
+    })
 
 OK <- within(list(
-    ref = c("OK:1 or Ok(a+)/OK*01.01"),
-    allele_name = c("/OK.*", "/\\*1000G.*"),
-    Ok_a = c("Ok(a+)"),
-    TGP = c("-")
+    ref = c("OK:1 or Ok(a+)/OK*01.01"), allele_name = c("/OK.*", "/\\*1000G.*"),
+    "1" = c("Ok(a+)"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "BSG")
-    }
-)
+    })
 
 RAPH <- within(list(
-    ref = c("RAPH:1 or MER2+/RAPH*01"),
-    allele_name = c("/RAPH.*", "/\\*1000G.*"),
-    RAPH_1 = c("MER2+"),
-    TGP = c("-")
+    ref = c("RAPH:1 or MER2+/RAPH*01"), allele_name = c("/RAPH.*", "/\\*1000G.*"),
+    "1" = c("MER2+"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "CD151")
-    }
-)
+    })
 
 JMH <- within(list(
-    ref = c("JMH:1 or JMH+/JMH*01"),
-    allele_name = c("/JMH.*", "/\\*1000G.*"),
-    Jmh = c("JMH+"),
-    TGP = c("-")
+    ref = c("JMH:1 or JMH+/JMH*01"), allele_name = c("/JMH.*", "/\\*1000G.*"),
+    "1" = c("JMH+"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "SEMA7A")
-    }
-)
+    })
 
 I <- within(list(
-    ref = c("I:1 or I+/GCNT2*01"),
-    allele_name = c("/GCNT2.*", "/\\*1000G.*"),
-    I = c("I+"),
-    I_weak = c("I+W"),
-    I_null = c("I–"),
-    TGP = c("-")
+    ref = c("I:1 or I+/GCNT2*01"), allele_name = c("/GCNT2.*", "/\\*1000G.*"),
+    "1" = c("I+"), "2" = c("I+W"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "GCNT2")
-    }
-)
+    })
 
 GLOB <- within(list(
-    ref = c("GLOB:1 (P+)/GLOB*01"),
-    allele_name = c("/GLOB.*", "/\\*1000G.*"),
-    P = c("GLOB:1 (P+)"),
-    P_null = c("GLOB:–1 (P–)"),
-    TGP = c("-")
+    ref = c("GLOB:1 (P+)/GLOB*01"), allele_name = c("/GLOB.*", "/\\*1000G.*"),
+    "1" = c("GLOB:1 (P+)"), "2" = c("GLOB:–1 (P–)"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "B3GALNT1")
-    }
-)
+    })
 
 GIL <- within(list(
-    ref = c("GIL:1 or GIL+/GIL*01", "/\\*1000G.*"),
-    allele_name = c("/GIL.*", "/\\*1000G.*"),
-    Gil = c("GIL+"),
-    TGP = c("-")
+    ref = c("GIL:1 or GIL+/GIL*01", "/\\*1000G.*"), allele_name = c("/GIL.*", "/\\*1000G.*"),
+    "1" = c("GIL+"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "AQP3")
-    }
-)
+    })
 
 RHAG <- within(list(
-    ref = c("RHAG:1 or Duclos+/RHAG*01"),
-    allele_name = c("/RHAG.*", "/\\*1000G.*"),
-    Rhag = c("Duclos+"),
-    DSLK_null = c("DSLK−, Kg+"),
-    Rhmod = c("Rhmod"),
-    TGP = c("-")
+    ref = c("RHAG:1 or Duclos+/RHAG*01"), allele_name = c("/RHAG.*", "/\\*1000G.*"),
+    "1" = c("Duclos+"), "2" = c("DSLK−, Kg+"), "3" = c("Rhmod"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "RHAG")
-    }
-)
+    })
 
 FORS <- within(list(
-    ref = c("FORS:-1 (FORS-)/GBGT1*01N.01"),
-    allele_name = c("/GBGT1.*", "/\\*1000G.*"),
-    Fors_null = c("FORS:-1 (FORS-)"),
-    TGP = c("-")
+    ref = c("FORS:-1 (FORS-)/GBGT1*01N.01"), allele_name = c("/GBGT1.*", "/\\*1000G.*"),
+    "1" = c("FORS:-1 (FORS-)"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "GBGT1")
-    }
-)
+    })
 
 JR <- within(list(
-    ref = c("Jr(a+)/ABCG2*01"),
-    allele_name = c("/ABCG2.*", "/N/A.*", "/\\*1000G.*"),
-    Jr_a = c("Jr(a+)"),
-    Jr_weak = c("Jr(a+w)"),
-    Jr_null = c("Jr(a−)"),
-    Jr_unclear = c("Unclear Jra phnotype"),
-    TGP = c("-")
+    ref = c("Jr(a+)/ABCG2*01"), allele_name = c("/ABCG2.*", "/N/A.*", "/\\*1000G.*"),
+    "1" = c("Jr(a+)"), "2" = c("Jr(a+w)"), "3" = c("Unclear Jra phnotype"), "4" = c("Jr(a−)"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "ABCG2")
-    }
-
-)
+    })
 
 LAN <- within(list(
-    ref = c("Lan+/ABCB6*01"),
-    allele_name = c("/ABCB6.*", "/\\*1000G.*"),
-    Lan = c("Lan+"),
-    Lan_weak = c("Lan(+wk)"),
-    Lan_null = c("Lan-"),
-    TGP = c("-")
+    ref = c("Lan+/ABCB6*01"), allele_name = c("/ABCB6.*", "/\\*1000G.*"),
+    "1" = c("Lan+"), "2" = c("Lan(+wk)"), "3" = c("Lan-"), TGP = c("-")
     ), {
         hier <- process_hier(df_allele_table$Gene == "ABCB6")
-    }
-)
+    })
 
 VEL <- within(list(
-    ref = c("VEL:1 (Vel+)/VEL*01"),
-    allele_name = c("/VEL.*", "/\\*1000G.*"),
-    hier = c("VEL:1 (Vel+)/VEL*01"),
-    Vel = c("VEL:1 (Vel+)"),
-    TGP = c("-")
+    ref = c("VEL:1 (Vel+)/VEL*01"), allele_name = c("/VEL.*", "/\\*1000G.*"),
+    "1" = c("VEL:1 (Vel+)"), TGP = c("-")
     ), {
         hier <- process_hier(df_allele_table$Gene == "SMIM1")
-    }
-)
+    })
 
 CD59 <- within(list(
-    ref = c("CD59:+1 or CD59.1+/CD59*01"),
-    allele_name = c("/CD59.*", "/\\*1000G.*"),
-    Cd59 = c("CD59.1+"),
-    TGP = c("-")
+    ref = c("CD59:+1 or CD59.1+/CD59*01"), allele_name = c("/CD59.*", "/\\*1000G.*"),
+    "1" = c("CD59.1+"), TGP = c("-")
     ), {
         hier <- process_hier(df_allele_table$Gene == "CD59")
-    }
-
-)
+    })
 
 AUG <- within(list(
-    ref = c("AUG1+, At(a+), ATML−, ATAM+ AUG:1,2,−3,4/AUG*01"),
-    allele_name = c("/AUG.*", "/\\*1000G.*"),
-    Aug = c("AUG1+, At(a+), ATML−, ATAM+ AUG:1,2,−3,4"),
-    TGP = c("-")
+    ref = c("AUG1+, At(a+), ATML−, ATAM+ AUG:1,2,−3,4/AUG*01"), allele_name = c("/AUG.*", "/\\*1000G.*"),
+    "1" = c("AUG1+, At(a+), ATML−, ATAM+ AUG:1,2,−3,4"), TGP = c("-")
     ), {
         hier <- process_hier(df_allele_table$Gene == "SLC29A1")
-    }
-)
+    })
 
 GATA1 <- within(list(
-    ref = c("Common/GATA1*01"),
-    allele_name = c("/GATA1.*", "/\\*1000G.*"),
-    Common = c("Common"),
-    TGP = c("-")
+    ref = c("Common/GATA1*01"), allele_name = c("/GATA1.*", "/\\*1000G.*"),
+    "1" = c("Common"), TGP = c("-")
     ), {
         hier <- process_hier(df_allele_table$Gene == "GATA1")
-    }
-)
+    })
 
 KLF1 <- within(list(
-    ref = c("Common/KLF1*01"),
-    allele_name = c("/KLF1.*", "/\\*1000G.*"),
-    Common = c("Common"),
-    In_lu = c("In(Lu)"),
-    TGP = c("-")
+    ref = c("Common/KLF1*01"), allele_name = c("/KLF1.*", "/\\*1000G.*"),
+    "1" = c("Common"), "2" = c("In(Lu)"), TGP = c("-")
     ), {
         hier <- process_hier(df_allele_table$Gene == "KLF1")
-})
+    })
 
 
 my_dict <- list(
     "ABO" = ABO, "P1PK" = P1PK, "LU" = LU, "KEL" = KEL, "LE" = LE, "FY" = FY, "JK" = JK, "DI" = DI, "YT" = YT, "XG" = XG,
     "SC" = SC, "DO" = DO, "CO" = CO, "LW" = LW, "CHRG_A" = CHRG_A, "CHRG_B" = CHRG_B, "H1" = H1, "H2" = H2, "KX" = KX, "GE" = GE, 
     "CROM" = CROM, "KN" = KN, "IN" = IN, "OK" = OK, "RAPH" = RAPH, "JMH" = JMH, "I" = I, "GLOB" = GLOB, "GIL" = GIL, "RHAG" = RHAG, "FORS" = FORS, 
-    "LAN" = LAN, "VEL" = VEL, "CD59" = CD59, "AUG" = AUG, "GATA1" = GATA1, "KLF1" = KLF1, "JR" = JR, "MNS_GYPA" = MNS_GYPA, "MNS_GYPB" = MNS_GYPB
+    "LAN" = LAN, "VEL" = VEL, "CD59" = CD59, "AUG" = AUG, "GATA1" = GATA1, "KLF1" = KLF1, "JR" = JR, "MNS_GYPA" = MNS_GYPA, "MNS_GYPB" = MNS_GYPB,
+    "RHCE" = RHCE, "RHD" = RHD
 )
 
 # Iterate through each blood system to infer the correct phenotype for each sample
@@ -662,24 +494,20 @@ df_sum_table <- df_sum_table %>%
           "LAN", "VEL", "CD59", "AUG", "GATA1", "KLF1", "JR", "KN", "XG"), 
         ~ process_group(.x, my_dict[[cur_column()]])
     )) %>%
-    mutate(H = paste0(
-        sub(" \\| .*", "", process_group(H, my_dict[["H1"]])), 
-        " | ", 
-        process_group(H, my_dict[["H2"]])
-    )) %>%
-    mutate(CHRG = paste0(
-        sub(" \\| .*", "", process_group(CHRG, my_dict[["CHRG_A"]])), 
-        " | ", 
-        process_group(CHRG, my_dict[["CHRG_B"]])
-    )) %>%
-    mutate(MNS = paste0(
-        sub(" \\| .*", "", process_group(MNS, my_dict[["MNS_GYPA"]])), 
-        " | ", 
-        process_group(MNS, my_dict[["MNS_GYPB"]])
-    ))
+    mutate(H_FUT2 = process_group(H, my_dict[["H2"]])) %>%
+    mutate(H = process_group(H, my_dict[["H1"]])) %>%
+    mutate(CHRG_C4B = process_group(CHRG, my_dict[["CHRG_B"]])) %>% 
+    mutate(CHRG = process_group(CHRG, my_dict[["CHRG_A"]])) %>%
+    mutate(MNS_GYPB = process_group(MNS, my_dict[["MNS_GYPB"]])) %>% 
+    mutate(MNS = process_group(MNS, my_dict[["MNS_GYPA"]])) %>%
+    mutate(RHD = process_group(RH, my_dict[["RHD"]])) %>%
+    mutate(RH = process_group(RH, my_dict[["RHCE"]])) %>%
+    rename(
+        RHCE = "RH", H_FUT1 = "H", CHRG_C4A = "CHRG", MNS_GYPA = "MNS"
+    )
 
 save(df_sum_table, file = "./R/results/final_summary_table.Rdata")
-
+write.table(df_sum_table, file ="./R/results/final_summary_table.tsv", sep = "\t", row.names = TRUE, col.names = TRUE, quote = FALSE)
 print("Done")
 
 # df_sum_table <- df_sum_table %>%
