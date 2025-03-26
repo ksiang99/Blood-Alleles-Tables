@@ -413,7 +413,7 @@ train_and_evaluate_model <- function(df_genotype, target_column, masked_columns,
   return(metrics_df)
 }
 
-# --- Function to Train and Evaluate a Machine Learning Model ---
+# --- Function to Train and Evaluate a Machine Learning Model using K-fold Cross Validation ---
 # @param df_genotype (data.frame) Genotype data.
 # @param target_column (character) Name of the target column.
 # @param masked_columns (character vector) Names of columns to mask during training and testing, excluding the target column.
@@ -482,107 +482,94 @@ train_and_evaluate_model_k <- function(df_genotype, target_column, masked_column
 
   # Retrieve results of model
   model_results <- model$pred
-
   # Convert class labels in predictions and observations back to "0" and "1"
   model_results$pred <- factor(model_results$pred, levels = c("prob_0", "prob_1"), labels = c("0", "1"))
   model_results$obs <- factor(model_results$obs, levels = c("prob_0", "prob_1"), labels = c("0", "1"))
 
-  # Split model results based on test fold number
-  fold_results <- split(model_results, model_results$Resample)
+  model_metrics <- calculate_metrics(model_results$pred, model_results$obs)
+  model_metrics$Pred_Class <- model_results$pred
+  model_metrics$Row_Index <- model_results$rowIndex
 
-  # Calculate the performance metrics of each test fold
-  fold_metrics <- lapply(fold_results, function(df) {
-    metrics <- calculate_metrics(df$pred, df$obs)
-    metrics$Pred_Class <- df$pred # Predicted class of target_column in test fold
-    metrics$Row_Index <- df$rowIndex # Row index of target_column in test fold
+  # Ensure model provides probabilities for ROC calculation
+  model_probs <- tryCatch({
+    model_results[, c("prob_0", "prob_1")]
+  }, error = function(e) {
+    warning("Model prediction for probabilities failed: ", conditionMessage(e))
+    return(NULL)
+  })
+
+  # AUC Calculation
+  model_metrics$AUC <- tryCatch({
+    if (is.null(model_probs)) {
+      warning("Prediction probabilities could not be generated. ROC calculation aborted.")
+      return(NA)
+    }
+
+    if (sum(model_results$obs == 0) == 0) {
+      warning("No positive samples (class '0') in prediction. ROC cannot be calculated.")
+      return(NA)
+    }
+
+    roc_test <- roc(
+      response = model_results$obs,
+      predictor = model_results$prob_1,
+      levels = c(0, 1))
+
+    # Plot ROC curve
+    roc_data <- data.frame(
+      specificity = roc_test$specificities,
+      sensitivity = roc_test$sensitivities
+    )
     
-    # Ensure model provides probabilities for ROC calculation
-    fold_probs <- tryCatch({
-      df[, c("prob_0", "prob_1")]
-    }, error = function(e) {
-      warning("Model prediction for probabilities failed: ", conditionMessage(e))
-      return(NULL)
-    })
-  
-    # AUC Calculation
-    auc <- tryCatch({
-      if (is.null(fold_probs)) {
-        warning("Prediction probabilities could not be generated. ROC calculation aborted.")
-        return(NA)
-      }
+    ggplot(roc_data, aes(x = 1 - specificity, y = sensitivity)) +
+      geom_line(color = "blue") +
+      geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "red") +
+      labs(
+        title = paste("ROC Curve (AUC =", round(auc(roc_test), 3), ")"),
+        x = "1 - Specificity (False Positive Rate)",
+        y = "Sensitivity (True Positive Rate)"
+      ) +
+      theme_minimal()
 
-      if (sum(df$obs == 0) == 0) {
-        warning("No positive samples (class '0') in prediction. ROC cannot be calculated.")
-        return(NA)
-      }
+    as.numeric(auc(roc_test))
 
-      roc_test <- roc(
-        response = df$obs,
-        predictor = df$prob_1,
-        levels = c(0, 1))
-
-      # Plot ROC curve
-      roc_data <- data.frame(
-        specificity = roc_test$specificities,
-        sensitivity = roc_test$sensitivities
-      )
-      
-      ggplot(roc_data, aes(x = 1 - specificity, y = sensitivity)) +
-        geom_line(color = "blue") +
-        geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "red") +
-        labs(
-          title = paste("ROC Curve (AUC =", round(auc(roc_test), 3), ")"),
-          x = "1 - Specificity (False Positive Rate)",
-          y = "Sensitivity (True Positive Rate)"
-        ) +
-        theme_minimal()
-
-      metrics$AUC <- as.numeric(auc(roc_test))
-    
-    }, error = function(e) {
-      warning("ROC calculation failed due to an error: ", conditionMessage(e))
-      return(NA)  # Return NA if ROC calculation fails
-    })
-    return(metrics)
+  }, error = function(e) {
+    warning("ROC calculation failed due to an error: ", conditionMessage(e))
+    return(NA)  # Return NA if ROC calculation fails
   })
 
   # Compile test fold metrics into a dataframe
   # Works for NB with CV, have not look into LR, RF with CV
   # Have not look into LOO
-  metrics_df <- do.call(rbind, lapply(names(fold_metrics), function(fold) {
-    metrics <- fold_metrics[[fold]]
-    data.frame(
+  metrics_df <- data.frame(
     Model = model_type,
-    Fold = fold,
     Target_Column = target_column,
     MAF = 1 - sum(df_genotype[[target_column]] == 0) / length(df_genotype[[target_column]]), # avoiding problems with multiallelic positions
     Laplace_Smoothing = ifelse(model_type == "naive_bayes", laplace_smoothing, NA),
     
     # Performance metrics
-    Test_Accuracy = metrics$Accuracy,
-    Test_Kappa = metrics$Kappa,
-    Test_Sensitivity = metrics$Sensitivity,
-    Test_Specificity = metrics$Specificity,
-    Test_Pos_Pred_Value = metrics$Pos_Pred_Value,
-    Test_Neg_Pred_Value = metrics$Neg_Pred_Value,
-    Test_Precision = metrics$Precision,
-    Test_Recall = metrics$Recall,
-    Test_F1 = metrics$F1,
-    Test_Prevalence = metrics$Prevalence,
-    Test_Detection_Rate = metrics$Detection_Rate,
-    Test_Detection_Prevalence = metrics$Detection_Prevalence,
-    Test_Balanced_Accuracy = metrics$Balanced_Accuracy,
+    Test_Accuracy = model_metrics$Accuracy,
+    Test_Kappa = model_metrics$Kappa,
+    Test_Sensitivity = model_metrics$Sensitivity,
+    Test_Specificity = model_metrics$Specificity,
+    Test_Pos_Pred_Value = model_metrics$Pos_Pred_Value,
+    Test_Neg_Pred_Value = model_metrics$Neg_Pred_Value,
+    Test_Precision = model_metrics$Precision,
+    Test_Recall = model_metrics$Recall,
+    Test_F1 = model_metrics$F1,
+    Test_Prevalence = model_metrics$Prevalence,
+    Test_Detection_Rate = model_metrics$Detection_Rate,
+    Test_Detection_Prevalence = model_metrics$Detection_Prevalence,
+    Test_Balanced_Accuracy = model_metrics$Balanced_Accuracy,
 
     # ROC AUC
-    AUC = metrics$AUC,
+    AUC = model_metrics$AUC,
 
     # Predicted classes of target_column
-    Pred_Class = paste(metrics$Pred_Class, collapse = ", "),   
-    Pred_Row_Index = paste(metrics$Row_Index, collapse = ", "),
+    Pred_Class = paste(model_metrics$Pred_Class, collapse = ", "),   
+    Pred_Row_Index = paste(model_metrics$Row_Index, collapse = ", "),
     row.names = NULL
     )
-  }))
-
   return(metrics_df)
 }
 
