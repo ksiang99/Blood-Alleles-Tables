@@ -1,6 +1,6 @@
 rm(list = ls())
 
-setwd("C:/Users/KS/Desktop")
+setwd("/home/svu/e0726996/Blood-type-GWAS/")
 
 library(ggplot2)
 library(reshape2)
@@ -21,6 +21,10 @@ inverse_trans <- function(x) {
          x / 50,               # Reverse 0-0.1% scaling
          0.1 + (x-5)*(99.9/95) # Reverse 0.1-100% scaling
   )
+}
+
+if (!dir.exists("results/phenotype_distribution")) {
+  dir.create("results/phenotype_distribution", recursive = TRUE)
 }
 
 df <- read_excel("Phenotype_count.xlsx")
@@ -97,5 +101,5 @@ for (group in unique(df_long$Blood_Group)) {
         guides(fill = guide_legend(ncol = 4, keywidth = 0.8, keyheight = 0.8))
 
     group <- gsub("/", "_", group) # Handle CH/RG Blood Group
-    ggsave(paste0("bar_chart_", group, ".png"), plot = plot, width = 40, height = 20, units = "cm", dpi = 300)
+    ggsave(paste0("results/phenotype_distribution/bar_chart_", group, ".png"), plot = plot, width = 40, height = 20, units = "cm", dpi = 300)
 }
