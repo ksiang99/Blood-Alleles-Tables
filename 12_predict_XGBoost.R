@@ -66,7 +66,7 @@ for (chr_num in 1:23) {
           next
         }
 
-        df_results <- train_and_evaluate_model_XG(df_genotype_subset, target_column, masked_columns, model_type)
+        df_results <- train_and_evaluate_model_XG(df_genotype_subset, target_column, masked_columns)
         if (is.null(df_results)) {
           warning(paste("Model training failed for target column:", target_column))
           next
@@ -83,6 +83,6 @@ for (chr_num in 1:23) {
 }
 
 chr_results_dt <- data.table::rbindlist(chr_results, use.names = TRUE, fill = TRUE)
-save(chr_results_dt, chr_results, file = "./R/results/chr_1_23_XG_100_ONE_WMA.Rdata")
+save(chr_results_dt, chr_results, file = "./R/results/predict/chr_1_23_XG_100_ONE_WMA.Rdata")
 
 dim(chr_results_dt)
