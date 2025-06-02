@@ -20,11 +20,11 @@ PATH_population_label <- "./biobank/1KG/igsr-1000_genomes_phase_3_release.tsv"
 df_population_label <- read.table(PATH_population_label, header = TRUE, sep = "\t")
 df_population_label$ID <- rownames(df_population_label)
 
+output_file <- "./R/results/Phenotype_count.txt"
+sink(output_file)
+
 # Count phenotype for each superpopulation
 for (col in colnames(df_sum_table)) {
-    if (col == "RHCE") {
-        next
-    }
     for (superpopulation in superpopulation_list) {
         df_sum_table_subset <- split_by_superpopulation(df_sum_table[col], df_population_label, superpopulation)
         print(superpopulation)
@@ -38,7 +38,5 @@ for (col in colnames(df_sum_table)) {
             cat(paste(names(count), "|------", round(count/length(df_sum_table_subset) * 100, 2), "\n"))
         }   
     }
-    if (col == "H_FUT2") {
-        stop()
-    }
 }
+sink()

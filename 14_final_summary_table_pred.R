@@ -5,21 +5,20 @@ setwd("/home/svu/e0726996/Blood-type-GWAS/")
 # Set random seed
 set.seed(0)
 
-library(dplyr)
-library(stringr)
-
 # Set paths
 PATH_ALLELE_TABLE <- "./R/Blood_Allele_Table.tsv"
-df_allele_table <- read.delim(PATH_ALLELE_TABLE, header = TRUE)
+df_allele_table <- read.delim(PATH_ALLELE_TABLE, header = TRUE, fileEncoding = "UTF-8")
 df_allele_table$Pheno_Allele <- paste0(df_allele_table$Phenotype, "/", df_allele_table$Allele.Name)
 PREDICT_PATH <- "./R/results/predict"
-pred_files <- list.files(PREDICT_PATH, pattern = "summary_table\\.Rdata$", full.names = TRUE)
+pred_files <- list.files(PREDICT_PATH, pattern = "summary_table.*\\.Rdata$", full.names = TRUE)
 pred_files <- pred_files[!grepl("final_summary_table", pred_files)]
+print(pred_files)
+stop()
 
 # Function to sort the alleles based on number of nucleotide changes (Largest to smallest)
 process_hier <- function(idx) {
     name <- df_allele_table$Pheno_Allele[idx]
-    if (!any(grepl("KN\\:", name))) {
+    if (!any(grepl("KN\\:|RH\\:", name))) {
         name <- sub(".* or ([^|]+)$", "\\1", name)
     }
     nc <- df_allele_table$Nucleotide.Change[idx]
@@ -104,7 +103,6 @@ remove_ref <- function(row, ref) {
     return(substrings)
 }
 
-
 # Function to find generalised phenotype name
 find_key <- function(dict, value) {
   keys <- names(dict)
@@ -121,8 +119,10 @@ final_pheno <- function(row, dict) {
     
     for (pheno in dict[["hier"]]) {
         if (any(grepl(pheno, substrings, fixed = TRUE))) {
-            pattern <- paste0(dict[["allele_name"]], collapse = "|")
-            pheno <- sub(pattern, "", pheno)
+            if (!any(grepl("RH\\:|RHD\\*", substrings))) {
+                pattern <- paste0(dict[["allele_name"]], collapse = "|")
+                pheno <- sub(pattern, "", pheno)
+            }
             key <- find_key(dict, pheno)
             result <- paste0(key, ": ", pheno)
             return(result)
@@ -135,7 +135,7 @@ final_pheno <- function(row, dict) {
 process_group <- function(row, dict) {
     process_single_row <- function(single_row) {
         single_row <- remove_ref(single_row, dict[["ref"]])
-        if (!any(grepl("KN\\:", single_row))) {
+        if (!any(grepl("KN\\:|RH\\:", single_row))) {
             single_row <- sub(".* or ([^|]+)$", "\\1", single_row)
         }
         return(final_pheno(single_row, dict))
@@ -185,22 +185,53 @@ RHCE <- within(list(
     allele_name = c("/RHCE.*", "/\\*1000G.*"),
     TGP = c("-")
     ), {
+    start_index_ce <- which(df_allele_table$Pheno_Allele == "RH:4 or c RH:5 or e RH:6 or f (ce)/RHCE*01")
+    end_index_ce <- which(df_allele_table$Pheno_Allele == "RH:3 (E+ weak to neg)/RHCE*01.43 RHCE*ce.43")
+    ce_pheno <- df_allele_table$Pheno_Allele[start_index_ce:end_index_ce]
+    
+    start_index_Ce <- which(df_allele_table$Pheno_Allele == "RH:2 or C RH:5 or e RH:7 or Ce/RHCE*02")
+    end_index_Ce <- which(df_allele_table$Pheno_Allele == "RH:2 (C+ weak, mixed field) RH:–10 (V–)/RHCE*02.40 RHCE*Ce.40 RHCE*CeAR")
+    Ce_pheno <- df_allele_table$Pheno_Allele[start_index_Ce:end_index_Ce]
+    
+    start_index_cE <- which(df_allele_table$Pheno_Allele == "RH:4 or c RH:3 or E RH:27 or cE/RHCE*03")
+    end_index_cE <- which(df_allele_table$Pheno_Allele == "RH:3 (E+ weak to neg)/RHCE*03.32 RHCE*cE.32")
+    cE_pheno <- df_allele_table$Pheno_Allele[start_index_cE:(end_index_cE)]
+
+    start_index_CE <- which(df_allele_table$Pheno_Allele == "RH:2 or C RH:3 or E RH:22 or CE/RHCE*CE")
+    end_index_CE <- which(df_allele_table$Pheno_Allele == "RH:2 (C+ weak to neg) RH:3 (E+ weak to neg)/RHCE*04.02 RHCE*CE.02")
+    CE_pheno <- df_allele_table$Pheno_Allele[start_index_CE:(end_index_CE)]
+
     hier <- process_hier(df_allele_table$Gene == "RHCE")
+
+    "ce" <- ce_pheno
+    "cE" <- cE_pheno
+    "Ce" <- Ce_pheno
+    "CE" <- CE_pheno
     }
 )
 
 RHD <- within(list(
     ref = c("D RH:1/RHD*01"),
     allele_name = c("/RHD.*", "/\\*1000G.*"),
-    "1" = c("D RH:1"), "2" = c("DAU0"), "3" = c("DAU3"), "4" = c("Del"), "5" = c("DAU0.01"), 
-    "6" = c("DAR3.1 (weak partial D 4.0)"), "7" = c("DIVa RH30+ (Goa+) DIV type 1.0"), "8" = c("DIII type 4"), "9" = c("DV Type 4 RH:23 (Dw+)"),"10" = c("DAU5"),
-    "11" = c("DIIIa RH:54 (DAK+)"), "12" = c("RHD(F175L)"), "13" = c("Type 45"), "14" = c("DVII RH:40 (Tar+)"), "15" = c("Type 1"),
-    "16" = c("Type 3"),"17" = c("DAU6"), "18" = c("DNB"), "19" = c("Type 28"), "20" = c("Type 66"),
-    "21" = c("Type 25"), "22" = c("Type 33"), "23" = c("DIII type 6"), "24" = c("DFV"), "25" = c("DAU0.02"),
-    "26" = c("DAU14"), "27" = c("Weak partial Type 15"), "28" = c("DUC2"),
-    TGP = c("-")
+    "D" = c("D RH:1/RHD*01", "Nor mal D antigen/RHD*01.01"), TGP = c("-")
     ), {
-        hier <- process_hier(df_allele_table$Gene == "RHD")
+    start_index_partial <- which(df_allele_table$Pheno_Allele == "DII/RHD*02 RHD*DII")
+    end_index_partial <- which(df_allele_table$Pheno_Allele == "Partial  D/RHD*66")
+    partial_pheno <- df_allele_table$Pheno_Allele[start_index_partial:end_index_partial]
+    
+    start_index_weak <- which(df_allele_table$Pheno_Allele == "Type 1/RHD*01W.1 RHD*weak D type 1")
+    end_index_weak <- which(df_allele_table$Pheno_Allele == "Del/RHD*01EL.50 RHD*DEL50")
+    weak_pheno <- df_allele_table$Pheno_Allele[start_index_weak:end_index_weak]
+    
+    start_index_neg <- which(df_allele_table$Pheno_Allele == "D-/RHD*01N.08")
+    end_index_neg <- which(df_allele_table$Pheno_Allele == "D-/RHD*01N.86")
+    neg_pheno <- df_allele_table$Pheno_Allele[start_index_neg:(end_index_neg)]
+    
+    hier <- process_hier(df_allele_table$Gene == "RHD")
+    
+    "Partial D" <- partial_pheno
+    "D_weak" <- weak_pheno
+    "D_neg" <- neg_pheno
     })
 
 
@@ -298,14 +329,14 @@ LW <- within(list(
     hier <- process_hier(df_allele_table$Gene == "ICAM4")
     })
 
-CHRG_A <- within(list(
+CHRG_C4A <- within(list(
     ref = c("Ch–Rg+ or CH:–1,–2,–3,–4,–5,–6 RG:1,2/C4A*03"), allele_name = c("/C4A.*", "/\\*1000G.*"),
     "1" = c("CH:–1,–2,–3,–4,–5,–6 RG:1,2"), TGP = c("-")
     ), {
     hier <- process_hier(df_allele_table$Gene == "C4A")
     })
 
-CHRG_B <- within(list(
+CHRG_C4B <- within(list(
     ref = c("Ch+Rg– or CH:1,2,3,4,5,6 RG:–1,–2/C4B*03"), allele_name = c("/C4B.*", "/\\*1000G.*"),
     "1" = c("CH:1,2,3,4,5,6 RG:–1,–2"), TGP = c("-")
     ), {
@@ -474,7 +505,7 @@ KLF1 <- within(list(
 
 my_dict <- list(
     "ABO" = ABO, "P1PK" = P1PK, "LU" = LU, "KEL" = KEL, "LE" = LE, "FY" = FY, "JK" = JK, "DI" = DI, "YT" = YT, "XG" = XG,
-    "SC" = SC, "DO" = DO, "CO" = CO, "LW" = LW, "CHRG_A" = CHRG_A, "CHRG_B" = CHRG_B, "H_FUT1" = H_FUT1, "H_FUT2" = H_FUT2, "KX" = KX, "GE" = GE, 
+    "SC" = SC, "DO" = DO, "CO" = CO, "LW" = LW, "CHRG_C4A" = CHRG_C4A, "CHRG_C4B" = CHRG_C4B, "H_FUT1" = H_FUT1, "H_FUT2" = H_FUT2, "KX" = KX, "GE" = GE, 
     "CROM" = CROM, "KN" = KN, "IN" = IN, "OK" = OK, "RAPH" = RAPH, "JMH" = JMH, "I" = I, "GLOB" = GLOB, "GIL" = GIL, "RHAG" = RHAG, "FORS" = FORS, 
     "LAN" = LAN, "VEL" = VEL, "CD59" = CD59, "AUG" = AUG, "GATA1" = GATA1, "KLF1" = KLF1, "JR" = JR, "MNS_GYPA" = MNS_GYPA, "MNS_GYPB" = MNS_GYPB,
     "RHCE" = RHCE, "RHD" = RHD
@@ -482,9 +513,11 @@ my_dict <- list(
 
 for (file in pred_files) {
     
+    pop <- sub(".*_([A-Z]+)\\.Rdata$", "\\1", file)
     file_name <- sub("(.*)_summary.*", "\\1", file)
+    position <- sub(".*chr\\d+_(\\d+)_.*", "\\1", file)
 
-    if (file.exists(paste0(file_name, "_final_summary_table.Rdata"))) {
+    if (file.exists(paste0(file_name, "_final_summary_table_" ,pop, ".Rdata"))) {
         next
     }
 
@@ -493,27 +526,21 @@ for (file in pred_files) {
     col <- colnames(df_sum_table)
     
     if (col == "RH") {
-        col <- sub(".*/(.*)\\*.*", "\\1", df_sum_table[[1]][1])
+        position_gene <- grepl(paste0("(^|;)", position, "($|;)"), df_allele_table$GRCh37.VCF.Position)
+        col <- df_allele_table$Gene[position_gene][1]
         colnames(df_sum_table)[1] <- col
     }
 
-    else if (col %in% c("H", "MNS")) {
-        col <- paste0(col, "_", sub(".*/(.*)\\*.*", "\\1", df_sum_table[[1]][1]))
-        colnames(df_sum_table)[1] <- col
-    }
-
-    else if (col == "CHRG") {
-        col <- paste0(col, "_", sub(".*C4([A-Za-z])\\*.*", "\\1", df_sum_table[[1]][1]))
+    else if (col %in% c("H", "MNS", "CHRG")) {
+        position_gene <- grepl(paste0("(^|;)", position, "($|;)"), df_allele_table$GRCh37.VCF.Position)
+        col <- paste0(col, "_", df_allele_table$Gene[position_gene][1])
         colnames(df_sum_table)[1] <- col
     }
 
     df_sum_table <- df_sum_table %>%
         mutate({{ col }} := process_group(.data[[col]], my_dict[[col]]))
 
-    
-    save(df_sum_table, file = paste0(file_name, "_final_summary_table.Rdata"))
-    write.table(df_sum_table, file = paste0(file_name, "_final_summary_table.tsv"), sep = "\t", row.names = TRUE, col.names = TRUE, quote = FALSE)
-
+    save(df_sum_table, file = paste0(file_name, "_final_summary_table_", pop, ".Rdata"))
 }
 
 print("Done")

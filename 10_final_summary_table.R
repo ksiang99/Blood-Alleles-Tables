@@ -509,21 +509,3 @@ df_sum_table <- df_sum_table %>%
 save(df_sum_table, file = "./R/results/final_summary_table.Rdata")
 write.table(df_sum_table, file ="./R/results/final_summary_table.tsv", sep = "\t", row.names = TRUE, col.names = TRUE, quote = FALSE)
 print("Done")
-
-# df_sum_table <- df_sum_table %>%
-#     mutate(
-#         LE = case_when(
-#             grepl("Le_null", LE) ~ "Le_null: Le(a-b-)",
-#             grepl("FUT3_active", LE) & grepl("H2_null", H) ~ "Le_a: Le(a+b-)",
-#             grepl("FUT3_active", LE) & grepl("H2_weak", H) ~ "Le_a_b: Le(a+b+)",
-#             TRUE ~ "Le_b: Le(a-b+)"
-#         ),
-        
-#         ABO = ifelse(grepl("H1_null", H), "O: O (Due to H1 null)", ABO),
-        
-#         GLOB = ifelse(grepl("p: p", P1PK), "P_null: P– (Due to p)", GLOB),
-        
-#         LU = ifelse(grepl("In_lu", KLF1), "Lu_null: Lunull (Due to KLF1 Mutation)", LU),
-        
-#         IN = ifelse(grepl("In_lu", KLF1), "In_null: In(a–b–) (Due to KLF1 Mutation)", IN)
-#     )
