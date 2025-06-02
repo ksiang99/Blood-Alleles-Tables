@@ -9,4 +9,4 @@
 * Results of predicted genotype values of position using `12_predict_XGBoost.R`
 
 **`Plots`**
-Metric results plot
+* Metric results plot
