@@ -11,7 +11,7 @@
 * Appends HGVS transcript notation in front of **Nucleotide Change** column.
 
 **`03_ABO_add.py`**
-* Adds missing nucleotide change to B alleles in the ABO blood group.
+* Adds missing nucleotide change to B alleles in the ABO blood group and RHCE alleles in RH blood group
 
 **`04_Erythrogene_table.py`**
 * Generates a table with the same structure as the output of `02_extract_ISBT_table.py` using `erythrogene_alleles.xlsx`.
@@ -26,7 +26,7 @@
 * Corrects genotype values for biallelic/multiallelic sites.
 
 **`07_blood_allele_table.py`**
-* Produces two final output files:
+* Produces two files:
   * `Blood_Allele_Table.tsv`
   * `Blood_Allele_Table_Separated.tsv` (Exploded version)
 * Uses the following files:
@@ -44,17 +44,23 @@
 * From `09_summary_table.R`, the phenotype with the most number of Nucleotide Change associate is inferred as the "correct" phenotype for the sample.
 
 **`11_phenotype_count.R`**
-* From `10_final_summary_table.R`, calculate the positive phenotype case for ALL population and superpopulations.
+* From `10_final_summary_table.R`, get the phenotype distribution for ALL population and superpopulations.
 
-**`12_infer_pred.R`**
+**`12_pred_XGBOOST.R`**
+* Use XGBoost to predict genotype value of a position using other positions of the same chromosome.
+
+**`13_infer_pred.R`**
 * Works similiar to `08_Infer.R` but a position in df_genotype is replaced with predicted genotype values from a Machine Learning Model.
 
-**`13_summary_table_pred.R`**
+**`14_summary_table_pred.R`**
 * Condenses each result from `12_infer_pred.R` into a summary table with blood group as columns and samples as rows.
 * List the potential phenotypes for the blood group which the predicted genotype values of the position is associated to.
 
-**`14_final_summary_table_pred.R`**
+**`15_final_summary_table_pred.R`**
 * Works similiar to `10_final_summary_table.R`
 
-**`15_phenotype_count.R`**
+**`16_phenotype_count_pred.R`**
 * Works similiar to `11_phenotype_count.R`
+
+**`17_phenotype_count_pred_metrics.R`**
+* Calculate metric results using output of `16_phenotype_count_pred.R`
