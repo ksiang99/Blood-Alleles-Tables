@@ -8,14 +8,16 @@
 # Load necessary libraries, do library(modules) first in main script as import() is a function from modules
 #library(modules)
 library(dplyr)
-library(caret)
-library(naivebayes)
-library(pROC)
+# library(caret)
+# library(naivebayes)
+# library(pROC)
+# library(themis)
+
 #import(c(predict,createDataPartition,confusionMatrix),from= "caret")
 #import(naive_bayes, from="naivebayes")
 #import(roc,from="pROC") # caret can make ROC AUC calculation
-library(VariantAnnotation)
-library(GenomicRanges)
+# library(VariantAnnotation)
+# library(GenomicRanges)
 
 # --- Function to load and preprocess LD data ---
 # This function loads the LD results file, filters variants and creates a new column for the distance between variants
@@ -413,27 +415,18 @@ train_and_evaluate_model <- function(df_genotype, target_column, masked_columns,
   return(metrics_df)
 }
 
-# --- Function to Train and Evaluate a Machine Learning Model using K-fold Cross Validation ---
+# --- Function to Train and Evaluate a Machine Learning Model using XGBoost ---
 # @param df_genotype (data.frame) Genotype data.
 # @param target_column (character) Name of the target column.
 # @param masked_columns (character vector) Names of columns to mask during training and testing, excluding the target column.
-# @param model_type (character) Type of model to train ("naive_bayes", "logistic_regression", "random_forest").
-# @param cv_method (character) Type of cross validation to use ("kfold", "loo").
-# @param k_fold (numeric) Number of folds to used for the model (default: 5).
-# 
+
 # @return (data.frame) A dataframe containing the full set of performance metrics for the model.
 # 
 # @export
-train_and_evaluate_model_k <- function(df_genotype, target_column, masked_columns, 
-                                      model_type = "naive_bayes", cv_method = "kfold",
-                                      k_folds = 5) {
+train_and_evaluate_model_XG <- function(df_genotype, target_column, masked_columns) {
   # Validate input arguments
   if (!target_column %in% colnames(df_genotype)) {
     stop("Target column not found in the genotype data.")
-  }
-  
-  if (!model_type %in% c("naive_bayes", "logistic_regression", "random_forest")) {
-    stop("Unsupported model type. Supported types are 'naive_bayes', 'logistic_regression', and 'random_forest'.")
   }
   
   # Check for single record classes
@@ -443,133 +436,115 @@ train_and_evaluate_model_k <- function(df_genotype, target_column, masked_column
     return(NULL)
   }
   
+  ## Ensure valid column names
+  colnames(df_genotype) <- make.names(colnames(df_genotype))
+  target_column <- make.names(target_column)
+  masked_columns <- make.names(masked_columns)
+
   # Remove target_column from masked_columns and mask columns from data
   masked_columns <- setdiff(masked_columns, target_column)
-  df_genotype <- df_genotype[, !colnames(df_genotype) %in% masked_columns]
+  df_genotype_named <- df_genotype[, !colnames(df_genotype) %in% masked_columns]
 
-  # Convert target_columns classes to a factor with valid names
-  df_genotype[[target_column]] <- factor(df_genotype[[target_column]], 
-                                        levels = c("0", "1"), 
-                                        labels = c("prob_0", "prob_1"))
-  
-  # Set laplace smoothing value for naive bayes
-  if (model_type == "naive_bayes") {
-    laplace_smoothing = 1
-  }
+  # Split data into training and testing sets
+  sub <- createDataPartition(y = df_genotype_named[[target_column]], p = proportion_training_data, list = FALSE)
+  df_train <- df_genotype_named[sub, ]
+  df_test <- df_genotype_named[-sub, ]
 
-  # Set cross-validation method to use
-  if (cv_method == "loo") {
-    train_control <- trainControl(method = "LOOCV", savePredictions = "final", classProb = TRUE)
+  # Prepare the data for XGBoost
+  predictor_columns <- setdiff(colnames(df_train), target_column)
+  df_train[predictor_columns] <- lapply(df_train[predictor_columns], function(col) {
+    as.numeric(as.character(col))
+  })
+
+  df_test[predictor_columns] <- lapply(df_test[predictor_columns], function(col) {
+    as.numeric(as.character(col))
+  })
+ 
+  # Convert to DMatrix format for XGBoost
+  dtrain <- xgb.DMatrix(data = as.matrix(df_train[, predictor_columns]), label = as.numeric(df_train[[target_column]]) - 1)
+  dtest <- xgb.DMatrix(data = as.matrix(df_test[, predictor_columns]), label = as.numeric(df_test[[target_column]]) - 1)
+
+  # Set hyperparameters for XGBoost
+  params <- list(
+    booster = "gbtree",            # Tree-based model
+    objective = "multi:softmax",   # Multi-class classification
+    num_class = length(unique(df_train[[target_column]])),  # Number of classes (genotypes)
+    eta = 0.1,                     # Learning rate
+    max_depth = 6,                 # Maximum depth of trees
+    subsample = 0.8,               # Subsample ratio of training data
+    colsample_bytree = 0.8         # Subsample ratio of features for each tree
+  )
+
+  # Train the model
+  model <- xgb.train(
+    params = params,
+    data = dtrain,
+    nrounds = 100,  # Number of boosting rounds
+    verbose = 1
+  )
+
+  # Generate predictions and calculate performance metrics
+  train_predictions <- predict(model, dtrain)
+  test_predictions <- predict(model, dtest)
+
+  if ("2" %in% levels(train_predictions)) {
+  train_predictions <- factor(train_predictions, levels = c("0", "1", "2"), labels = c("0", "1", "2"))
   } else {
-    # Stratified sampling by default
-    train_control <- trainControl(method = "cv", number = k_folds,
-                                  savePredictions = "final", classProb = TRUE, returnResamp = "all")
+  train_predictions <- factor(train_predictions, levels = c("0", "1"), labels = c("0", "1"))
   }
 
-  # Train the specified model
-  predictor_columns <- setdiff(colnames(df_genotype), target_column)
-  model <- switch(model_type,
-                  "naive_bayes" = train(df_genotype[predictor_columns], df_genotype[[target_column]], method = "naive_bayes",
-                    trControl = train_control, tuneGrid = expand.grid(laplace = laplace_smoothing, usekernel = FALSE, adjust = 1)),
-                  "logistic_regression" = train(df_genotype[predictor_columns], df_genotype[[target_column]], method = "glm",
-                    family = "binomial", trControl = train_control),
-                  "random_forest" = {
-                    train(df_genotype[predictor_columns], df_genotype[[target_column]], 
-                          method = "rf", 
-                          trControl = train_control,
-                          ntree = 10)
-                  })
+  if ("2" %in% levels(test_predictions)) {
+  test_predictions <- factor(test_predictions, levels = c("0", "1", "2"), labels = c("0", "1", "2"))
+  } else {
+  test_predictions <- factor(test_predictions, levels = c("0", "1"), labels = c("0", "1"))
+  }
 
-  # Retrieve results of model
-  model_results <- model$pred
-  # Convert class labels in predictions and observations back to "0" and "1"
-  model_results$pred <- factor(model_results$pred, levels = c("prob_0", "prob_1"), labels = c("0", "1"))
-  model_results$obs <- factor(model_results$obs, levels = c("prob_0", "prob_1"), labels = c("0", "1"))
+  # Calculate performance metrics for training and testing sets
+  train_metrics <- calculate_metrics(train_predictions, df_train[[target_column]])
+  test_metrics <- calculate_metrics(test_predictions, df_test[[target_column]])
 
-  model_metrics <- calculate_metrics(model_results$pred, model_results$obs)
-  model_metrics$Pred_Class <- model_results$pred
-  model_metrics$Row_Index <- model_results$rowIndex
-
-  # Ensure model provides probabilities for ROC calculation
-  model_probs <- tryCatch({
-    model_results[, c("prob_0", "prob_1")]
-  }, error = function(e) {
-    warning("Model prediction for probabilities failed: ", conditionMessage(e))
-    return(NULL)
-  })
-
-  # AUC Calculation
-  model_metrics$AUC <- tryCatch({
-    if (is.null(model_probs)) {
-      warning("Prediction probabilities could not be generated. ROC calculation aborted.")
-      return(NA)
-    }
-
-    if (sum(model_results$obs == 0) == 0) {
-      warning("No positive samples (class '0') in prediction. ROC cannot be calculated.")
-      return(NA)
-    }
-
-    roc_test <- roc(
-      response = model_results$obs,
-      predictor = model_results$prob_1,
-      levels = c(0, 1))
-
-    # Plot ROC curve
-    roc_data <- data.frame(
-      specificity = roc_test$specificities,
-      sensitivity = roc_test$sensitivities
-    )
-    
-    ggplot(roc_data, aes(x = 1 - specificity, y = sensitivity)) +
-      geom_line(color = "blue") +
-      geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "red") +
-      labs(
-        title = paste("ROC Curve (AUC =", round(auc(roc_test), 3), ")"),
-        x = "1 - Specificity (False Positive Rate)",
-        y = "Sensitivity (True Positive Rate)"
-      ) +
-      theme_minimal()
-
-    as.numeric(auc(roc_test))
-
-  }, error = function(e) {
-    warning("ROC calculation failed due to an error: ", conditionMessage(e))
-    return(NA)  # Return NA if ROC calculation fails
-  })
-
-  # Compile test fold metrics into a dataframe
-  # Works for NB with CV, have not look into LR, RF with CV
-  # Have not look into LOO
+  # Compile metrics into a dataframe
   metrics_df <- data.frame(
     Model = model_type,
     Target_Column = target_column,
-    MAF = 1 - sum(df_genotype[[target_column]] == 0) / length(df_genotype[[target_column]]), # avoiding problems with multiallelic positions
-    Laplace_Smoothing = ifelse(model_type == "naive_bayes", laplace_smoothing, NA),
+    Proportion_Training_Data = proportion_training_data,
+    MAF = 1 - sum(df_genotype[[target_column]] == 0) / length(df_genotype[[target_column]]), # Minor Allele Frequency
     
-    # Performance metrics
-    Test_Accuracy = model_metrics$Accuracy,
-    Test_Kappa = model_metrics$Kappa,
-    Test_Sensitivity = model_metrics$Sensitivity,
-    Test_Specificity = model_metrics$Specificity,
-    Test_Pos_Pred_Value = model_metrics$Pos_Pred_Value,
-    Test_Neg_Pred_Value = model_metrics$Neg_Pred_Value,
-    Test_Precision = model_metrics$Precision,
-    Test_Recall = model_metrics$Recall,
-    Test_F1 = model_metrics$F1,
-    Test_Prevalence = model_metrics$Prevalence,
-    Test_Detection_Rate = model_metrics$Detection_Rate,
-    Test_Detection_Prevalence = model_metrics$Detection_Prevalence,
-    Test_Balanced_Accuracy = model_metrics$Balanced_Accuracy,
+    # Training Metrics
+    Train_Accuracy = train_metrics$Accuracy,
+    Train_Kappa = train_metrics$Kappa,
+    Train_Sensitivity = train_metrics$Sensitivity,
+    Train_Specificity = train_metrics$Specificity,
+    Train_Pos_Pred_Value = train_metrics$Pos_Pred_Value,
+    Train_Neg_Pred_Value = train_metrics$Neg_Pred_Value,
+    Train_Precision = train_metrics$Precision,
+    Train_Recall = train_metrics$Recall,
+    Train_F1 = train_metrics$F1,
+    Train_Prevalence = train_metrics$Prevalence,
+    Train_Detection_Rate = train_metrics$Detection_Rate,
+    Train_Detection_Prevalence = train_metrics$Detection_Prevalence,
+    Train_Balanced_Accuracy = train_metrics$Balanced_Accuracy,
+    Train_Pred_Class = paste(train_predictions, collapse = ", "),   
+    Train_Pred_Row = paste(rownames(df_train), collapse = ", "),
+    
+    # Testing Metrics
+    Test_Accuracy = test_metrics$Accuracy,
+    Test_Kappa = test_metrics$Kappa,
+    Test_Sensitivity = test_metrics$Sensitivity,
+    Test_Specificity = test_metrics$Specificity,
+    Test_Pos_Pred_Value = test_metrics$Pos_Pred_Value,
+    Test_Neg_Pred_Value = test_metrics$Neg_Pred_Value,
+    Test_Precision = test_metrics$Precision,
+    Test_Recall = test_metrics$Recall,
+    Test_F1 = test_metrics$F1,
+    Test_Prevalence = test_metrics$Prevalence,
+    Test_Detection_Rate = test_metrics$Detection_Rate,
+    Test_Detection_Prevalence = test_metrics$Detection_Prevalence,
+    Test_Balanced_Accuracy = test_metrics$Balanced_Accuracy,
+    Test_Pred_Class = paste(test_predictions, collapse = ", "),
+    Test_Pred_Row = paste(rownames(df_test), collapse = ", ")
+  )
 
-    # ROC AUC
-    AUC = model_metrics$AUC,
-
-    # Predicted classes of target_column
-    Pred_Class = paste(model_metrics$Pred_Class, collapse = ", "),   
-    Pred_Row_Index = paste(model_metrics$Row_Index, collapse = ", "),
-    row.names = NULL
-    )
   return(metrics_df)
 }
 
