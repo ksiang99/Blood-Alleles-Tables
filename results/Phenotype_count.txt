@@ -1,0 +1,1704 @@
+[1] "AFR"
+[1] 1322
+: -/*1000G only* (RHCE.03) |------ 0.83 
+ : -/*1000G only* (RHCE.05) |------ 0.61 
+ : -/*1000G only* (RHCE.08) |------ 0.23 
+ : -/*1000G only* (RHCE.11) |------ 0.08 
+ : -/*1000G only* (RHCE.12) |------ 0.08 
+ : -/*1000G only* (RHCE.14) |------ 0.08 
+ : -/*1000G only* (RHCE.15) |------ 0.08 
+ : -/*1000G only* (RHCE.16) |------ 0.08 
+ : -/*1000G only* (RHCE.20) |------ 0.08 
+ : -/*1000G only* (RHCE.21) |------ 0.08 
+ : -/*1000G only* (RHCE.23) |------ 0.08 
+ : -/*1000G only* (RHCE.25) |------ 0.08 
+ : -/*1000G only* (RHCE.26) |------ 0.08 
+ : -/*1000G only* (RHCE.27) |------ 0.08 
+ : -/*1000G only* (RHCE.28) |------ 0.08 
+ ce: Inferred as RHCE*01.20.02.01/RHCE*01.20.02.02 RHCE*ce.20.02.02 RHCE*ceVS.02.02 |------ 0.08 
+ ce: Inferred as RHCE*01.20.04.01 RHCE*ceTI type 2/RHCE*01.20.04.02 RHCE*ce.20.04.02 RHCE*ceVS.04.02 |------ 0.08 
+ ce: Probable RH:4 (c+ partial) Probable RH:5 (e+ partial)/RHCE*01.20.10 RHCE*ce.20.10 RHCE*ceVS.10 |------ 0.45 
+ cE: RH:3 (E+ partial, weak to neg) RH:4 (c+ weak)/RHCE*03.04 RHCE*cE.04 RHCE*cEIV |------ 0.15 
+ cE: RH:3 (E+) RH:4 (c+)/RHCE*03.18 RHCE*cE.18 |------ 0.76 
+ ce: RH:4 (c+ partial) RH:5 (e+ partial) RH:–10,20 (V–VS+) RH:–31 (hrB–)/RHCE*01.20.03 RHCE*ce.20.03 RHCE*ceVS.03 RHCE*ceS |------ 4.46 
+ ce: RH:4 (c+ partial) RH:5 (e+ partial) RH:10,20 (V+VS+) RH:–31 (hrB–)/RHCE*01.20.02 .01 RHCE*ce.20.02 .01 RHCE*ceVS.02 .01 |------ 2.8 
+ ce: RH:4 (c+ partial) RH:5 (e+ partial) RH:10,20 (V+VS+) RH:31 (hrB+ very weak to neg)/RHCE*01.20.01 RHCE*ce.20.01 RHCE*ceVS.01 |------ 15.28 
+ ce: RH:4 (c+ partial) RH:5 (e+ partial, positive to negative) RH:20 (VS+) RH:–19,–31 (hrS–, hrB–) RH:43 (Crawfor d+) RH:–58 (CELO–) Some monoclonal anti-D cross- react/RHCE*01.20.06 RHCE*ce.20.06 RHCE*ceVS.06 RHCE*ceCF |------ 0.08 
+ ce: RH:4 (c+ partial) RH:5 (e+ weak, partial) RH:–19 (hrS–) RH:–31 (hrB–) RH:–61 (CEVF–)/RHCE*01.07.01 RHCE*ce.07.01 RHCE*ceMO.01 |------ 1.44 
+ ce: RH:4 (c+ partial) RH:5 (e+ weak, partial) RH:–19 (hrS–) RH:–31 (hrB–) RH:–61 (CEVF–)/RHCE*01.07.02 RHCE*ce.07.02 RHCE*ceMO.02 |------ 0.08 
+ ce: RH:4 (c+ weak, partial) RH:5 (e+ weak, partial)/RHCE*01.02.01 RHCE*ce.02.01 RHCE*ceTI |------ 2.27 
+ cE: RH:4 or c RH:3 or E RH:27 or cE/RHCE*03 |------ 7.03 
+ ce: RH:5 (e+ partial) RH:–10,20 (V–VS+) RH:–31 (hrB–)/RHCE*01.20.05 RHCE*ce.20.05 RHCE*ceVS.05 |------ 0.08 
+ ce: RH:5 (e+ partial)/RHCE*01.03 RHCE*ce.03 |------ 0.3 
+ ce: RH:5 (e+ partial, weak to neg) RH:–18,–19 (Hr–, hrS–) RH:49 (STEM+)/RHCE*01.08 RHCE*ce.08 RHCE*ceBI |------ 0.08 
+ ce: RH:5 (e+ weak) RH:10,20 (V+VS+) RH:31 (hrB+ weak)/RHCE*01.20.09 RHCE*ce.20.09 RHCE*ceVS.09 |------ 2.57 
+ ce: RH:5 (e+ weak)/RHCE*01.01 RHCE*ce.01 |------ 35.25 
+ ce: RH:5 (e+ weak, partial) RH:–59 (CEAG–) RH:–31 (hrB–)/RHCE*01.06.01 RHCE*ce.06.01 RHCE*ceAG |------ 5.6 
+ ref: RH:4 or c RH:5 or e RH:6 or f (ce)/RHCE*01 |------ 18.61 
+[1] "AMR"
+[1] 694
+: -/*1000G only* (RHCE.05) |------ 0.14 
+ : -/*1000G only* (RHCE.09) |------ 0.14 
+ : -/*1000G only* (RHCE.24) |------ 0.14 
+ cE: RH:3 (E+) RH:4 (c+)/RHCE*03.18 RHCE*cE.18 |------ 1.87 
+ ce: RH:4 (c+ partial) RH:5 (e+ partial) RH:–10,20 (V–VS+) RH:–31 (hrB–)/RHCE*01.20.03 RHCE*ce.20.03 RHCE*ceVS.03 RHCE*ceS |------ 0.29 
+ ce: RH:4 (c+ partial) RH:5 (e+ partial) RH:10,20 (V+VS+) RH:31 (hrB+ very weak to neg)/RHCE*01.20.01 RHCE*ce.20.01 RHCE*ceVS.01 |------ 2.31 
+ ce: RH:4 (c+ partial) RH:5 (e+ weak, partial) RH:–19 (hrS–) RH:–31 (hrB–) RH:–61 (CEVF–)/RHCE*01.07.01 RHCE*ce.07.01 RHCE*ceMO.01 |------ 0.43 
+ ce: RH:4 (c+ weak, partial) RH:5 (e+ weak, partial)/RHCE*01.02.01 RHCE*ce.02.01 RHCE*ceTI |------ 0.43 
+ cE: RH:4 or c RH:3 or E RH:27 or cE/RHCE*03 |------ 21.33 
+ ce: RH:5 (e+ weak) RH:10,20 (V+VS+) RH:31 (hrB+ weak)/RHCE*01.20.09 RHCE*ce.20.09 RHCE*ceVS.09 |------ 0.14 
+ ce: RH:5 (e+ weak)/RHCE*01.01 RHCE*ce.01 |------ 51.59 
+ ce: RH:5 (e+ weak, partial) RH:–59 (CEAG–) RH:–31 (hrB–)/RHCE*01.06.01 RHCE*ce.06.01 RHCE*ceAG |------ 0.72 
+ ref: RH:4 or c RH:5 or e RH:6 or f (ce)/RHCE*01 |------ 20.46 
+[1] "EAS"
+[1] 1008
+: -/*1000G only* (RHCE.01) |------ 0.89 
+ : -/*1000G only* (RHCE.04) |------ 1.19 
+ : -/*1000G only* (RHCE.10) |------ 0.2 
+ : -/*1000G only* (RHCE.22) |------ 0.1 
+ : -/*1000G only* (RHCE.29) |------ 0.1 
+ cE: RH:3 (E+) RH:4 (c+)/RHCE*03.18 RHCE*cE.18 |------ 0.99 
+ ce: RH:4 (c+ partial) RH:5 (e+ weak, partial) RH:–19 (hrS–) RH:–31 (hrB–) RH:–61 (CEVF–)/RHCE*01.07.01 RHCE*ce.07.01 RHCE*ceMO.01 |------ 0.2 
+ cE: RH:4 or c RH:3 or E RH:27 or cE/RHCE*03 |------ 19.15 
+ ce: RH:5 (e+ weak)/RHCE*01.01 RHCE*ce.01 |------ 74.4 
+ ref: RH:4 or c RH:5 or e RH:6 or f (ce)/RHCE*01 |------ 2.78 
+[1] "EUR"
+[1] 1004
+: -/*1000G only* (RHCE.01) |------ 0.1 
+ : -/*1000G only* (RHCE.02) |------ 1 
+ : -/*1000G only* (RHCE.07) |------ 0.4 
+ : -/*1000G only* (RHCE.13) |------ 0.1 
+ : -/*1000G only* (RHCE.19) |------ 0.1 
+ ce: Inferred as RHCE*01.20.04.01 RHCE*ceTI type 2/RHCE*01.20.04.02 RHCE*ce.20.04.02 RHCE*ceVS.04.02 |------ 0.2 
+ cE: RH:3 (E+) RH:4 (c+)/RHCE*03.18 RHCE*cE.18 |------ 0.8 
+ ce: RH:4 (c+ partial) RH:5 (e+ partial) RH:10,20 (V+VS+) RH:31 (hrB+ very weak to neg)/RHCE*01.20.01 RHCE*ce.20.01 RHCE*ceVS.01 |------ 0.3 
+ ce: RH:4 (c+ partial) RH:5 (e+ weak, partial) RH:–19 (hrS–) RH:–31 (hrB–) RH:–61 (CEVF–)/RHCE*01.07.01 RHCE*ce.07.01 RHCE*ceMO.01 |------ 0.1 
+ cE: RH:4 or c RH:3 or E RH:27 or cE/RHCE*03 |------ 15.04 
+ ce: RH:5 (e+ weak)/RHCE*01.01 RHCE*ce.01 |------ 44.72 
+ ref: RH:4 or c RH:5 or e RH:6 or f (ce)/RHCE*01 |------ 37.15 
+[1] "SAS"
+[1] 978
+: -/*1000G only* (RHCE.01) |------ 0.41 
+ : -/*1000G only* (RHCE.02) |------ 0.2 
+ : -/*1000G only* (RHCE.03) |------ 0.1 
+ : -/*1000G only* (RHCE.05) |------ 0.1 
+ : -/*1000G only* (RHCE.09) |------ 0.1 
+ : -/*1000G only* (RHCE.17) |------ 0.1 
+ : -/*1000G only* (RHCE.18) |------ 0.1 
+ cE: RH:3 (E+) RH:4 (c+)/RHCE*03.18 RHCE*cE.18 |------ 0.41 
+ cE: RH:4 or c RH:3 or E RH:27 or cE/RHCE*03 |------ 8.59 
+ ce: RH:5 (e+ weak)/RHCE*01.01 RHCE*ce.01 |------ 67.59 
+ ref: RH:4 or c RH:5 or e RH:6 or f (ce)/RHCE*01 |------ 22.29 
+[1] "ALL"
+[1] 5008
+: -/*1000G only* (RHCE.01) |------ 0.28 
+ : -/*1000G only* (RHCE.02) |------ 0.24 
+ : -/*1000G only* (RHCE.03) |------ 0.24 
+ : -/*1000G only* (RHCE.04) |------ 0.24 
+ : -/*1000G only* (RHCE.05) |------ 0.2 
+ : -/*1000G only* (RHCE.07) |------ 0.08 
+ : -/*1000G only* (RHCE.08) |------ 0.06 
+ : -/*1000G only* (RHCE.09) |------ 0.04 
+ : -/*1000G only* (RHCE.10) |------ 0.04 
+ : -/*1000G only* (RHCE.11) |------ 0.02 
+ : -/*1000G only* (RHCE.12) |------ 0.02 
+ : -/*1000G only* (RHCE.13) |------ 0.02 
+ : -/*1000G only* (RHCE.14) |------ 0.02 
+ : -/*1000G only* (RHCE.15) |------ 0.02 
+ : -/*1000G only* (RHCE.16) |------ 0.02 
+ : -/*1000G only* (RHCE.17) |------ 0.02 
+ : -/*1000G only* (RHCE.18) |------ 0.02 
+ : -/*1000G only* (RHCE.19) |------ 0.02 
+ : -/*1000G only* (RHCE.20) |------ 0.02 
+ : -/*1000G only* (RHCE.21) |------ 0.02 
+ : -/*1000G only* (RHCE.22) |------ 0.02 
+ : -/*1000G only* (RHCE.23) |------ 0.02 
+ : -/*1000G only* (RHCE.24) |------ 0.02 
+ : -/*1000G only* (RHCE.25) |------ 0.02 
+ : -/*1000G only* (RHCE.26) |------ 0.02 
+ : -/*1000G only* (RHCE.27) |------ 0.02 
+ : -/*1000G only* (RHCE.28) |------ 0.02 
+ : -/*1000G only* (RHCE.29) |------ 0.02 
+ ce: Inferred as RHCE*01.20.02.01/RHCE*01.20.02.02 RHCE*ce.20.02.02 RHCE*ceVS.02.02 |------ 0.02 
+ ce: Inferred as RHCE*01.20.04.01 RHCE*ceTI type 2/RHCE*01.20.04.02 RHCE*ce.20.04.02 RHCE*ceVS.04.02 |------ 0.06 
+ ce: Probable RH:4 (c+ partial) Probable RH:5 (e+ partial)/RHCE*01.20.10 RHCE*ce.20.10 RHCE*ceVS.10 |------ 0.12 
+ cE: RH:3 (E+ partial, weak to neg) RH:4 (c+ weak)/RHCE*03.04 RHCE*cE.04 RHCE*cEIV |------ 0.04 
+ cE: RH:3 (E+) RH:4 (c+)/RHCE*03.18 RHCE*cE.18 |------ 0.9 
+ ce: RH:4 (c+ partial) RH:5 (e+ partial) RH:–10,20 (V–VS+) RH:–31 (hrB–)/RHCE*01.20.03 RHCE*ce.20.03 RHCE*ceVS.03 RHCE*ceS |------ 1.22 
+ ce: RH:4 (c+ partial) RH:5 (e+ partial) RH:10,20 (V+VS+) RH:–31 (hrB–)/RHCE*01.20.02 .01 RHCE*ce.20.02 .01 RHCE*ceVS.02 .01 |------ 0.74 
+ ce: RH:4 (c+ partial) RH:5 (e+ partial) RH:10,20 (V+VS+) RH:31 (hrB+ very weak to neg)/RHCE*01.20.01 RHCE*ce.20.01 RHCE*ceVS.01 |------ 4.41 
+ ce: RH:4 (c+ partial) RH:5 (e+ partial, positive to negative) RH:20 (VS+) RH:–19,–31 (hrS–, hrB–) RH:43 (Crawfor d+) RH:–58 (CELO–) Some monoclonal anti-D cross- react/RHCE*01.20.06 RHCE*ce.20.06 RHCE*ceVS.06 RHCE*ceCF |------ 0.02 
+ ce: RH:4 (c+ partial) RH:5 (e+ weak, partial) RH:–19 (hrS–) RH:–31 (hrB–) RH:–61 (CEVF–)/RHCE*01.07.01 RHCE*ce.07.01 RHCE*ceMO.01 |------ 0.5 
+ ce: RH:4 (c+ partial) RH:5 (e+ weak, partial) RH:–19 (hrS–) RH:–31 (hrB–) RH:–61 (CEVF–)/RHCE*01.07.02 RHCE*ce.07.02 RHCE*ceMO.02 |------ 0.02 
+ ce: RH:4 (c+ weak, partial) RH:5 (e+ weak, partial)/RHCE*01.02.01 RHCE*ce.02.01 RHCE*ceTI |------ 0.66 
+ cE: RH:4 or c RH:3 or E RH:27 or cE/RHCE*03 |------ 13.38 
+ ce: RH:5 (e+ partial) RH:–10,20 (V–VS+) RH:–31 (hrB–)/RHCE*01.20.05 RHCE*ce.20.05 RHCE*ceVS.05 |------ 0.02 
+ ce: RH:5 (e+ partial)/RHCE*01.03 RHCE*ce.03 |------ 0.08 
+ ce: RH:5 (e+ partial, weak to neg) RH:–18,–19 (Hr–, hrS–) RH:49 (STEM+)/RHCE*01.08 RHCE*ce.08 RHCE*ceBI |------ 0.02 
+ ce: RH:5 (e+ weak) RH:10,20 (V+VS+) RH:31 (hrB+ weak)/RHCE*01.20.09 RHCE*ce.20.09 RHCE*ceVS.09 |------ 0.7 
+ ce: RH:5 (e+ weak)/RHCE*01.01 RHCE*ce.01 |------ 53.59 
+ ce: RH:5 (e+ weak, partial) RH:–59 (CEAG–) RH:–31 (hrB–)/RHCE*01.06.01 RHCE*ce.06.01 RHCE*ceAG |------ 1.58 
+ ref: RH:4 or c RH:5 or e RH:6 or f (ce)/RHCE*01 |------ 20.13 
+[1] "AFR"
+[1] 1322
+: -/*1000G only* (RHD.01) |------ 1.51 
+ : -/*1000G only* (RHD.02) |------ 1.13 
+ : -/*1000G only* (RHD.03) |------ 0.23 
+ : -/*1000G only* (RHD.04) |------ 2.27 
+ : -/*1000G only* (RHD.05) |------ 3.18 
+ : -/*1000G only* (RHD.06) |------ 0.68 
+ : -/*1000G only* (RHD.08) |------ 0.98 
+ : -/*1000G only* (RHD.09) |------ 0.83 
+ : -/*1000G only* (RHD.10) |------ 0.83 
+ : -/*1000G only* (RHD.11) |------ 0.91 
+ : -/*1000G only* (RHD.12) |------ 0.68 
+ : -/*1000G only* (RHD.15) |------ 0.38 
+ : -/*1000G only* (RHD.16) |------ 0.23 
+ : -/*1000G only* (RHD.17) |------ 0.61 
+ : -/*1000G only* (RHD.18) |------ 3.33 
+ : -/*1000G only* (RHD.19) |------ 0.23 
+ : -/*1000G only* (RHD.21) |------ 0.23 
+ : -/*1000G only* (RHD.24) |------ 0.15 
+ : -/*1000G only* (RHD.25) |------ 0.15 
+ : -/*1000G only* (RHD.26) |------ 0.08 
+ : -/*1000G only* (RHD.29) |------ 0.08 
+ : -/*1000G only* (RHD.30) |------ 0.15 
+ : -/*1000G only* (RHD.33) |------ 0.08 
+ : -/*1000G only* (RHD.40) |------ 0.08 
+ : -/*1000G only* (RHD.41) |------ 0.08 
+ : -/*1000G only* (RHD.43) |------ 0.08 
+ : -/*1000G only* (RHD.44) |------ 0.15 
+ : -/*1000G only* (RHD.45) |------ 0.08 
+ : -/*1000G only* (RHD.46) |------ 0.08 
+ : -/*1000G only* (RHD.50) |------ 0.08 
+ : -/*1000G only* (RHD.51) |------ 0.08 
+ : -/*1000G only* (RHD.53) |------ 0.08 
+ : -/*1000G only* (RHD.55) |------ 0.08 
+ : -/*1000G only* (RHD.56) |------ 0.08 
+ : -/*1000G only* (RHD.57) |------ 0.08 
+ : -/*1000G only* (RHD.58) |------ 0.08 
+ : -/*1000G only* (RHD.59) |------ 0.08 
+ : -/*1000G only* (RHD.62) |------ 0.15 
+ : -/*1000G only* (RHD.64) |------ 0.08 
+ : -/*1000G only* (RHD.65) |------ 0.15 
+ : -/*1000G only* (RHD.71) |------ 0.08 
+ : -/*1000G only* (RHD.72) |------ 0.08 
+ : -/*1000G only* (RHD.73) |------ 0.08 
+ : -/*1000G only* (RHD.75) |------ 0.08 
+ D_weak: Type 1/RHD*01W.1 RHD*weak D type 1 |------ 0.15 
+ D_weak: Type 66/RHD*01W.66 RHD*weak D type 66 |------ 0.08 
+ Partial D: (DQC)/RHD*30 RHD*DTO |------ 4.16 
+ Partial D: DAR3.1 (weak partial D 4.0)/RHD*09.03.01 RHD*DAR3 |------ 1.36 
+ Partial D: DAU0.01/RHD*10.00.01 RHD*DAU0.01 |------ 1.51 
+ Partial D: DAU0/RHD*10.00 RHD*DAU0 |------ 43.27 
+ Partial D: DAU3/RHD*10.03 RHD*DAU3 |------ 3.4 
+ Partial D: DAU5/RHD*10.05 RHD*DAU5 |------ 1.59 
+ Partial D: DAU6/RHD*10.06 RHD*DAU6 |------ 0.38 
+ Partial D: DFV/RHD*08.01 RHD*DFV |------ 0.08 
+ Partial D: DIII type 4/RHD*03.04 RHD*DIII.4 |------ 0.76 
+ Partial D: DIII type 9/RHD*03.09 RHD*DIII.09 |------ 0.08 
+ Partial D: DIIIa RH:54 (DAK+)/RHD*03.01 RHD*DIIIa |------ 0.91 
+ Partial D: DIVa RH30+ (Goa+) DIV type 1.0/RHD*04.01 RHD*DIVa |------ 1.21 
+ Partial D: DUC2/RHD*37 RHD*DUC2 |------ 0.08 
+ Partial D: DV type 1/RHD*05.01 RHD*DV.1 |------ 0.15 
+ Partial D: DV Type 4 RH:23 (Dw+)/RHD*05.04 RHD*DV.4 |------ 2.65 
+ Partial D: RHD*DNT/RHD*38 RHD*DNT |------ 0.23 
+ ref: D RH:1/RHD*01 |------ 17.25 
+[1] "AMR"
+[1] 694
+: -/*1000G only* (RHD.01) |------ 7.35 
+ : -/*1000G only* (RHD.02) |------ 4.76 
+ : -/*1000G only* (RHD.03) |------ 3.31 
+ : -/*1000G only* (RHD.04) |------ 0.86 
+ : -/*1000G only* (RHD.05) |------ 2.02 
+ : -/*1000G only* (RHD.06) |------ 0.58 
+ : -/*1000G only* (RHD.18) |------ 1.73 
+ : -/*1000G only* (RHD.34) |------ 0.14 
+ : -/*1000G only* (RHD.42) |------ 0.14 
+ : -/*1000G only* (RHD.60) |------ 0.14 
+ : -/*1000G only* (RHD.69) |------ 0.14 
+ D_weak: Type 3/RHD*01W.3 RHD*weak D type 3 |------ 0.29 
+ D_weak: Type 33/RHD*01W.33 RHD*weak D type 33 |------ 0.14 
+ D_weak: Type 45/RHD*01W.45 RHD*weak D type 45 |------ 0.43 
+ Partial D: (DQC)/RHD*30 RHD*DTO |------ 1.01 
+ Partial D: DAU0/RHD*10.00 RHD*DAU0 |------ 20.61 
+ Partial D: DAU3/RHD*10.03 RHD*DAU3 |------ 0.72 
+ Partial D: DIII type 4/RHD*03.04 RHD*DIII.4 |------ 0.14 
+ Partial D: DIII type 6/RHD*03.06 RHD*DIII.6 |------ 0.14 
+ Partial D: DIIIa RH:54 (DAK+)/RHD*03.01 RHD*DIIIa |------ 0.14 
+ Partial D: DIVa RH30+ (Goa+) DIV type 1.0/RHD*04.01 RHD*DIVa |------ 0.29 
+ Partial D: DNB/RHD*25 RHD*DNB |------ 0.14 
+ Partial D: DUC2/RHD*37 RHD*DUC2 |------ 0.14 
+ Partial D: DV Type 4 RH:23 (Dw+)/RHD*05.04 RHD*DV.4 |------ 4.18 
+ Partial D: RHD*DNT/RHD*38 RHD*DNT |------ 0.14 
+ ref: D RH:1/RHD*01 |------ 50.29 
+[1] "EAS"
+[1] 1008
+: -/*1000G only* (RHD.01) |------ 12.1 
+ : -/*1000G only* (RHD.02) |------ 12.8 
+ : -/*1000G only* (RHD.03) |------ 10.42 
+ : -/*1000G only* (RHD.04) |------ 2.98 
+ : -/*1000G only* (RHD.05) |------ 1.09 
+ : -/*1000G only* (RHD.06) |------ 1.59 
+ : -/*1000G only* (RHD.22) |------ 0.2 
+ : -/*1000G only* (RHD.27) |------ 0.2 
+ : -/*1000G only* (RHD.28) |------ 0.2 
+ : -/*1000G only* (RHD.39) |------ 0.1 
+ : -/*1000G only* (RHD.47) |------ 0.1 
+ : -/*1000G only* (RHD.61) |------ 0.1 
+ : -/*1000G only* (RHD.63) |------ 0.1 
+ : -/*1000G only* (RHD.66) |------ 0.1 
+ : -/*1000G only* (RHD.67) |------ 0.1 
+ : -/*1000G only* (RHD.68) |------ 0.1 
+ : -/*1000G only* (RHD.70) |------ 0.1 
+ D_weak: Del/RHD*01EL.01 RHD*DEL1 |------ 0.3 
+ D_weak: Type 114/RHD* 01W.114 RHD*weak D type 114 |------ 0.5 
+ D_weak: Type 25/RHD*01W.25 RHD*weak D type 25 |------ 0.1 
+ Partial D: DAU0/RHD*10.00 RHD*DAU0 |------ 9.23 
+ Partial D: Weak partial Type 15/RHD*15 RHD*weak partial 15 |------ 0.1 
+ ref: D RH:1/RHD*01 |------ 47.42 
+[1] "EUR"
+[1] 1004
+: -/*1000G only* (RHD.01) |------ 10.56 
+ : -/*1000G only* (RHD.02) |------ 8.37 
+ : -/*1000G only* (RHD.03) |------ 4.28 
+ : -/*1000G only* (RHD.04) |------ 0.9 
+ : -/*1000G only* (RHD.05) |------ 1.79 
+ : -/*1000G only* (RHD.06) |------ 0.1 
+ : -/*1000G only* (RHD.18) |------ 0.2 
+ : -/*1000G only* (RHD.26) |------ 0.1 
+ : -/*1000G only* (RHD.37) |------ 0.1 
+ : -/*1000G only* (RHD.48) |------ 0.1 
+ : -/*1000G only* (RHD.52) |------ 0.1 
+ D_weak: Type 1/RHD*01W.1 RHD*weak D type 1 |------ 0.4 
+ D_weak: Type 3/RHD*01W.3 RHD*weak D type 3 |------ 0.1 
+ D_weak: Type 45/RHD*01W.45 RHD*weak D type 45 |------ 0.3 
+ D_weak: Type 66/RHD*01W.66 RHD*weak D type 66 |------ 0.1 
+ Partial D: (DQC)/RHD*30 RHD*DTO |------ 0.1 
+ Partial D: DAR3.1 (weak partial D 4.0)/RHD*09.03.01 RHD*DAR3 |------ 0.1 
+ Partial D: DAU0/RHD*10.00 RHD*DAU0 |------ 23.9 
+ Partial D: DAU3/RHD*10.03 RHD*DAU3 |------ 0.1 
+ Partial D: DNB/RHD*25 RHD*DNB |------ 0.2 
+ Partial D: DV Type 4 RH:23 (Dw+)/RHD*05.04 RHD*DV.4 |------ 0.8 
+ Partial D: DVII RH:40 (Tar+)/RHD*07.01 RHD*DVII.1 |------ 0.3 
+ Partial D: RHD*DNT/RHD*38 RHD*DNT |------ 0.2 
+ ref: D RH:1/RHD*01 |------ 46.81 
+[1] "SAS"
+[1] 978
+: -/*1000G only* (RHD.01) |------ 0.61 
+ : -/*1000G only* (RHD.02) |------ 1.64 
+ : -/*1000G only* (RHD.03) |------ 0.61 
+ : -/*1000G only* (RHD.04) |------ 0.41 
+ : -/*1000G only* (RHD.05) |------ 0.41 
+ : -/*1000G only* (RHD.18) |------ 3.17 
+ : -/*1000G only* (RHD.29) |------ 0.1 
+ : -/*1000G only* (RHD.32) |------ 0.1 
+ : -/*1000G only* (RHD.74) |------ 0.31 
+ D_weak: Type 151/RHD* 01W.151 RHD*weak D type 151 |------ 0.2 
+ D_weak: Type 154/RHD* 01W.154 RHD*weak D type 154 |------ 0.92 
+ Partial D: DAU0/RHD*10.00 RHD*DAU0 |------ 14.83 
+ Partial D: DV type 1/RHD*05.01 RHD*DV.1 |------ 0.1 
+ Partial D: DV Type 4 RH:23 (Dw+)/RHD*05.04 RHD*DV.4 |------ 12.99 
+ Partial D: DVII RH:40 (Tar+)/RHD*07.01 RHD*DVII.1 |------ 0.1 
+ Partial D: RHD*DNT/RHD*38 RHD*DNT |------ 0.1 
+ ref: D RH:1/RHD*01 |------ 63.39 
+[1] "ALL"
+[1] 5008
+: -/*1000G only* (RHD.01) |------ 6.09 
+ : -/*1000G only* (RHD.02) |------ 5.53 
+ : -/*1000G only* (RHD.03) |------ 3.59 
+ : -/*1000G only* (RHD.04) |------ 1.58 
+ : -/*1000G only* (RHD.05) |------ 1.78 
+ : -/*1000G only* (RHD.06) |------ 0.6 
+ : -/*1000G only* (RHD.08) |------ 0.26 
+ : -/*1000G only* (RHD.09) |------ 0.22 
+ : -/*1000G only* (RHD.10) |------ 0.22 
+ : -/*1000G only* (RHD.11) |------ 0.24 
+ : -/*1000G only* (RHD.12) |------ 0.18 
+ : -/*1000G only* (RHD.15) |------ 0.1 
+ : -/*1000G only* (RHD.16) |------ 0.06 
+ : -/*1000G only* (RHD.17) |------ 0.16 
+ : -/*1000G only* (RHD.18) |------ 1.78 
+ : -/*1000G only* (RHD.19) |------ 0.06 
+ : -/*1000G only* (RHD.21) |------ 0.06 
+ : -/*1000G only* (RHD.22) |------ 0.04 
+ : -/*1000G only* (RHD.24) |------ 0.04 
+ : -/*1000G only* (RHD.25) |------ 0.04 
+ : -/*1000G only* (RHD.26) |------ 0.04 
+ : -/*1000G only* (RHD.27) |------ 0.04 
+ : -/*1000G only* (RHD.28) |------ 0.04 
+ : -/*1000G only* (RHD.29) |------ 0.04 
+ : -/*1000G only* (RHD.30) |------ 0.04 
+ : -/*1000G only* (RHD.32) |------ 0.02 
+ : -/*1000G only* (RHD.33) |------ 0.02 
+ : -/*1000G only* (RHD.34) |------ 0.02 
+ : -/*1000G only* (RHD.37) |------ 0.02 
+ : -/*1000G only* (RHD.39) |------ 0.02 
+ : -/*1000G only* (RHD.40) |------ 0.02 
+ : -/*1000G only* (RHD.41) |------ 0.02 
+ : -/*1000G only* (RHD.42) |------ 0.02 
+ : -/*1000G only* (RHD.43) |------ 0.02 
+ : -/*1000G only* (RHD.44) |------ 0.04 
+ : -/*1000G only* (RHD.45) |------ 0.02 
+ : -/*1000G only* (RHD.46) |------ 0.02 
+ : -/*1000G only* (RHD.47) |------ 0.02 
+ : -/*1000G only* (RHD.48) |------ 0.02 
+ : -/*1000G only* (RHD.50) |------ 0.02 
+ : -/*1000G only* (RHD.51) |------ 0.02 
+ : -/*1000G only* (RHD.52) |------ 0.02 
+ : -/*1000G only* (RHD.53) |------ 0.02 
+ : -/*1000G only* (RHD.55) |------ 0.02 
+ : -/*1000G only* (RHD.56) |------ 0.02 
+ : -/*1000G only* (RHD.57) |------ 0.02 
+ : -/*1000G only* (RHD.58) |------ 0.02 
+ : -/*1000G only* (RHD.59) |------ 0.02 
+ : -/*1000G only* (RHD.60) |------ 0.02 
+ : -/*1000G only* (RHD.61) |------ 0.02 
+ : -/*1000G only* (RHD.62) |------ 0.04 
+ : -/*1000G only* (RHD.63) |------ 0.02 
+ : -/*1000G only* (RHD.64) |------ 0.02 
+ : -/*1000G only* (RHD.65) |------ 0.04 
+ : -/*1000G only* (RHD.66) |------ 0.02 
+ : -/*1000G only* (RHD.67) |------ 0.02 
+ : -/*1000G only* (RHD.68) |------ 0.02 
+ : -/*1000G only* (RHD.69) |------ 0.02 
+ : -/*1000G only* (RHD.70) |------ 0.02 
+ : -/*1000G only* (RHD.71) |------ 0.02 
+ : -/*1000G only* (RHD.72) |------ 0.02 
+ : -/*1000G only* (RHD.73) |------ 0.02 
+ : -/*1000G only* (RHD.74) |------ 0.06 
+ : -/*1000G only* (RHD.75) |------ 0.02 
+ D_weak: Del/RHD*01EL.01 RHD*DEL1 |------ 0.06 
+ D_weak: Type 1/RHD*01W.1 RHD*weak D type 1 |------ 0.12 
+ D_weak: Type 114/RHD* 01W.114 RHD*weak D type 114 |------ 0.1 
+ D_weak: Type 151/RHD* 01W.151 RHD*weak D type 151 |------ 0.04 
+ D_weak: Type 154/RHD* 01W.154 RHD*weak D type 154 |------ 0.18 
+ D_weak: Type 25/RHD*01W.25 RHD*weak D type 25 |------ 0.02 
+ D_weak: Type 3/RHD*01W.3 RHD*weak D type 3 |------ 0.06 
+ D_weak: Type 33/RHD*01W.33 RHD*weak D type 33 |------ 0.02 
+ D_weak: Type 45/RHD*01W.45 RHD*weak D type 45 |------ 0.12 
+ D_weak: Type 66/RHD*01W.66 RHD*weak D type 66 |------ 0.04 
+ Partial D: (DQC)/RHD*30 RHD*DTO |------ 1.26 
+ Partial D: DAR3.1 (weak partial D 4.0)/RHD*09.03.01 RHD*DAR3 |------ 0.38 
+ Partial D: DAU0.01/RHD*10.00.01 RHD*DAU0.01 |------ 0.4 
+ Partial D: DAU0/RHD*10.00 RHD*DAU0 |------ 23.84 
+ Partial D: DAU3/RHD*10.03 RHD*DAU3 |------ 1.02 
+ Partial D: DAU5/RHD*10.05 RHD*DAU5 |------ 0.42 
+ Partial D: DAU6/RHD*10.06 RHD*DAU6 |------ 0.1 
+ Partial D: DFV/RHD*08.01 RHD*DFV |------ 0.02 
+ Partial D: DIII type 4/RHD*03.04 RHD*DIII.4 |------ 0.22 
+ Partial D: DIII type 6/RHD*03.06 RHD*DIII.6 |------ 0.02 
+ Partial D: DIII type 9/RHD*03.09 RHD*DIII.09 |------ 0.02 
+ Partial D: DIIIa RH:54 (DAK+)/RHD*03.01 RHD*DIIIa |------ 0.26 
+ Partial D: DIVa RH30+ (Goa+) DIV type 1.0/RHD*04.01 RHD*DIVa |------ 0.36 
+ Partial D: DNB/RHD*25 RHD*DNB |------ 0.06 
+ Partial D: DUC2/RHD*37 RHD*DUC2 |------ 0.04 
+ Partial D: DV type 1/RHD*05.01 RHD*DV.1 |------ 0.06 
+ Partial D: DV Type 4 RH:23 (Dw+)/RHD*05.04 RHD*DV.4 |------ 3.97 
+ Partial D: DVII RH:40 (Tar+)/RHD*07.01 RHD*DVII.1 |------ 0.08 
+ Partial D: RHD*DNT/RHD*38 RHD*DNT |------ 0.14 
+ Partial D: Weak partial Type 15/RHD*15 RHD*weak partial 15 |------ 0.02 
+ ref: D RH:1/RHD*01 |------ 42.85 
+[1] "AFR"
+[1] 1322
+1: Fy(a+) |------ 1.89 
+ 3: Fy(b+) |------ 1.74 
+ 5: Fy(a-b-) |------ 96.37 
+[1] "AMR"
+[1] 694
+1: Fy(a+) |------ 44.09 
+ 3: Fy(b+) |------ 45.39 
+ 4: Fy(b+w), Fyx |------ 0.72 
+ 5: Fy(a-b-) |------ 7.78 
+ TGP: - |------ 2.02 
+[1] "EAS"
+[1] 1008
+1: Fy(a+) |------ 83.23 
+ 2: Fy(a+w) |------ 0.1 
+ 3: Fy(b+) |------ 7.74 
+ TGP: - |------ 8.93 
+[1] "EUR"
+[1] 1004
+1: Fy(a+) |------ 39.44 
+ 3: Fy(b+) |------ 58.27 
+ 4: Fy(b+w), Fyx |------ 1.29 
+ 5: Fy(a-b-) |------ 0.5 
+ TGP: - |------ 0.5 
+[1] "SAS"
+[1] 978
+1: Fy(a+) |------ 63.39 
+ 3: Fy(b+) |------ 34.36 
+ 4: Fy(b+w), Fyx |------ 0.41 
+ 5: Fy(a-b-) |------ 0.1 
+ TGP: - |------ 1.74 
+[1] "ALL"
+[1] 5008
+1: Fy(a+) |------ 43.65 
+ 2: Fy(a+w) |------ 0.02 
+ 3: Fy(b+) |------ 26.72 
+ 4: Fy(b+w), Fyx |------ 0.44 
+ 5: Fy(a-b-) |------ 26.66 
+ TGP: - |------ 2.52 
+[1] "AFR"
+[1] 1322
+1: Sc1+ |------ 87.07 
+ 4: SCAC– |------ 1.06 
+ TGP: - |------ 11.88 
+[1] "AMR"
+[1] 694
+1: Sc1+ |------ 70.03 
+ 3: STAR– |------ 0.14 
+ TGP: - |------ 29.83 
+[1] "EAS"
+[1] 1008
+1: Sc1+ |------ 93.75 
+ TGP: - |------ 6.25 
+[1] "EUR"
+[1] 1004
+1: Sc1+ |------ 69.52 
+ 2: Sc2+ |------ 0.1 
+ 3: STAR– |------ 0.2 
+ TGP: - |------ 30.18 
+[1] "SAS"
+[1] 978
+1: Sc1+ |------ 79.65 
+ 2: Sc2+ |------ 0.2 
+ TGP: - |------ 20.14 
+[1] "ALL"
+[1] 5008
+1: Sc1+ |------ 81.07 
+ 2: Sc2+ |------ 0.06 
+ 3: STAR– |------ 0.06 
+ 4: SCAC– |------ 0.28 
+ TGP: - |------ 18.53 
+[1] "AFR"
+[1] 1322
+1: Cra+) |------ 93.87 
+ 2: Cr(a–) |------ 2.12 
+ 3: Tc(b+) |------ 2.27 
+ 4: WES(a+) |------ 0.45 
+ TGP: - |------ 1.29 
+[1] "AMR"
+[1] 694
+1: Cra+) |------ 99.28 
+ 2: Cr(a–) |------ 0.29 
+ TGP: - |------ 0.43 
+[1] "EAS"
+[1] 1008
+1: Cra+) |------ 99.6 
+ 5: SERF– |------ 0.1 
+ 7: UMC– |------ 0.1 
+ 8: CRUE- |------ 0.1 
+ TGP: - |------ 0.1 
+[1] "EUR"
+[1] 1004
+1: Cra+) |------ 99.7 
+ 2: Cr(a–) |------ 0.1 
+ 6: Tc(c+) |------ 0.1 
+ TGP: - |------ 0.1 
+[1] "SAS"
+[1] 978
+1: Cra+) |------ 98.06 
+ 5: SERF– |------ 0.2 
+ 6: Tc(c+) |------ 0.1 
+ TGP: - |------ 1.64 
+[1] "ALL"
+[1] 5008
+1: Cra+) |------ 97.76 
+ 2: Cr(a–) |------ 0.62 
+ 3: Tc(b+) |------ 0.6 
+ 4: WES(a+) |------ 0.12 
+ 5: SERF– |------ 0.06 
+ 6: Tc(c+) |------ 0.04 
+ 7: UMC– |------ 0.02 
+ 8: CRUE- |------ 0.02 
+ TGP: - |------ 0.76 
+[1] "AFR"
+[1] 1322
+1: KN:1 or Kn(a+) KN:3 or McC(a+) KN:4 or Sl1+ KN:5 or Yk(a+) KN:8 or Sl3+ KN:9 or KCAM+ KN:11 or DACY+ |------ 6.05 
+ 2: KN:–5 or Yk(a–) |------ 3.4 
+ 3: KN:-9 or KCAM- KN:10 or KDAS+ |------ 0.3 
+ 4: KN:2 or Kn(a-b+) KN:-9 or KCAM- KN:10 or KDAS+ |------ 0.15 
+ 5: KN:-4 or Sl1- KN:-3,6 or McC(a-b+) KN:7 or Vil+ KN:-9 or KCAM- KN:10 or KDAS+ |------ 3.63 
+ 6: KN:7 or Vil+ KN:-9 or KCAM- KN:10 or KDAS+ |------ 15.73 
+ TGP: - |------ 70.73 
+[1] "AMR"
+[1] 694
+1: KN:1 or Kn(a+) KN:3 or McC(a+) KN:4 or Sl1+ KN:5 or Yk(a+) KN:8 or Sl3+ KN:9 or KCAM+ KN:11 or DACY+ |------ 17.29 
+ 2: KN:–5 or Yk(a–) |------ 19.88 
+ 3: KN:-9 or KCAM- KN:10 or KDAS+ |------ 0.29 
+ 4: KN:2 or Kn(a-b+) KN:-9 or KCAM- KN:10 or KDAS+ |------ 2.88 
+ 5: KN:-4 or Sl1- KN:-3,6 or McC(a-b+) KN:7 or Vil+ KN:-9 or KCAM- KN:10 or KDAS+ |------ 0.72 
+ 6: KN:7 or Vil+ KN:-9 or KCAM- KN:10 or KDAS+ |------ 1.59 
+ TGP: - |------ 57.35 
+[1] "EAS"
+[1] 1008
+1: KN:1 or Kn(a+) KN:3 or McC(a+) KN:4 or Sl1+ KN:5 or Yk(a+) KN:8 or Sl3+ KN:9 or KCAM+ KN:11 or DACY+ |------ 3.47 
+ 2: KN:–5 or Yk(a–) |------ 30.36 
+ 4: KN:2 or Kn(a-b+) KN:-9 or KCAM- KN:10 or KDAS+ |------ 0.2 
+ TGP: - |------ 65.97 
+[1] "EUR"
+[1] 1004
+1: KN:1 or Kn(a+) KN:3 or McC(a+) KN:4 or Sl1+ KN:5 or Yk(a+) KN:8 or Sl3+ KN:9 or KCAM+ KN:11 or DACY+ |------ 28.49 
+ 2: KN:–5 or Yk(a–) |------ 18.33 
+ 4: KN:2 or Kn(a-b+) KN:-9 or KCAM- KN:10 or KDAS+ |------ 1.89 
+ 5: KN:-4 or Sl1- KN:-3,6 or McC(a-b+) KN:7 or Vil+ KN:-9 or KCAM- KN:10 or KDAS+ |------ 0.2 
+ 6: KN:7 or Vil+ KN:-9 or KCAM- KN:10 or KDAS+ |------ 0.3 
+ TGP: - |------ 50.8 
+[1] "SAS"
+[1] 978
+1: KN:1 or Kn(a+) KN:3 or McC(a+) KN:4 or Sl1+ KN:5 or Yk(a+) KN:8 or Sl3+ KN:9 or KCAM+ KN:11 or DACY+ |------ 11.76 
+ 2: KN:–5 or Yk(a–) |------ 23.01 
+ 4: KN:2 or Kn(a-b+) KN:-9 or KCAM- KN:10 or KDAS+ |------ 0.1 
+ TGP: - |------ 65.13 
+[1] "ALL"
+[1] 5008
+1: KN:1 or Kn(a+) KN:3 or McC(a+) KN:4 or Sl1+ KN:5 or Yk(a+) KN:8 or Sl3+ KN:9 or KCAM+ KN:11 or DACY+ |------ 12.72 
+ 2: KN:–5 or Yk(a–) |------ 17.93 
+ 3: KN:-9 or KCAM- KN:10 or KDAS+ |------ 0.12 
+ 4: KN:2 or Kn(a-b+) KN:-9 or KCAM- KN:10 or KDAS+ |------ 0.88 
+ 5: KN:-4 or Sl1- KN:-3,6 or McC(a-b+) KN:7 or Vil+ KN:-9 or KCAM- KN:10 or KDAS+ |------ 1.1 
+ 6: KN:7 or Vil+ KN:-9 or KCAM- KN:10 or KDAS+ |------ 4.43 
+ TGP: - |------ 62.82 
+[1] "AFR"
+[1] 1322
+1: VEL:1 (Vel+) |------ 99.92 
+ TGP: - |------ 0.08 
+[1] "AMR"
+[1] 694
+1: VEL:1 (Vel+) |------ 100 
+[1] "EAS"
+[1] 1008
+1: VEL:1 (Vel+) |------ 99.9 
+ TGP: - |------ 0.1 
+[1] "EUR"
+[1] 1004
+1: VEL:1 (Vel+) |------ 100 
+[1] "SAS"
+[1] 978
+1: VEL:1 (Vel+) |------ 100 
+[1] "ALL"
+[1] 5008
+1: VEL:1 (Vel+) |------ 99.96 
+ TGP: - |------ 0.04 
+[1] "AFR"
+[1] 1322
+1: GE:2,3,4 |------ 94.55 
+ TGP: - |------ 5.45 
+[1] "AMR"
+[1] 694
+1: GE:2,3,4 |------ 99.28 
+ TGP: - |------ 0.72 
+[1] "EAS"
+[1] 1008
+1: GE:2,3,4 |------ 99.5 
+ TGP: - |------ 0.5 
+[1] "EUR"
+[1] 1004
+1: GE:2,3,4 |------ 97.61 
+ TGP: - |------ 2.39 
+[1] "SAS"
+[1] 978
+1: GE:2,3,4 |------ 97.55 
+ 2: GEPL– |------ 0.1 
+ TGP: - |------ 2.35 
+[1] "ALL"
+[1] 5008
+1: GE:2,3,4 |------ 97.4 
+ 2: GEPL– |------ 0.02 
+ TGP: - |------ 2.58 
+[1] "AFR"
+[1] 1322
+1: Lan+ |------ 79.5 
+ 2: Lan(+wk) |------ 16.87 
+ 3: Lan- |------ 0.15 
+ TGP: - |------ 3.48 
+[1] "AMR"
+[1] 694
+1: Lan+ |------ 89.77 
+ 2: Lan(+wk) |------ 2.59 
+ TGP: - |------ 7.64 
+[1] "EAS"
+[1] 1008
+1: Lan+ |------ 98.31 
+ 2: Lan(+wk) |------ 0.1 
+ TGP: - |------ 1.59 
+[1] "EUR"
+[1] 1004
+1: Lan+ |------ 95.02 
+ 2: Lan(+wk) |------ 1.89 
+ 3: Lan- |------ 0.3 
+ TGP: - |------ 2.79 
+[1] "SAS"
+[1] 978
+1: Lan+ |------ 98.57 
+ 2: Lan(+wk) |------ 0.31 
+ TGP: - |------ 1.12 
+[1] "ALL"
+[1] 5008
+1: Lan+ |------ 91.55 
+ 2: Lan(+wk) |------ 5.27 
+ 3: Lan- |------ 0.1 
+ TGP: - |------ 3.08 
+[1] "AFR"
+[1] 1322
+1: GLOB:1 (P+) |------ 100 
+[1] "AMR"
+[1] 694
+1: GLOB:1 (P+) |------ 99.86 
+ TGP: - |------ 0.14 
+[1] "EAS"
+[1] 1008
+1: GLOB:1 (P+) |------ 100 
+[1] "EUR"
+[1] 1004
+1: GLOB:1 (P+) |------ 99.9 
+ 2: GLOB:–1 (P–) |------ 0.1 
+[1] "SAS"
+[1] 978
+1: GLOB:1 (P+) |------ 98.88 
+ TGP: - |------ 1.12 
+[1] "ALL"
+[1] 5008
+1: GLOB:1 (P+) |------ 99.74 
+ 2: GLOB:–1 (P–) |------ 0.02 
+ TGP: - |------ 0.24 
+[1] "AFR"
+[1] 1322
+1: M+ |------ 13.09 
+ 2: N+ |------ 44.02 
+ 3: Mc+ |------ 4.01 
+ TGP: - |------ 38.88 
+[1] "AMR"
+[1] 694
+1: M+ |------ 25.07 
+ 2: N+ |------ 51.87 
+ 3: Mc+ |------ 9.37 
+ TGP: - |------ 13.69 
+[1] "EAS"
+[1] 1008
+1: M+ |------ 23.21 
+ 2: N+ |------ 66.57 
+ 3: Mc+ |------ 7.14 
+ TGP: - |------ 3.08 
+[1] "EUR"
+[1] 1004
+1: M+ |------ 18.03 
+ 2: N+ |------ 70.12 
+ 3: Mc+ |------ 9.16 
+ TGP: - |------ 2.69 
+[1] "SAS"
+[1] 978
+1: M+ |------ 23.01 
+ 2: N+ |------ 65.54 
+ 3: Mc+ |------ 9.41 
+ TGP: - |------ 2.04 
+[1] "ALL"
+[1] 5008
+1: M+ |------ 19.73 
+ 2: N+ |------ 59.07 
+ 3: Mc+ |------ 7.49 
+ TGP: - |------ 13.72 
+[1] "AFR"
+[1] 1322
+1: s+ |------ 80.18 
+ 10: S+w |------ 0.08 
+ 2: S+ |------ 13.69 
+ 5: S–U+var |------ 0.83 
+ 8: s+w, U+w |------ 0.08 
+ 9: MNS:4,5 (s+, U+) altered GPB |------ 0.61 
+ TGP: - |------ 4.54 
+[1] "AMR"
+[1] 694
+1: s+ |------ 64.84 
+ 2: S+ |------ 34.15 
+ TGP: - |------ 1.01 
+[1] "EAS"
+[1] 1008
+1: s+ |------ 95.83 
+ 2: S+ |------ 3.47 
+ 3: sD+ |------ 0.6 
+ 9: MNS:4,5 (s+, U+) altered GPB |------ 0.1 
+[1] "EUR"
+[1] 1004
+: MNS:21or Mv+ |------ 0.5 
+ 1: s+ |------ 65.34 
+ 2: S+ |------ 33.86 
+ 4: Mit+ |------ 0.2 
+ TGP: - |------ 0.1 
+[1] "SAS"
+[1] 978
+1: s+ |------ 67.18 
+ 2: S+ |------ 32.52 
+ 7: S-s-U- |------ 0.1 
+ TGP: - |------ 0.2 
+[1] "ALL"
+[1] 5008
+: MNS:21or Mv+ |------ 0.1 
+ 1: s+ |------ 75.68 
+ 10: S+w |------ 0.02 
+ 2: S+ |------ 22.2 
+ 3: sD+ |------ 0.12 
+ 4: Mit+ |------ 0.04 
+ 5: S–U+var |------ 0.22 
+ 7: S-s-U- |------ 0.02 
+ 8: s+w, U+w |------ 0.02 
+ 9: MNS:4,5 (s+, U+) altered GPB |------ 0.18 
+ TGP: - |------ 1.4 
+[1] "AFR"
+[1] 1322
+1: Jr(a+) |------ 91.38 
+ 2: Jr(a+w) |------ 1.21 
+ 3: Unclear Jra phnotype |------ 6.28 
+ TGP: - |------ 1.13 
+[1] "AMR"
+[1] 694
+1: Jr(a+) |------ 60.95 
+ 2: Jr(a+w) |------ 14.27 
+ 3: Unclear Jra phnotype |------ 16.28 
+ TGP: - |------ 8.5 
+[1] "EAS"
+[1] 1008
+1: Jr(a+) |------ 37.1 
+ 2: Jr(a+w) |------ 28.77 
+ 3: Unclear Jra phnotype |------ 29.76 
+ 4: Jr(a-) |------ 0.69 
+ TGP: - |------ 3.67 
+[1] "EUR"
+[1] 1004
+1: Jr(a+) |------ 82.47 
+ 2: Jr(a+w) |------ 9.86 
+ 3: Unclear Jra phnotype |------ 5.08 
+ TGP: - |------ 2.59 
+[1] "SAS"
+[1] 978
+1: Jr(a+) |------ 73.01 
+ 2: Jr(a+w) |------ 10.12 
+ 3: Unclear Jra phnotype |------ 14.21 
+ 4: Jr(a-) |------ 0.1 
+ TGP: - |------ 2.56 
+[1] "ALL"
+[1] 5008
+1: Jr(a+) |------ 70.87 
+ 2: Jr(a+w) |------ 12.04 
+ 3: Unclear Jra phnotype |------ 13.7 
+ 4: Jr(a-) |------ 0.16 
+ TGP: - |------ 3.23 
+[1] "AFR"
+[1] 1322
+1: CH:–1,–2,–3,–4,–5,–6 RG:1,2 |------ 21.71 
+ TGP: - |------ 78.29 
+[1] "AMR"
+[1] 694
+1: CH:–1,–2,–3,–4,–5,–6 RG:1,2 |------ 29.25 
+ TGP: - |------ 70.75 
+[1] "EAS"
+[1] 1008
+1: CH:–1,–2,–3,–4,–5,–6 RG:1,2 |------ 30.26 
+ TGP: - |------ 69.74 
+[1] "EUR"
+[1] 1004
+1: CH:–1,–2,–3,–4,–5,–6 RG:1,2 |------ 39.24 
+ TGP: - |------ 60.76 
+[1] "SAS"
+[1] 978
+1: CH:–1,–2,–3,–4,–5,–6 RG:1,2 |------ 36.61 
+ TGP: - |------ 63.39 
+[1] "ALL"
+[1] 5008
+1: CH:–1,–2,–3,–4,–5,–6 RG:1,2 |------ 30.93 
+ TGP: - |------ 69.07 
+[1] "AFR"
+[1] 1322
+1: CH:1,2,3,4,5,6 RG:–1,–2 |------ 99.7 
+ TGP: - |------ 0.3 
+[1] "AMR"
+[1] 694
+1: CH:1,2,3,4,5,6 RG:–1,–2 |------ 99.71 
+ TGP: - |------ 0.29 
+[1] "EAS"
+[1] 1008
+1: CH:1,2,3,4,5,6 RG:–1,–2 |------ 99.4 
+ TGP: - |------ 0.6 
+[1] "EUR"
+[1] 1004
+1: CH:1,2,3,4,5,6 RG:–1,–2 |------ 99.4 
+ TGP: - |------ 0.6 
+[1] "SAS"
+[1] 978
+1: CH:1,2,3,4,5,6 RG:–1,–2 |------ 99.28 
+ TGP: - |------ 0.72 
+[1] "ALL"
+[1] 5008
+1: CH:1,2,3,4,5,6 RG:–1,–2 |------ 99.5 
+ TGP: - |------ 0.5 
+[1] "AFR"
+[1] 1322
+1: I+ |------ 91.91 
+ 2: I+W |------ 0.08 
+ TGP: - |------ 8.02 
+[1] "AMR"
+[1] 694
+1: I+ |------ 97.84 
+ 2: I+W |------ 0.58 
+ TGP: - |------ 1.59 
+[1] "EAS"
+[1] 1008
+1: I+ |------ 98.12 
+ 2: I+W |------ 0.2 
+ TGP: - |------ 1.69 
+[1] "EUR"
+[1] 1004
+1: I+ |------ 98.71 
+ 2: I+W |------ 0.6 
+ TGP: - |------ 0.7 
+[1] "SAS"
+[1] 978
+1: I+ |------ 95.6 
+ 2: I+W |------ 0.1 
+ TGP: - |------ 4.29 
+[1] "ALL"
+[1] 5008
+1: I+ |------ 96.07 
+ 2: I+W |------ 0.28 
+ TGP: - |------ 3.65 
+[1] "AFR"
+[1] 1322
+1: Duclos+ |------ 98.41 
+ TGP: - |------ 1.59 
+[1] "AMR"
+[1] 694
+1: Duclos+ |------ 99.57 
+ 3: Rhmod |------ 0.14 
+ TGP: - |------ 0.29 
+[1] "EAS"
+[1] 1008
+1: Duclos+ |------ 99.6 
+ 2: DSLK-, Kg+ |------ 0.1 
+ 3: Rhmod |------ 0.2 
+ TGP: - |------ 0.1 
+[1] "EUR"
+[1] 1004
+1: Duclos+ |------ 99.3 
+ TGP: - |------ 0.7 
+[1] "SAS"
+[1] 978
+1: Duclos+ |------ 98.77 
+ TGP: - |------ 1.23 
+[1] "ALL"
+[1] 5008
+1: Duclos+ |------ 99.06 
+ 2: DSLK-, Kg+ |------ 0.02 
+ 3: Rhmod |------ 0.06 
+ TGP: - |------ 0.86 
+[1] "AFR"
+[1] 1322
+1: AUG1+, At(a+), ATML-, ATAM+ AUG:1,2,-3,4 |------ 99.39 
+ TGP: - |------ 0.61 
+[1] "AMR"
+[1] 694
+1: AUG1+, At(a+), ATML-, ATAM+ AUG:1,2,-3,4 |------ 98.7 
+ TGP: - |------ 1.3 
+[1] "EAS"
+[1] 1008
+1: AUG1+, At(a+), ATML-, ATAM+ AUG:1,2,-3,4 |------ 99.5 
+ TGP: - |------ 0.5 
+[1] "EUR"
+[1] 1004
+1: AUG1+, At(a+), ATML-, ATAM+ AUG:1,2,-3,4 |------ 98.21 
+ TGP: - |------ 1.79 
+[1] "SAS"
+[1] 978
+1: AUG1+, At(a+), ATML-, ATAM+ AUG:1,2,-3,4 |------ 97.96 
+ TGP: - |------ 2.04 
+[1] "ALL"
+[1] 5008
+1: AUG1+, At(a+), ATML-, ATAM+ AUG:1,2,-3,4 |------ 98.8 
+ TGP: - |------ 1.2 
+[1] "AFR"
+[1] 1322
+1: k+ |------ 80.79 
+ 3: Js(a+b–) |------ 9.53 
+ 4: K+k- |------ 0.15 
+ 5: Kp(a+b–c–) |------ 0.15 
+ 7: KEL:-19 |------ 0.38 
+ 9: KTIM- |------ 0.23 
+ TGP: - |------ 8.77 
+[1] "AMR"
+[1] 694
+1: k+ |------ 74.06 
+ 13: K0 |------ 0.14 
+ 2: K0 phenotype |------ 0.29 
+ 3: Js(a+b–) |------ 0.86 
+ 4: K+k- |------ 2.16 
+ 5: Kp(a+b–c–) |------ 1.15 
+ TGP: - |------ 21.33 
+[1] "EAS"
+[1] 1008
+1: k+ |------ 67.26 
+ 10: KYO+, KYOR- |------ 0.3 
+ 6: Ul(a+) |------ 0.5 
+ 8: KEL:-18 |------ 0.1 
+ TGP: - |------ 31.85 
+[1] "EUR"
+[1] 1004
+1: k+ |------ 69.22 
+ 4: K+k- |------ 3.29 
+ 5: Kp(a+b–c–) |------ 1 
+ 6: Ul(a+) |------ 0.2 
+ TGP: - |------ 26.29 
+[1] "SAS"
+[1] 978
+1: k+ |------ 96.93 
+ 11: TOU- |------ 0.1 
+ 12: KHUL-,KEAL+ |------ 0.1 
+ 13: K0 |------ 0.1 
+ 14: KHIZ-, KHOZ+ |------ 0.1 
+ 4: K+k- |------ 0.61 
+ 5: Kp(a+b–c–) |------ 0.1 
+ 8: KEL:-18 |------ 0.31 
+ TGP: - |------ 1.64 
+[1] "ALL"
+[1] 5008
+1: k+ |------ 77.96 
+ 10: KYO+, KYOR- |------ 0.06 
+ 11: TOU- |------ 0.02 
+ 12: KHUL-,KEAL+ |------ 0.02 
+ 13: K0 |------ 0.04 
+ 14: KHIZ-, KHOZ+ |------ 0.02 
+ 2: K0 phenotype |------ 0.04 
+ 3: Js(a+b–) |------ 2.64 
+ 4: K+k- |------ 1.12 
+ 5: Kp(a+b–c–) |------ 0.42 
+ 6: Ul(a+) |------ 0.14 
+ 7: KEL:-19 |------ 0.1 
+ 8: KEL:-18 |------ 0.08 
+ 9: KTIM- |------ 0.06 
+ TGP: - |------ 17.29 
+[1] "AFR"
+[1] 1322
+1: Yt(a+b-) |------ 80.41 
+ 5: YTOT- |------ 0.61 
+ TGP: - |------ 18.99 
+[1] "AMR"
+[1] 694
+1: Yt(a+b-) |------ 67.29 
+ 2: Yt(a-b+) |------ 3.75 
+ 5: YTOT- |------ 0.14 
+ TGP: - |------ 28.82 
+[1] "EAS"
+[1] 1008
+1: Yt(a+b-) |------ 86.31 
+ 2: Yt(a-b+) |------ 0.2 
+ 3: YTEG- |------ 0.1 
+ 4: YTLI- |------ 0.1 
+ TGP: - |------ 13.29 
+[1] "EUR"
+[1] 1004
+1: Yt(a+b-) |------ 48.31 
+ 2: Yt(a-b+) |------ 5.18 
+ TGP: - |------ 46.51 
+[1] "SAS"
+[1] 978
+1: Yt(a+b-) |------ 57.26 
+ 2: Yt(a-b+) |------ 4.4 
+ 3: YTEG- |------ 1.53 
+ 4: YTLI- |------ 1.33 
+ TGP: - |------ 35.48 
+[1] "ALL"
+[1] 5008
+1: Yt(a+b-) |------ 68.81 
+ 2: Yt(a-b+) |------ 2.46 
+ 3: YTEG- |------ 0.32 
+ 4: YTLI- |------ 0.28 
+ 5: YTOT- |------ 0.18 
+ TGP: - |------ 27.96 
+[1] "AFR"
+[1] 1322
+1: Co(a+) |------ 98.34 
+ 2: Co(b+) |------ 0.91 
+ TGP: - |------ 0.76 
+[1] "AMR"
+[1] 694
+1: Co(a+) |------ 94.52 
+ 2: Co(b+) |------ 1.01 
+ TGP: - |------ 4.47 
+[1] "EAS"
+[1] 1008
+1: Co(a+) |------ 99.01 
+ TGP: - |------ 0.99 
+[1] "EUR"
+[1] 1004
+1: Co(a+) |------ 91.43 
+ 2: Co(b+) |------ 3.39 
+ TGP: - |------ 5.18 
+[1] "SAS"
+[1] 978
+1: Co(a+) |------ 93.46 
+ 2: Co(b+) |------ 0.41 
+ TGP: - |------ 6.13 
+[1] "ALL"
+[1] 5008
+1: Co(a+) |------ 95.61 
+ 2: Co(b+) |------ 1.14 
+ TGP: - |------ 3.25 
+[1] "AFR"
+[1] 1322
+1: A1 |------ 8.77 
+ 2: A2 |------ 5.98 
+ 3: Aweak |------ 0.38 
+ 4: B |------ 13.39 
+ 5: B3 |------ 0.08 
+ 6: B(A) |------ 0.08 
+ 8: O |------ 59.91 
+ TGP: - |------ 11.42 
+[1] "AMR"
+[1] 694
+1: A1 |------ 12.39 
+ 2: A2 |------ 4.32 
+ 4: B |------ 4.76 
+ 8: O |------ 76.51 
+ TGP: - |------ 2.02 
+[1] "EAS"
+[1] 1008
+1: A1 |------ 18.45 
+ 2: A2 |------ 0.1 
+ 3: Ax/Aweak |------ 0.1 
+ 4: B |------ 19.05 
+ 7: cisAB |------ 0.1 
+ 8: O |------ 62 
+ TGP: - |------ 0.2 
+[1] "EUR"
+[1] 1004
+1: A1 |------ 18.43 
+ 2: A2 |------ 9.46 
+ 4: B |------ 8.47 
+ 8: O |------ 61.75 
+ TGP: - |------ 1.89 
+[1] "SAS"
+[1] 978
+1: A1 |------ 13.09 
+ 2: A2 |------ 2.86 
+ 4: B |------ 23.01 
+ 7: cisAB |------ 0.1 
+ 8: O |------ 60.53 
+ TGP: - |------ 0.41 
+[1] "ALL"
+[1] 5008
+1: A1 |------ 14.02 
+ 2: A2 |------ 4.65 
+ 3: Aweak |------ 0.1 
+ 3: Ax/Aweak |------ 0.02 
+ 4: B |------ 14.22 
+ 5: B3 |------ 0.02 
+ 6: B(A) |------ 0.02 
+ 7: cisAB |------ 0.04 
+ 8: O |------ 63.12 
+ TGP: - |------ 3.79 
+[1] "AFR"
+[1] 1322
+1: GIL+ |------ 99.7 
+ TGP: - |------ 0.3 
+[1] "AMR"
+[1] 694
+1: GIL+ |------ 100 
+[1] "EAS"
+[1] 1008
+1: GIL+ |------ 99.31 
+ TGP: - |------ 0.69 
+[1] "EUR"
+[1] 1004
+1: GIL+ |------ 99.8 
+ TGP: - |------ 0.2 
+[1] "SAS"
+[1] 978
+1: GIL+ |------ 99.9 
+ TGP: - |------ 0.1 
+[1] "ALL"
+[1] 5008
+1: GIL+ |------ 99.72 
+ TGP: - |------ 0.28 
+[1] "AFR"
+[1] 1322
+1: FORS:-1 (FORS-) |------ 81.01 
+ TGP: - |------ 18.99 
+[1] "AMR"
+[1] 694
+1: FORS:-1 (FORS-) |------ 95.53 
+ TGP: - |------ 4.47 
+[1] "EAS"
+[1] 1008
+1: FORS:-1 (FORS-) |------ 93.65 
+ TGP: - |------ 6.35 
+[1] "EUR"
+[1] 1004
+1: FORS:-1 (FORS-) |------ 97.41 
+ TGP: - |------ 2.59 
+[1] "SAS"
+[1] 978
+1: FORS:-1 (FORS-) |------ 97.85 
+ TGP: - |------ 2.15 
+[1] "ALL"
+[1] 5008
+1: FORS:-1 (FORS-) |------ 92.15 
+ TGP: - |------ 7.85 
+[1] "AFR"
+[1] 1322
+1: In(a–b+) |------ 99.62 
+ TGP: - |------ 0.38 
+[1] "AMR"
+[1] 694
+1: In(a–b+) |------ 99.42 
+ TGP: - |------ 0.58 
+[1] "EAS"
+[1] 1008
+1: In(a–b+) |------ 99.8 
+ TGP: - |------ 0.2 
+[1] "EUR"
+[1] 1004
+1: In(a–b+) |------ 99 
+ TGP: - |------ 1 
+[1] "SAS"
+[1] 978
+1: In(a–b+) |------ 97.24 
+ 2: In(a+b–) |------ 0.72 
+ TGP: - |------ 2.04 
+[1] "ALL"
+[1] 5008
+1: In(a–b+) |------ 99.04 
+ 2: In(a+b–) |------ 0.14 
+ TGP: - |------ 0.82 
+[1] "AFR"
+[1] 1322
+1: MER2+ |------ 98.34 
+ TGP: - |------ 1.66 
+[1] "AMR"
+[1] 694
+1: MER2+ |------ 99.86 
+ TGP: - |------ 0.14 
+[1] "EAS"
+[1] 1008
+1: MER2+ |------ 98.91 
+ TGP: - |------ 1.09 
+[1] "EUR"
+[1] 1004
+: MER2- |------ 0.1 
+ 1: MER2+ |------ 99.9 
+[1] "SAS"
+[1] 978
+1: MER2+ |------ 98.26 
+ TGP: - |------ 1.74 
+[1] "ALL"
+[1] 5008
+: MER2- |------ 0.02 
+ 1: MER2+ |------ 98.96 
+ TGP: - |------ 1.02 
+[1] "AFR"
+[1] 1322
+1: CD59.1+ |------ 97.73 
+ TGP: - |------ 2.27 
+[1] "AMR"
+[1] 694
+1: CD59.1+ |------ 100 
+[1] "EAS"
+[1] 1008
+1: CD59.1+ |------ 100 
+[1] "EUR"
+[1] 1004
+1: CD59.1+ |------ 99.9 
+ TGP: - |------ 0.1 
+[1] "SAS"
+[1] 978
+1: CD59.1+ |------ 100 
+[1] "ALL"
+[1] 5008
+1: CD59.1+ |------ 99.38 
+ TGP: - |------ 0.62 
+[1] "AFR"
+[1] 1322
+1: Do(b+) |------ 59.46 
+ 2: Do(a+) |------ 19.21 
+ 3: Hy– |------ 1.44 
+ 4: Jo(a–) |------ 6.88 
+ 5: DODE– |------ 0.38 
+ TGP: - |------ 12.63 
+[1] "AMR"
+[1] 694
+1: Do(b+) |------ 39.91 
+ 2: Do(a+) |------ 36.6 
+ 3: Hy– |------ 0.43 
+ 4: Jo(a–) |------ 0.72 
+ TGP: - |------ 22.33 
+[1] "EAS"
+[1] 1008
+1: Do(b+) |------ 82.54 
+ 2: Do(a+) |------ 9.72 
+ TGP: - |------ 7.74 
+[1] "EUR"
+[1] 1004
+1: Do(b+) |------ 53.29 
+ 2: Do(a+) |------ 37.05 
+ 4: Jo(a–) |------ 0.1 
+ TGP: - |------ 9.56 
+[1] "SAS"
+[1] 978
+1: Do(b+) |------ 55.52 
+ 2: Do(a+) |------ 36.5 
+ 6: DOLG– |------ 0.1 
+ TGP: - |------ 7.87 
+[1] "ALL"
+[1] 5008
+1: Do(b+) |------ 59.37 
+ 2: Do(a+) |------ 26.7 
+ 3: Hy– |------ 0.44 
+ 4: Jo(a–) |------ 1.94 
+ 5: DODE– |------ 0.1 
+ 6: DOLG– |------ 0.02 
+ TGP: - |------ 11.44 
+[1] "AFR"
+[1] 1322
+1: JMH+ |------ 88.58 
+ TGP: - |------ 11.42 
+[1] "AMR"
+[1] 694
+1: JMH+ |------ 98.99 
+ TGP: - |------ 1.01 
+[1] "EAS"
+[1] 1008
+1: JMH+ |------ 99.11 
+ TGP: - |------ 0.89 
+[1] "EUR"
+[1] 1004
+1: JMH+ |------ 99.1 
+ TGP: - |------ 0.9 
+[1] "SAS"
+[1] 978
+1: JMH+ |------ 99.39 
+ TGP: - |------ 0.61 
+[1] "ALL"
+[1] 5008
+1: JMH+ |------ 96.37 
+ TGP: - |------ 3.63 
+[1] "AFR"
+[1] 1322
+1: Di(a–b+) |------ 78.52 
+ 5: DI:23 |------ 0.08 
+ TGP: - |------ 21.41 
+[1] "AMR"
+[1] 694
+1: Di(a–b+) |------ 83.57 
+ 2: Di(a+b–) |------ 0.86 
+ 3: Wr(a+b–) |------ 0.14 
+ TGP: - |------ 15.42 
+[1] "EAS"
+[1] 1008
+1: Di(a–b+) |------ 78.57 
+ 2: Di(a+b–) |------ 0.3 
+ TGP: - |------ 21.13 
+[1] "EUR"
+[1] 1004
+1: Di(a–b+) |------ 90.24 
+ TGP: - |------ 9.76 
+[1] "SAS"
+[1] 978
+1: Di(a–b+) |------ 90.08 
+ 4: Wd(a+) |------ 0.1 
+ TGP: - |------ 9.82 
+[1] "ALL"
+[1] 5008
+1: Di(a–b+) |------ 83.85 
+ 2: Di(a+b–) |------ 0.18 
+ 3: Wr(a+b–) |------ 0.02 
+ 4: Wd(a+) |------ 0.02 
+ 5: DI:23 |------ 0.02 
+ TGP: - |------ 15.91 
+[1] "AFR"
+[1] 1322
+1: Jk(a+) |------ 45.16 
+ 2: Jk(a+w) |------ 20.73 
+ 2: Jk(a+W) |------ 4.16 
+ 3: Jk(b+) |------ 22.09 
+ 5: Jk(a–b–) |------ 0.53 
+ TGP: - |------ 7.34 
+[1] "AMR"
+[1] 694
+1: Jk(a+) |------ 27.23 
+ 2: Jk(a+w) |------ 19.16 
+ 3: Jk(b+) |------ 49.14 
+ 5: Jk(a–b–) |------ 2.74 
+ TGP: - |------ 1.73 
+[1] "EAS"
+[1] 1008
+1: Jk(a+) |------ 7.24 
+ 2: Jk(a+w) |------ 39.78 
+ 3: Jk(b+) |------ 33.53 
+ 4: Jk(b+w) |------ 0.5 
+ 5: Jk(a–b–) |------ 0.79 
+ TGP: - |------ 18.15 
+[1] "EUR"
+[1] 1004
+1: Jk(a+) |------ 41.63 
+ 2: Jk(a+w) |------ 7.57 
+ 2: Jk(a+W) |------ 0.3 
+ 3: Jk(b+) |------ 42.43 
+ 5: Jk(a–b–) |------ 7.17 
+ TGP: - |------ 0.9 
+[1] "SAS"
+[1] 978
+1: Jk(a+) |------ 32 
+ 2: Jk(a+w) |------ 28.32 
+ 2: Jk(a+W) |------ 0.2 
+ 3: Jk(b+) |------ 31.19 
+ 4: Jk(b+w) |------ 0.1 
+ 5: Jk(a–b–) |------ 4.91 
+ TGP: - |------ 3.27 
+[1] "ALL"
+[1] 5008
+1: Jk(a+) |------ 31.75 
+ 2: Jk(a+w) |------ 23.18 
+ 2: Jk(a+W) |------ 1.2 
+ 3: Jk(b+) |------ 34.03 
+ 4: Jk(b+w) |------ 0.12 
+ 5: Jk(a–b–) |------ 3.08 
+ TGP: - |------ 6.65 
+[1] "AFR"
+[1] 1322
+1: Lu(b+) |------ 49.55 
+ 11: LU:-29, LURA- |------ 0.53 
+ 2: Au(a-b+) |------ 36.08 
+ 7: Lu(a+) |------ 0.76 
+ 8: LU:1,19 |------ 1.21 
+ 9: LU:-16 |------ 0.61 
+ TGP: - |------ 11.27 
+[1] "AMR"
+[1] 694
+1: Lu(b+) |------ 72.91 
+ 10: LU:-13 |------ 1.15 
+ 11: LU:-29, LURA- |------ 0.14 
+ 2: Au(a-b+) |------ 21.47 
+ 3: LU:-8,14 |------ 0.29 
+ 7: Lu(a+) |------ 0.14 
+ 8: LU:1,19 |------ 0.29 
+ TGP: - |------ 3.6 
+[1] "EAS"
+[1] 1008
+1: Lu(b+) |------ 84.82 
+ 2: Au(a-b+) |------ 11.11 
+ 6: LU:-22, LURC- |------ 0.2 
+ TGP: - |------ 3.87 
+[1] "EUR"
+[1] 1004
+1: Lu(b+) |------ 60.86 
+ 10: LU:-13 |------ 0.9 
+ 2: Au(a-b+) |------ 29.08 
+ 3: LU:-8,14 |------ 1.1 
+ 4: LU:-26, LUBI- |------ 0.3 
+ 5: LU:-6,9 |------ 0.1 
+ TGP: - |------ 7.67 
+[1] "SAS"
+[1] 978
+1: Lu(b+) |------ 73.11 
+ 2: Au(a-b+) |------ 20.35 
+ 4: LU:-26, LUBI- |------ 0.92 
+ 5: LU:-6,9 |------ 0.72 
+ TGP: - |------ 4.91 
+[1] "ALL"
+[1] 5008
+1: Lu(b+) |------ 66.77 
+ 10: LU:-13 |------ 0.34 
+ 11: LU:-29, LURA- |------ 0.16 
+ 2: Au(a-b+) |------ 24.54 
+ 3: LU:-8,14 |------ 0.26 
+ 4: LU:-26, LUBI- |------ 0.24 
+ 5: LU:-6,9 |------ 0.16 
+ 6: LU:-22, LURC- |------ 0.04 
+ 7: Lu(a+) |------ 0.22 
+ 8: LU:1,19 |------ 0.36 
+ 9: LU:-16 |------ 0.16 
+ TGP: - |------ 6.75 
+[1] "AFR"
+[1] 1322
+1: FUT3 Active |------ 36.01 
+ 2: FUT3 Inactive - Le(a-b-) |------ 58.32 
+ 3: FUT3 Active (Weak) |------ 0.23 
+ TGP: - |------ 5.45 
+[1] "AMR"
+[1] 694
+1: FUT3 Active |------ 56.92 
+ 2: FUT3 Inactive - Le(a-b-) |------ 41.21 
+ 3: FUT3 Active (Weak) |------ 0.14 
+ TGP: - |------ 1.73 
+[1] "EAS"
+[1] 1008
+1: FUT3 Active |------ 66.07 
+ 2: FUT3 Inactive - Le(a-b-) |------ 30.75 
+ 3: FUT3 Active (Weak) |------ 1.59 
+ TGP: - |------ 1.59 
+[1] "EUR"
+[1] 1004
+1: FUT3 Active |------ 71.31 
+ 2: FUT3 Inactive - Le(a-b-) |------ 26.29 
+ 3: FUT3 Active (Weak) |------ 0.9 
+ TGP: - |------ 1.49 
+[1] "SAS"
+[1] 978
+1: FUT3 Active |------ 61.86 
+ 2: FUT3 Inactive - Le(a-b-) |------ 35.89 
+ 3: FUT3 Active (Weak) |------ 0.92 
+ TGP: - |------ 1.33 
+[1] "ALL"
+[1] 5008
+1: FUT3 Active |------ 57.09 
+ 2: FUT3 Inactive - Le(a-b-) |------ 39.6 
+ 3: FUT3 Active (Weak) |------ 0.76 
+ TGP: - |------ 2.56 
+[1] "AFR"
+[1] 1322
+1: LW(a+) |------ 96.97 
+ TGP: - |------ 3.03 
+[1] "AMR"
+[1] 694
+1: LW(a+) |------ 100 
+[1] "EAS"
+[1] 1008
+1: LW(a+) |------ 99.7 
+ TGP: - |------ 0.3 
+[1] "EUR"
+[1] 1004
+1: LW(a+) |------ 99.3 
+ 2: LW(b+) |------ 0.4 
+ TGP: - |------ 0.3 
+[1] "SAS"
+[1] 978
+1: LW(a+) |------ 99.8 
+ TGP: - |------ 0.2 
+[1] "ALL"
+[1] 5008
+1: LW(a+) |------ 98.96 
+ 2: LW(b+) |------ 0.08 
+ TGP: - |------ 0.96 
+[1] "AFR"
+[1] 1322
+1: H+ |------ 99.02 
+ TGP: - |------ 0.98 
+[1] "AMR"
+[1] 694
+1: H+ |------ 99.14 
+ TGP: - |------ 0.86 
+[1] "EAS"
+[1] 1008
+1: H+ |------ 99.21 
+ 2: H+weak |------ 0.69 
+ TGP: - |------ 0.1 
+[1] "EUR"
+[1] 1004
+1: H+ |------ 99.5 
+ TGP: - |------ 0.5 
+[1] "SAS"
+[1] 978
+1: H+ |------ 98.67 
+ 2: H+weak |------ 0.1 
+ 3: H– |------ 0.31 
+ TGP: - |------ 0.92 
+[1] "ALL"
+[1] 5008
+1: H+ |------ 99.1 
+ 2: H+weak |------ 0.16 
+ 3: H– |------ 0.06 
+ TGP: - |------ 0.68 
+[1] "AFR"
+[1] 1322
+1: H+ |------ 49.77 
+ 3: H– |------ 49.17 
+ TGP: - |------ 1.06 
+[1] "AMR"
+[1] 694
+1: H+ |------ 60.66 
+ 2: H+w |------ 0.29 
+ 3: H– |------ 35.45 
+ TGP: - |------ 3.6 
+[1] "EAS"
+[1] 1008
+1: H+ |------ 52.78 
+ 2: H+w |------ 43.75 
+ 3: H– |------ 2.78 
+ TGP: - |------ 0.69 
+[1] "EUR"
+[1] 1004
+1: H+ |------ 52.49 
+ 2: H+w |------ 0.1 
+ 3: H– |------ 43.92 
+ TGP: - |------ 3.49 
+[1] "SAS"
+[1] 978
+1: H+ |------ 49.08 
+ 2: H+w |------ 2.35 
+ 3: H– |------ 47.85 
+ TGP: - |------ 0.72 
+[1] "ALL"
+[1] 5008
+1: H+ |------ 52.3 
+ 2: H+w |------ 9.33 
+ 3: H– |------ 36.62 
+ TGP: - |------ 1.76 
+[1] "AFR"
+[1] 1322
+1: Ok(a+) |------ 99.02 
+ TGP: - |------ 0.98 
+[1] "AMR"
+[1] 694
+1: Ok(a+) |------ 98.85 
+ TGP: - |------ 1.15 
+[1] "EAS"
+[1] 1008
+1: Ok(a+) |------ 97.62 
+ TGP: - |------ 2.38 
+[1] "EUR"
+[1] 1004
+1: Ok(a+) |------ 97.61 
+ TGP: - |------ 2.39 
+[1] "SAS"
+[1] 978
+1: Ok(a+) |------ 97.85 
+ TGP: - |------ 2.15 
+[1] "ALL"
+[1] 5008
+1: Ok(a+) |------ 98.2 
+ TGP: - |------ 1.8 
+[1] "AFR"
+[1] 1322
+ |------  
+[1] "AMR"
+[1] 694
+ |------  
+[1] "EAS"
+[1] 1008
+ |------  
+[1] "EUR"
+[1] 1004
+ |------  
+[1] "SAS"
+[1] 978
+ |------  
+[1] "ALL"
+[1] 5008
+ |------  
+[1] "AFR"
+[1] 1322
+1: Common |------ 86.61 
+ TGP: - |------ 13.39 
+[1] "AMR"
+[1] 694
+1: Common |------ 94.24 
+ TGP: - |------ 5.76 
+[1] "EAS"
+[1] 1008
+1: Common |------ 90.08 
+ TGP: - |------ 9.92 
+[1] "EUR"
+[1] 1004
+1: Common |------ 93.53 
+ 2: In(Lu) |------ 0.1 
+ TGP: - |------ 6.37 
+[1] "SAS"
+[1] 978
+1: Common |------ 95.3 
+ TGP: - |------ 4.7 
+[1] "ALL"
+[1] 5008
+1: Common |------ 91.45 
+ 2: In(Lu) |------ 0.02 
+ TGP: - |------ 8.53 
+[1] "AFR"
+[1] 1322
+1: P1+ Pk+ |------ 82.07 
+ TGP: - |------ 17.93 
+[1] "AMR"
+[1] 694
+1: P1+ Pk+ |------ 79.39 
+ TGP: - |------ 20.61 
+[1] "EAS"
+[1] 1008
+1: P1+ Pk+ |------ 39.78 
+ TGP: - |------ 60.22 
+[1] "EUR"
+[1] 1004
+1: P1+ Pk+ |------ 79.28 
+ TGP: - |------ 20.72 
+[1] "SAS"
+[1] 978
+1: P1+ Pk+ |------ 72.39 
+ TGP: - |------ 27.61 
+[1] "ALL"
+[1] 5008
+1: P1+ Pk+ |------ 70.75 
+ TGP: - |------ 29.25 
+[1] "AFR"
+[1] 1322
+1: Xga |------ 74.96 
+ TGP: - |------ 0.91 
+[1] "AMR"
+[1] 694
+1: Xga |------ 70.75 
+ TGP: - |------ 4.76 
+[1] "EAS"
+[1] 1008
+1: Xga |------ 75.69 
+ TGP: - |------ 0.1 
+[1] "EUR"
+[1] 1004
+1: Xga |------ 65.54 
+ TGP: - |------ 10.66 
+[1] "SAS"
+[1] 978
+1: Xga |------ 72.09 
+ TGP: - |------ 1.33 
+[1] "ALL"
+[1] 5008
+1: Xga |------ 72.06 
+ TGP: - |------ 3.31 
+[1] "AFR"
+[1] 1322
+1: Kx+ |------ 75.87 
+[1] "AMR"
+[1] 694
+1: Kx+ |------ 75.5 
+[1] "EAS"
+[1] 1008
+1: Kx+ |------ 75.79 
+[1] "EUR"
+[1] 1004
+1: Kx+ |------ 76 
+ TGP: - |------ 0.2 
+[1] "SAS"
+[1] 978
+1: Kx+ |------ 73.31 
+ TGP: - |------ 0.1 
+[1] "ALL"
+[1] 5008
+1: Kx+ |------ 75.32 
+ TGP: - |------ 0.06 
+[1] "AFR"
+[1] 1322
+1: Common |------ 75.64 
+ TGP: - |------ 0.23 
+[1] "AMR"
+[1] 694
+1: Common |------ 75.22 
+ TGP: - |------ 0.29 
+[1] "EAS"
+[1] 1008
+1: Common |------ 75.1 
+ TGP: - |------ 0.69 
+[1] "EUR"
+[1] 1004
+1: Common |------ 76.1 
+ TGP: - |------ 0.1 
+[1] "SAS"
+[1] 978
+1: Common |------ 72.8 
+ TGP: - |------ 0.61 
+[1] "ALL"
+[1] 5008
+1: Common |------ 75 
+ TGP: - |------ 0.38 
